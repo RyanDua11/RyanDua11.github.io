@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ryan Duarte Quintão — Desenvolvedor</title>
+  <title>Ryan Duarte Quintão, Desenvolvedor</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
@@ -591,7 +591,7 @@
     <p class="hero-title" id="typed-text"></p>
     <p class="hero-desc">
       Desenvolvedor em formação apaixonado por construir soluções reais.<br/>
-      Do backend ao frontend — código limpo, projetos funcionais, aprendizado constante.
+      Do backend ao frontend, com código limpo, projetos funcionais e aprendizado constante.
     </p>
     <div class="hero-buttons">
       <a href="#projects" class="btn btn-primary">
@@ -625,9 +625,10 @@
       <div class="about-text">
         <p class="section-tag">// sobre mim</p>
         <h2 class="section-title">Código, curiosidade<br/>e projetos reais.</h2>
-        <p>Sou <strong>desenvolvedor em formação</strong>, cursando Análise e Desenvolvimento de Sistemas na Multivix (Serra/ES). Minha trajetória é marcada pela <strong>autodidaxia</strong> — aprendo construindo, e cada projeto nasce de uma necessidade real.</p>
+        <p>Sou <strong>desenvolvedor em formação</strong>, cursando o 2º semestre de Análise e Desenvolvimento de Sistemas na Multivix (Serra/ES). Minha trajetória é marcada pela <strong>autodidaxia</strong>. Aprendo construindo, e cada projeto nasce de uma necessidade real.</p>
         <p>Tenho sólida base em <strong>Python, Java, SQL, Docker</strong> e desenvolvimento web full-stack. Já integrei <strong>IA generativa</strong> em projetos funcionais, apliquei engenharia de custo em APIs de LLMs e levei produtos do zero ao protótipo com entrega real.</p>
-        <p>Busco um estágio onde posso contribuir de verdade desde o primeiro dia — com código limpo, raciocínio técnico e muita vontade de crescer.</p>
+        <p>Atualmente estou construindo o <strong>MediStudy</strong>, uma plataforma de estudos de medicina com IA. Nela orquestro múltiplos LLMs (Claude, Groq, Gemini) com engenharia de custo de tokens e métodos de aprendizado como repetição espaçada e active recall.</p>
+        <p>Busco um estágio onde posso contribuir de verdade desde o primeiro dia, com código limpo, raciocínio técnico e muita vontade de crescer.</p>
         <div class="about-facts">
           <div class="fact-card">
             <div class="fact-num">4</div>
@@ -711,8 +712,11 @@
       <div class="skill-group fade-up">
         <div class="skill-group-title">Inteligência Artificial</div>
         <div class="skill-chips">
+          <span class="chip">Claude API (Anthropic)</span>
           <span class="chip">LLaMA 70B (Groq API)</span>
           <span class="chip">Google Gemini API</span>
+          <span class="chip">Orquestração Multi-LLM</span>
+          <span class="chip">Engenharia de Custo de Tokens</span>
           <span class="chip">Prompt Engineering</span>
           <span class="chip">IA Generativa</span>
           <span class="chip">BeautifulSoup4</span>
@@ -740,6 +744,58 @@
     <h2 class="section-title fade-up">O que eu construí</h2>
     <p class="section-subtitle fade-up">Projetos reais, com código real. Cada um resolve um problema concreto.</p>
     <div class="projects-grid">
+
+      <!-- MediStudy -->
+      <div class="project-card fade-up" style="--card-accent: linear-gradient(90deg,transparent,rgba(227,181,63,.75),transparent); --card-glow: rgba(227,181,63,.15);">
+        <div class="project-visual" style="background: linear-gradient(135deg,#0a0700,#140d00,#1c1400);">
+          <div style="position:absolute;top:0;left:0;right:0;height:28px;background:rgba(0,0,0,.4);display:flex;align-items:center;padding:0 10px;gap:6px;z-index:2;">
+            <span style="width:10px;height:10px;border-radius:50%;background:#ff5f57;display:inline-block;"></span>
+            <span style="width:10px;height:10px;border-radius:50%;background:#febc2e;display:inline-block;"></span>
+            <span style="width:10px;height:10px;border-radius:50%;background:#28c840;display:inline-block;"></span>
+            <span style="flex:1;height:16px;background:rgba(255,255,255,.06);border-radius:4px;margin-left:6px;display:flex;align-items:center;padding:0 8px;font-size:9px;color:rgba(255,255,255,.3);font-family:'Fira Code',monospace;" class="url-bar">medistudy/app/estudo</span>
+          </div>
+          <svg viewBox="0 0 400 180" preserveAspectRatio="none">
+            <defs>
+              <radialGradient id="gMedi" cx="50%" cy="50%" r="60%">
+                <stop offset="0%" stop-color="#e3b53f" stop-opacity=".22"/>
+                <stop offset="100%" stop-color="transparent"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="180" fill="url(#gMedi)"/>
+            <!-- ECG heartbeat line -->
+            <polyline points="20,110 90,110 115,110 130,72 145,150 162,92 178,110 250,110 275,110 290,60 305,152 322,96 338,110 380,110" stroke="#e3b53f" stroke-width="1.6" fill="none" opacity=".85"/>
+            <!-- DNA-ish orbit -->
+            <circle cx="200" cy="90" r="62" stroke="#e3b53f" stroke-width=".4" fill="none" opacity=".25"/>
+            <circle cx="290" cy="60" r="3" fill="#e3b53f" opacity=".8"/>
+            <circle cx="130" cy="72" r="3" fill="#e3b53f" opacity=".8"/>
+            <line x1="45" y1="150" x2="355" y2="150" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+          </svg>
+          <span class="project-visual-icon" style="color:#e3b53f">⚕️</span>
+          <span class="project-type-badge">IA + Educação</span>
+        </div>
+        <div class="project-body">
+          <h3 class="project-name">MediStudy</h3>
+          <span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#e3b53f;background:rgba(227,181,63,.1);border:1px solid rgba(227,181,63,.3);padding:3px 10px;border-radius:20px;margin-bottom:12px;font-family:'Fira Code',monospace;">
+            <span style="width:7px;height:7px;border-radius:50%;background:#e3b53f;box-shadow:0 0 8px #e3b53f;display:inline-block;"></span>
+            Em andamento
+          </span>
+          <p class="project-desc">Plataforma de estudos de medicina potencializada por IA. Flashcards com repetição espaçada, casos clínicos gerados por IA, simulador de anamnese, interpretador de exames, mapas mentais e múltiplos métodos de estudo (Active Recall, Feynman, Pomodoro). Orquestração multi-LLM com engenharia de custo de tokens.</p>
+          <div class="project-stack">
+            <span class="stack-tag">JavaScript</span>
+            <span class="stack-tag">Claude API</span>
+            <span class="stack-tag">Groq API</span>
+            <span class="stack-tag">Gemini API</span>
+            <span class="stack-tag">Multi-LLM</span>
+            <span class="stack-tag">HTML/CSS</span>
+          </div>
+          <div class="project-links">
+            <span class="project-link" style="opacity:.65;cursor:default;">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6v6l4 2M22 12a10 10 0 11-20 0 10 10 0 0120 0z"/></svg>
+              Em desenvolvimento
+            </span>
+          </div>
+        </div>
+      </div>
 
       <!-- CandidaTrack -->
       <div class="project-card fade-up" style="--card-accent: linear-gradient(90deg,transparent,rgba(59,130,246,.7),transparent); --card-glow: rgba(59,130,246,.12);">
@@ -770,7 +826,7 @@
         </div>
         <div class="project-body">
           <h3 class="project-name">CandidaTrack</h3>
-          <p class="project-desc">Sistema completo de rastreamento de candidaturas com análise inteligente de vagas via IA. Score de compatibilidade currículo × vaga, chat consultivo com LLaMA 70B e web scraping automático.</p>
+          <p class="project-desc">Sistema completo de rastreamento de candidaturas com análise inteligente de vagas via IA. Score de compatibilidade entre currículo e vaga, chat consultivo com LLaMA 70B e web scraping automático.</p>
           <div class="project-stack">
             <span class="stack-tag">Python</span>
             <span class="stack-tag">FastAPI</span>
@@ -818,8 +874,8 @@
           <span class="project-type-badge">Full Product</span>
         </div>
         <div class="project-body">
-          <h3 class="project-name">GloWay — Guia Urbano Inteligente</h3>
-          <p class="project-desc">Produto completo de guia de viagens com roteiros gerados por IA (Gemini). Mapa 3D, comunidade LGBT+, geolocalização em tempo real, integração com Stripe e engenharia de custo em IA — cada roteiro por menos de R$ 0,05.</p>
+          <h3 class="project-name">GloWay, Guia Urbano Inteligente</h3>
+          <p class="project-desc">Produto completo de guia de viagens com roteiros gerados por IA (Gemini). Mapa 3D, comunidade LGBT+, geolocalização em tempo real, integração com Stripe e engenharia de custo em IA, com cada roteiro saindo por menos de R$ 0,05.</p>
           <div class="project-stack">
             <span class="stack-tag">React</span>
             <span class="stack-tag">TypeScript</span>
@@ -953,7 +1009,7 @@
   <div class="section-inner">
     <p class="section-tag fade-up">// formação</p>
     <h2 class="section-title fade-up">Certificações & Formação</h2>
-    <p class="section-subtitle fade-up">Aprendizado contínuo — do fundamento à aplicação prática.</p>
+    <p class="section-subtitle fade-up">Aprendizado contínuo, do fundamento à aplicação prática.</p>
 
     <div class="certs-grid">
 
@@ -961,11 +1017,11 @@
         <div class="cert-icon" style="background:rgba(34,211,238,.1);">🎓</div>
         <div class="cert-body">
           <div class="cert-title">Análise e Desenvolvimento de Sistemas</div>
-          <div class="cert-issuer">Multivix — Serra/ES &nbsp;·&nbsp; 2026 – 2028 (cursando)</div>
+          <div class="cert-issuer">Multivix, Serra/ES &nbsp;·&nbsp; 2026 a 2028 &nbsp;·&nbsp; cursando</div>
           <div class="cert-chips">
             <span class="cert-chip">ADS</span>
             <span class="cert-chip">Graduação</span>
-            <span class="cert-chip">Em andamento</span>
+            <span class="cert-chip">2º semestre</span>
           </div>
         </div>
       </div>
@@ -973,7 +1029,7 @@
       <div class="cert-card fade-up">
         <div class="cert-icon" style="background:rgba(255,100,100,.1);">🏫</div>
         <div class="cert-body">
-          <div class="cert-title">FIAP — Certificações Técnicas</div>
+          <div class="cert-title">FIAP, Certificações Técnicas</div>
           <div class="cert-issuer">Faculdade de Informática e Administração Paulista</div>
           <div class="cert-chips">
             <span class="cert-chip">Engenharia de Software</span>
@@ -1003,7 +1059,7 @@
       <div class="cert-card fade-up">
         <div class="cert-icon" style="background:rgba(16,185,129,.1);">📚</div>
         <div class="cert-body">
-          <div class="cert-title">IFRS — Instituto Federal do RS</div>
+          <div class="cert-title">IFRS, Instituto Federal do RS</div>
           <div class="cert-issuer">Ensino a distância</div>
           <div class="cert-chips">
             <span class="cert-chip">Banco de Dados I</span>
@@ -1022,7 +1078,7 @@
     <h2 class="section-title fade-up">Vamos conversar?</h2>
     <p class="section-subtitle fade-up">
       Estou disponível para estágio em desenvolvimento de software.<br/>
-      Me manda uma mensagem — respondo rápido.
+      Me manda uma mensagem, respondo rápido.
     </p>
 
     <div class="contact-cards fade-up">
@@ -1044,7 +1100,7 @@
       </a>
     </div>
 
-    <a href="C:\Users\rebec\Downloads\Ryan_Duarte_Quintao_ATS.docx" download class="btn btn-primary fade-up" style="display:inline-flex;">
+    <a href="Ryan_Duarte_Quintao_ATS.docx" download class="btn btn-primary fade-up" style="display:inline-flex;">
       <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
       Baixar Currículo
     </a>
