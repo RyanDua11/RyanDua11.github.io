@@ -64,45 +64,6 @@ const WHATSAPP_TEXT = {
   es: '¡Hola Ryan! Vi tu portafolio y me gustaría hablar sobre un proyecto.',
 };
 
-/* "Como eu trabalho" da versão freelance (pitch amplo). Diferente do
-   "Como eu reviso código" da quickfix (que é sobre bug-fix). Inclui o passo de
-   "começar pequeno" como redutor de risco pro cliente cauteloso. */
-const WORK_PROCESS = {
-  pt: {
-    tag: '// como eu trabalho',
-    title: 'Como eu trabalho',
-    subtitle: 'Menos surpresa, mais previsibilidade. É assim que eu conduzo cada projeto, do primeiro contato à entrega.',
-    steps: [
-      { n: '01', title: 'Entendo o problema de verdade', desc: 'Antes de qualquer código, alinho o que você precisa e por quê. Escopo mal entendido é o que mais atrasa projeto, então começo por aí.' },
-      { n: '02', title: 'Escopo e prazo honestos', desc: 'Te digo o que é realista, o que não é e onde estão os riscos. Prefiro prometer de menos e entregar de mais.' },
-      { n: '03', title: 'Começo pequeno pra criar confiança', desc: 'Em projetos maiores, prefiro fechar um primeiro marco menor e já entregue antes de escopar o resto. Você vê resultado cedo, com risco baixo.' },
-      { n: '04', title: 'Comunico sempre, não sumo', desc: 'Updates no ritmo que a gente combinar. Se algo vai atrasar, você fica sabendo antes do prazo, não depois.' },
-    ],
-  },
-  en: {
-    tag: '// how i work',
-    title: 'How I work',
-    subtitle: 'Fewer surprises, more predictability. This is how I run every project, from first message to delivery.',
-    steps: [
-      { n: '01', title: 'I understand the real problem', desc: 'Before any code, I align on what you need and why. Misread scope is what delays projects most, so I start there.' },
-      { n: '02', title: 'Honest scope and timeline', desc: "I tell you what's realistic, what isn't and where the risks are. I'd rather under-promise and over-deliver." },
-      { n: '03', title: 'Start small to build trust', desc: 'On bigger projects, I prefer to close a small first milestone before scoping the rest. You see results early, with low risk.' },
-      { n: '04', title: "I communicate, I don't vanish", desc: 'Updates at whatever cadence we agree on. If something will slip, you hear it before the deadline, not after.' },
-    ],
-  },
-  es: {
-    tag: '// cómo trabajo',
-    title: 'Cómo trabajo',
-    subtitle: 'Menos sorpresas, más previsibilidad. Así llevo cada proyecto, del primer mensaje a la entrega.',
-    steps: [
-      { n: '01', title: 'Entiendo el problema de verdad', desc: 'Antes de cualquier código, alineo qué necesitas y por qué. Un alcance mal entendido es lo que más atrasa, así que empiezo por ahí.' },
-      { n: '02', title: 'Alcance y plazo honestos', desc: 'Te digo qué es realista, qué no y dónde están los riesgos. Prefiero prometer de menos y entregar de más.' },
-      { n: '03', title: 'Empiezo pequeño para crear confianza', desc: 'En proyectos grandes, prefiero cerrar un primer hito pequeño antes de definir el resto. Ves resultados pronto, con bajo riesgo.' },
-      { n: '04', title: 'Comunico siempre, no desaparezco', desc: 'Actualizaciones al ritmo que acordemos. Si algo se va a atrasar, te enteras antes de la fecha, no después.' },
-    ],
-  },
-};
-
 const SKILLS_TEXT = {
   pt: { tag: '// habilidades', title: 'Stack técnica', subtitle: 'Tecnologias com as quais trabalho ativamente em projetos reais.' },
   en: { tag: '// skills', title: 'Technical stack', subtitle: 'Technologies I actively work with on real projects.' },
@@ -176,17 +137,14 @@ const SKILL_I18N = {
   pt: {
     groups: { backend: 'Backend', frontend: 'Frontend', database: 'Banco de Dados', devops: 'DevOps & Ferramentas', ai: 'Inteligência Artificial', data: 'Dados & Análise' },
     terms: { partitioning: 'Particionamento', relationalModeling: 'Modelagem Relacional', multiLLM: 'Orquestração Multi-LLM', tokenCost: 'Engenharia de Custo de Tokens', genAI: 'IA Generativa', exploratory: 'Análise Exploratória', dashboards: 'Dashboards' },
-    bugLabels: { problem: 'Problema', fix: 'Correção' },
   },
   en: {
     groups: { backend: 'Backend', frontend: 'Frontend', database: 'Databases', devops: 'DevOps & Tools', ai: 'Artificial Intelligence', data: 'Data & Analytics' },
     terms: { partitioning: 'Partitioning', relationalModeling: 'Relational Modeling', multiLLM: 'Multi-LLM Orchestration', tokenCost: 'Token Cost Engineering', genAI: 'Generative AI', exploratory: 'Exploratory Analysis', dashboards: 'Dashboards' },
-    bugLabels: { problem: 'Problem', fix: 'Fix' },
   },
   es: {
     groups: { backend: 'Backend', frontend: 'Frontend', database: 'Bases de Datos', devops: 'DevOps & Herramientas', ai: 'Inteligencia Artificial', data: 'Datos & Análisis' },
     terms: { partitioning: 'Particionamiento', relationalModeling: 'Modelado Relacional', multiLLM: 'Orquestación Multi-LLM', tokenCost: 'Ingeniería de Costo de Tokens', genAI: 'IA Generativa', exploratory: 'Análisis Exploratorio', dashboards: 'Dashboards' },
-    bugLabels: { problem: 'Problema', fix: 'Corrección' },
   },
 };
 
@@ -200,27 +158,32 @@ const PROJECT_ITEMS = {
       typeBadge: 'IA + Educação',
       status: 'Em andamento',
       linkText: 'Em desenvolvimento',
-      desc: 'Nasceu de acompanhar de perto a rotina puxada de quem cursa Medicina. É uma plataforma de estudos com IA: flashcards com repetição espaçada, casos clínicos e simulador de anamnese gerados por IA, interpretador de exames e mapas mentais. Por trás, orquestro Claude, Groq e Gemini com roteamento sensível a custo, mantendo cada resposta barata sem perder qualidade.',
+      desc: 'O MediStudy nasceu de acompanhar de perto a rotina puxada da minha namorada na Medicina. Ela usava o Claude pra tirar dúvida, o Anki pra flashcard e o NotebookLM pra organizar anotação, três ferramentas separadas pra resolver um único problema. O MediStudy junta tudo isso num só lugar: flashcards com repetição espaçada, casos clínicos e simulador de anamnese gerados por IA, interpretador de exames, Pomodoro integrado e mapas mentais, com espaço pra estudar em grupo com as amigas dela. Por trás, orquestro Claude, Groq e Gemini com roteamento sensível a custo.',
+      highlight: 'Sem ele: Claude + Anki + NotebookLM, três apps separados. Com ele: tudo em um só lugar.',
     },
     candidatrack: {
       typeBadge: 'IA + Backend',
       linkText: 'Código',
-      desc: 'Construí porque eu mesmo precisava organizar minha busca por vaga. Rastreia candidaturas e usa IA para dar um score de compatibilidade entre currículo e vaga, com chat consultivo (LLaMA 70B) e web scraping automático das descrições. API assíncrona em FastAPI sobre PostgreSQL.',
+      desc: 'Resolve um problema que todo mundo que procura vaga conhece: candidatura espalhada em vários sites, sem visão nenhuma do todo. O CandidaTrack centraliza tudo, analisa currículo e portfólio contra a vaga, aponta o que está bom e o que precisa melhorar, e devolve um percentual de compatibilidade, além de um chat consultivo (LLaMA 70B) pra tirar dúvida na hora. API assíncrona em FastAPI sobre PostgreSQL, tudo via Docker.',
+      highlight: 'Currículo + portfólio + vaga analisados, com % de compatibilidade na hora.',
     },
     gloway: {
       typeBadge: 'Produto completo',
       linkText: 'Site no ar',
-      desc: 'Produto de guia de viagens levado do zero à produção. Roteiros gerados por IA (Gemini) por menos de R$ 0,05 cada, mapa 3D, geolocalização em tempo real, comunidade LGBT+ e pagamento via Stripe. O coração foi a engenharia de custo: controlar prompt e modelo direto na API em vez de pagar por uma camada no-code.',
+      desc: 'Meu maior projeto até hoje. A ideia nasceu sozinha, numa madrugada, e virou um produto completo do zero ao protótipo funcional, sem cofundador, direto no Google AI Studio. Um guia de Vitória/ES pra turista e morador ao mesmo tempo: roteiros gerados por IA, mapa 3D de avaliação urbana, comunidade LGBT+ e monitoramento de bike compartilhada. Parou não por falha de produto, mas por falta de verba de marketing. O protótipo funciona e está no ar até hoje.',
+      highlight: 'Menos de R$ 0,005 de custo de infraestrutura por roteiro gerado.',
     },
     ledgerx: {
       typeBadge: 'PostgreSQL avançado',
       linkText: 'Código',
-      desc: 'Sistema de análise financeira com PostgreSQL como protagonista, não como mero armazenamento. Window Functions, CTEs, Materialized Views, Triggers, particionamento por mês e Full-Text Search resolvendo consultas reais de relatório, com exportação em Excel com gráficos.',
+      desc: 'Construí por pura curiosidade, pra aprender PostgreSQL de verdade e organizar minha própria vida financeira. Hoje sou eu e mais duas pessoas usando ele no dia a dia. Window Functions, CTEs, Materialized Views, Triggers, particionamento por mês e Full-Text Search resolvendo relatório financeiro real, com exportação em Excel com gráficos.',
+      highlight: '3 pessoas usando no dia a dia, eu incluído.',
     },
     todolist: {
       typeBadge: 'API REST',
       linkText: 'Código',
-      desc: 'API REST em Java 21 com Spring Boot e Hibernate sobre PostgreSQL, tudo via Docker. Foco em fundamento sólido: CRUD validado com persistência real, ambiente 100% reproduzível via docker-compose e cada bug documentado até a causa raiz.',
+      desc: 'Meu primeiro projeto, de propósito simples: uma lista de tarefas. Mas uso ele todo santo dia até hoje pra anotar o que preciso fazer. Base sólida em Java 21, Spring Boot, Hibernate e PostgreSQL, tudo via Docker, com ambiente 100% reproduzível.',
+      highlight: 'Primeiro projeto, ainda em uso diário até hoje.',
     },
   },
   en: {
@@ -228,27 +191,32 @@ const PROJECT_ITEMS = {
       typeBadge: 'AI + Education',
       status: 'In progress',
       linkText: 'In development',
-      desc: 'It grew out of watching the intense routine of medical school up close. An AI-powered study platform: spaced-repetition flashcards, AI-generated clinical cases and an anamnesis simulator, an exam interpreter and mind maps. Under the hood, I orchestrate Claude, Groq and Gemini with cost-aware routing, keeping every response cheap without losing quality.',
+      desc: "MediStudy came from watching my girlfriend's demanding routine in medical school up close. She used Claude for questions, Anki for flashcards and NotebookLM for notes, three separate tools to solve one problem. MediStudy puts all of that in one place: spaced-repetition flashcards, AI-generated clinical cases and an anamnesis simulator, an exam interpreter, a built-in Pomodoro timer and mind maps, plus room to study together with her friends. Under the hood, I orchestrate Claude, Groq and Gemini with cost-aware routing.",
+      highlight: 'Without it: Claude + Anki + NotebookLM, three separate apps. With it: all in one place.',
     },
     candidatrack: {
       typeBadge: 'AI + Backend',
       linkText: 'Code',
-      desc: 'I built it because I needed it myself to organize my own job search. It tracks applications and uses AI to score how well a résumé matches a job, with a consultative chat (LLaMA 70B) and automatic web scraping of the listings. Async API in FastAPI on top of PostgreSQL.',
+      desc: "Solves a problem every job seeker knows: applications scattered across a dozen sites, with zero overview. CandidaTrack centralizes everything, analyzes your résumé and portfolio against the job posting, flags what's strong and what needs work, and returns a compatibility percentage, plus a consultative chat (LLaMA 70B) for instant questions. Async API in FastAPI on top of PostgreSQL, all through Docker.",
+      highlight: 'Résumé + portfolio + job posting analyzed, with an instant compatibility score.',
     },
     gloway: {
       typeBadge: 'Full product',
       linkText: 'Live site',
-      desc: 'A travel-guide product taken from zero to production. AI-generated itineraries (Gemini) for under one cent each, a 3D map, real-time geolocation, an LGBT+ community and Stripe payments. The core was cost engineering: controlling the prompt and model directly through the API instead of paying for a no-code layer.',
+      desc: 'My biggest project to date. The idea came to me alone, overnight, and became a full product, from zero to a working prototype, no co-founder, built directly in Google AI Studio. A guide to Vitória, Brazil for tourists and residents alike: AI-generated itineraries, a 3D map for crowd-sourced urban ratings, an LGBT+ community and shared-bike monitoring. It stopped not from a product failure, but from a lack of marketing budget. The prototype works and is still live today.',
+      highlight: 'Under R$0.005 (about $0.001) in infrastructure cost per itinerary generated.',
     },
     ledgerx: {
       typeBadge: 'Advanced PostgreSQL',
       linkText: 'Code',
-      desc: 'A financial-analysis system with PostgreSQL as the lead, not just storage. Window Functions, CTEs, Materialized Views, Triggers, monthly partitioning and Full-Text Search solving real reporting queries, with Excel export including charts.',
+      desc: "Built out of pure curiosity, to really learn PostgreSQL and organize my own personal finances. Today it's me and two other people using it day to day. Window Functions, CTEs, Materialized Views, Triggers, monthly partitioning and Full-Text Search solving real financial reporting, with Excel export including charts.",
+      highlight: '3 people using it daily, myself included.',
     },
     todolist: {
       typeBadge: 'REST API',
       linkText: 'Code',
-      desc: 'A REST API in Java 21 with Spring Boot and Hibernate on PostgreSQL, all through Docker. Focused on solid fundamentals: validated CRUD with real persistence, a 100% reproducible environment via docker-compose and every bug documented down to the root cause.',
+      desc: 'My first project, deliberately simple: a to-do list. I still use it every single day to jot down what I need to do. Solid fundamentals in Java 21, Spring Boot, Hibernate and PostgreSQL, all through Docker, with a 100% reproducible environment.',
+      highlight: 'First project ever, still in daily use today.',
     },
   },
   es: {
@@ -256,27 +224,32 @@ const PROJECT_ITEMS = {
       typeBadge: 'IA + Educación',
       status: 'En curso',
       linkText: 'En desarrollo',
-      desc: 'Nació de acompañar de cerca la rutina intensa de quien estudia Medicina. Es una plataforma de estudio con IA: flashcards con repetición espaciada, casos clínicos y simulador de anamnesis generados por IA, intérprete de exámenes y mapas mentales. Por detrás, orquesto Claude, Groq y Gemini con enrutamiento sensible al costo, manteniendo cada respuesta barata sin perder calidad.',
+      desc: 'MediStudy nació de acompañar de cerca la rutina exigente de mi novia en la carrera de Medicina. Ella usaba Claude para dudas, Anki para flashcards y NotebookLM para notas, tres herramientas separadas para resolver un solo problema. MediStudy junta todo eso en un solo lugar: flashcards con repetición espaciada, casos clínicos y simulador de anamnesis generados por IA, intérprete de exámenes, Pomodoro integrado y mapas mentales, con espacio para estudiar en grupo con sus amigas. Por detrás, orquesto Claude, Groq y Gemini con enrutamiento sensible al costo.',
+      highlight: 'Sin él: Claude + Anki + NotebookLM, tres apps separadas. Con él: todo en un solo lugar.',
     },
     candidatrack: {
       typeBadge: 'IA + Backend',
       linkText: 'Código',
-      desc: 'Lo construí porque yo mismo necesitaba organizar mi búsqueda de empleo. Rastrea postulaciones y usa IA para dar un score de compatibilidad entre currículum y vacante, con chat consultivo (LLaMA 70B) y web scraping automático de las descripciones. API asíncrona en FastAPI sobre PostgreSQL.',
+      desc: 'Resuelve un problema que todo el que busca empleo conoce: postulaciones dispersas en varios sitios, sin ninguna visión de conjunto. CandidaTrack centraliza todo, analiza currículum y portafolio contra la vacante, señala qué está bien y qué hay que mejorar, y devuelve un porcentaje de compatibilidad, además de un chat consultivo (LLaMA 70B) para dudas al instante. API asíncrona en FastAPI sobre PostgreSQL, todo vía Docker.',
+      highlight: 'Currículum + portafolio + vacante analizados, con % de compatibilidad al instante.',
     },
     gloway: {
       typeBadge: 'Producto completo',
       linkText: 'Sitio en vivo',
-      desc: 'Un producto de guía de viajes llevado de cero a producción. Itinerarios generados por IA (Gemini) por menos de un centavo cada uno, mapa 3D, geolocalización en tiempo real, comunidad LGBT+ y pagos con Stripe. El corazón fue la ingeniería de costo: controlar el prompt y el modelo directamente por la API en vez de pagar por una capa no-code.',
+      desc: 'Mi proyecto más grande hasta hoy. La idea nació sola, una madrugada, y se convirtió en un producto completo, de cero a prototipo funcional, sin cofundador, construido directamente en Google AI Studio. Una guía de Vitória/ES para turista y residente a la vez: itinerarios generados por IA, mapa 3D de evaluación urbana, comunidad LGBT+ y monitoreo de bicicletas compartidas. Se detuvo no por falla de producto, sino por falta de presupuesto de marketing. El prototipo funciona y sigue en línea hoy.',
+      highlight: 'Menos de R$ 0,005 de costo de infraestructura por itinerario generado.',
     },
     ledgerx: {
       typeBadge: 'PostgreSQL avanzado',
       linkText: 'Código',
-      desc: 'Un sistema de análisis financiero con PostgreSQL como protagonista, no como simple almacenamiento. Window Functions, CTEs, Materialized Views, Triggers, particionamiento por mes y Full-Text Search resolviendo consultas reales de reportes, con exportación a Excel con gráficos.',
+      desc: 'Lo construí por pura curiosidad, para aprender PostgreSQL de verdad y organizar mis propias finanzas. Hoy somos yo y dos personas más usándolo a diario. Window Functions, CTEs, Materialized Views, Triggers, particionamiento por mes y Full-Text Search resolviendo reportes financieros reales, con exportación a Excel con gráficos.',
+      highlight: '3 personas usándolo a diario, yo incluido.',
     },
     todolist: {
       typeBadge: 'API REST',
       linkText: 'Código',
-      desc: 'Una API REST en Java 21 con Spring Boot y Hibernate sobre PostgreSQL, todo vía Docker. Enfocada en fundamentos sólidos: CRUD validado con persistencia real, un entorno 100% reproducible vía docker-compose y cada bug documentado hasta la causa raíz.',
+      desc: 'Mi primer proyecto, deliberadamente simple: una lista de tareas. Pero lo uso todos los días hasta hoy para anotar lo que necesito hacer. Fundamentos sólidos en Java 21, Spring Boot, Hibernate y PostgreSQL, todo vía Docker, con un entorno 100% reproducible.',
+      highlight: 'Primer proyecto, todavía en uso diario hoy.',
     },
   },
 };
@@ -284,9 +257,9 @@ const PROJECT_ITEMS = {
 /* Parágrafo pessoal do Hero (substitui a antiga seção "Sobre" solta).
    Traço pessoal, independe da versão; some no Hero como voz do Ryan. */
 const HERO_PERSONAL = {
-  pt: 'Gosto de tecnologia pelo desafio que ela traz, foi isso que me trouxe pra área e é o que me mantém nela. O MediStudy nasceu de acompanhar de perto a rotina puxada de quem cursa Medicina; o CandidaTrack, porque eu mesmo precisava dele pra organizar minha busca por vaga. Prefiro construir algo que resolve o problema de gente de verdade a fazer exercício de portfólio.',
-  en: "I'm in tech for the challenge it brings, that's what pulled me in and what keeps me here. MediStudy came from watching the intense routine of medical school up close; CandidaTrack, because I needed it myself to organize my own job search. I'd rather build something that solves a real person's problem than a portfolio exercise.",
-  es: 'Estoy en la tecnología por el desafío que trae, eso me atrajo y es lo que me mantiene. MediStudy nació de acompañar de cerca la rutina intensa de quien estudia Medicina; CandidaTrack, porque yo mismo lo necesitaba para organizar mi búsqueda de empleo. Prefiero construir algo que resuelve el problema de una persona real que un ejercicio de portafolio.',
+  pt: 'Tenho 22 anos e sigo nessa carreira porque gosto de verdade do desafio que a tecnologia traz. O MediStudy nasceu de acompanhar de perto a rotina puxada da minha namorada na Medicina; o CandidaTrack, porque eu mesmo precisava organizar minha busca por vaga. Prefiro construir algo que resolve o problema de gente de verdade a fazer exercício de portfólio.',
+  en: "I'm 22, and I stay in this career because I genuinely enjoy the challenge tech brings. MediStudy came from watching my girlfriend's demanding routine in medical school up close; CandidaTrack, because I needed it myself to organize my own job search. I'd rather build something that solves a real person's problem than a portfolio exercise.",
+  es: 'Tengo 22 años y sigo en esta carrera porque disfruto de verdad el desafío que trae la tecnología. MediStudy nació de acompañar de cerca la rutina exigente de mi novia en la carrera de Medicina; CandidaTrack, porque yo mismo lo necesitaba para organizar mi búsqueda de empleo. Prefiero construir algo que resuelve el problema de una persona real que un ejercicio de portafolio.',
 };
 
 const CONTENT = {
@@ -300,7 +273,7 @@ const CONTENT = {
       hero: {
         badge: 'Disponível para novos projetos',
         headlineHtml: 'Construindo <span class="accent">soluções</span> reais.',
-        desc: 'Desenvolvedor full stack focado em entregar código limpo, funcional e com resultado real. Do backend ao frontend, cada projeto nasce de um problema concreto.',
+        desc: 'Sou Ryan Duarte Quintão, desenvolvedor full stack focado em entregar código limpo, funcional e com resultado real. Do backend ao frontend, cada projeto nasce de um problema concreto.',
         personal: HERO_PERSONAL.pt,
         ctaPrimary: 'Ver Projetos',
         metaRole: 'Full Stack',
@@ -336,7 +309,7 @@ const CONTENT = {
       hero: {
         badge: 'Available for new projects',
         headlineHtml: 'Building real <span class="accent">solutions</span>.',
-        desc: 'Full stack developer focused on shipping clean, functional code with real results. From backend to frontend, every project starts from a concrete problem.',
+        desc: "I'm Ryan Duarte Quintão, a full stack developer focused on shipping clean, functional code with real results. From backend to frontend, every project starts from a concrete problem.",
         personal: HERO_PERSONAL.en,
         ctaPrimary: 'View Projects',
         metaRole: 'Full Stack',
@@ -376,7 +349,7 @@ const CONTENT = {
       hero: {
         badge: 'Disponível para estágio, início imediato',
         headlineHtml: 'Aprendendo a construir <span class="accent">soluções</span> reais.',
-        desc: 'Estudante de Análise e Desenvolvimento de Sistemas construindo projetos reais desde o início do curso. Cada entrega é uma chance de aprender fazendo.',
+        desc: 'Sou Ryan Duarte Quintão, estudante de Análise e Desenvolvimento de Sistemas construindo projetos reais desde o início do curso. Cada entrega é uma chance de aprender fazendo.',
         personal: HERO_PERSONAL.pt,
         ctaPrimary: 'Ver Projetos',
         metaRole: 'Estagiário em formação',
@@ -419,7 +392,7 @@ const CONTENT = {
       hero: {
         badge: 'Available for internship, immediate start',
         headlineHtml: 'Learning to build real <span class="accent">solutions</span>.',
-        desc: 'Systems Analysis and Development student building real projects since the start of the course. Every delivery is a chance to learn by doing.',
+        desc: "I'm Ryan Duarte Quintão, a Systems Analysis and Development student building real projects since the start of the course. Every delivery is a chance to learn by doing.",
         personal: HERO_PERSONAL.en,
         ctaPrimary: 'View Projects',
         metaRole: 'Intern in training',
@@ -466,7 +439,7 @@ const CONTENT = {
       hero: {
         badge: 'Available now, fast turnaround',
         headlineHtml: 'Fast, reliable fixes for <span class="accent">React, CSS & JS</span> bugs.',
-        desc: "I fix broken layouts, flaky JS, and CSS that fights you across browsers. Clear communication, quick diagnosis, code you can trust.",
+        desc: "I'm Ryan Duarte Quintão. I fix broken layouts, flaky JS, and CSS that fights you across browsers. Clear communication, quick diagnosis, code you can trust.",
         ctaPrimary: 'See My Work',
         metaRole: 'Bug fixes & code review',
         metaFocus: 'Speed & reliability',
@@ -487,23 +460,6 @@ const CONTENT = {
         title: 'What I built',
         subtitle: "Real fixes, real projects. Here's the kind of work I ship.",
       },
-      review: {
-        tag: '// how i work',
-        title: 'How I review code',
-        subtitle: 'A structured pass, not a guess. This is the checklist I run on every fix.',
-        steps: [
-          { n: '01', title: 'Reproduce', desc: 'I confirm the bug on my end before touching anything, with the same browser, viewport and data shape you reported.' },
-          { n: '02', title: 'Isolate the root cause', desc: "I trace the failure back past the first symptom. A layout bug is often a spacing rule two components away, not the element that looks broken." },
-          { n: '03', title: 'Smallest possible fix', desc: 'I ship the minimal, scoped change that resolves the root cause, not a rewrite of code that already works.' },
-          { n: '04', title: 'Flag, don\'t fix uninvited', desc: "If I spot something else risky nearby, I tell you about it instead of quietly expanding the scope of the fix." },
-        ],
-        bugsTitle: 'Three real bugs I fixed',
-        bugs: [
-          { title: 'Ghost scroll from a margin', problem: 'A page had extra invisible scroll space caused by margin collapsing against the body element.', fix: 'Reset the margin and box-sizing at the boundary and verified the fix against the computed scroll height.' },
-          { title: 'Chrome autofill breaking the theme', problem: "Chrome's autofill forced a yellow background and system font onto input fields, breaking a dark themed form.", fix: 'Overrode the autofill state with a targeted box-shadow and transition instead of fighting the browser default.' },
-          { title: 'CSS leaking between two containers', problem: 'A shared selector let styles bleed between #login-container and a second form container that should have been isolated.', fix: 'Scoped the selectors properly so each container owns its own styles, with no bleed either direction.' },
-        ],
-      },
       certs: CERTS_TEXT.en,
       contact: {
         tag: '// contact',
@@ -518,7 +474,7 @@ const CONTENT = {
       hero: {
         badge: 'Disponível agora, entrega rápida',
         headlineHtml: 'Correções rápidas e confiáveis para bugs de <span class="accent">React, CSS e JS</span>.',
-        desc: 'Conserto layouts quebrados, JS instável e CSS que se comporta diferente entre navegadores. Comunicação clara, diagnóstico rápido, código em que você pode confiar.',
+        desc: 'Sou Ryan Duarte Quintão. Conserto layouts quebrados, JS instável e CSS que se comporta diferente entre navegadores. Comunicação clara, diagnóstico rápido, código em que você pode confiar.',
         ctaPrimary: 'Ver Meu Trabalho',
         metaRole: 'Correção de bugs & code review',
         metaFocus: 'Velocidade & confiabilidade',
@@ -539,23 +495,6 @@ const CONTENT = {
         title: 'O que eu construí',
         subtitle: 'Correções reais, projetos reais. Esse é o tipo de trabalho que eu entrego.',
       },
-      review: {
-        tag: '// como eu trabalho',
-        title: 'Como eu reviso código',
-        subtitle: 'Um processo estruturado, não um chute. Esse é o checklist que aplico em cada correção.',
-        steps: [
-          { n: '01', title: 'Reproduzir', desc: 'Confirmo o bug do meu lado antes de mexer em qualquer coisa, com o mesmo navegador, viewport e formato de dados que você reportou.' },
-          { n: '02', title: 'Isolar a causa raiz', desc: 'Rastreio a falha além do primeiro sintoma. Um bug de layout costuma ser uma regra de espaçamento dois componentes antes, não o elemento que parece quebrado.' },
-          { n: '03', title: 'Menor correção possível', desc: 'Entrego a mudança mínima e escopada que resolve a causa raiz, não uma reescrita de código que já funciona.' },
-          { n: '04', title: 'Sinalizo, não conserto sem avisar', desc: 'Se encontro outro risco por perto, eu te aviso em vez de expandir o escopo da correção silenciosamente.' },
-        ],
-        bugsTitle: 'Três bugs reais que corrigi',
-        bugs: [
-          { title: 'Scroll fantasma por causa de uma margin', problem: 'Uma página tinha espaço de scroll extra e invisível, causado por colapso de margin contra o elemento body.', fix: 'Resetei margin e box-sizing no limite do elemento e validei contra a altura de scroll computada.' },
-          { title: 'Autofill do Chrome quebrando o tema', problem: 'O autofill do Chrome forçava fundo amarelo e fonte do sistema nos campos, quebrando um formulário com tema escuro.', fix: 'Sobrescrevi o estado de autofill com box-shadow e transition direcionados, em vez de brigar com o padrão do navegador.' },
-          { title: 'CSS vazando entre dois containers', problem: 'Um seletor compartilhado deixava estilos vazarem entre o #login-container e um segundo container de formulário que deveria estar isolado.', fix: 'Escopei os seletores corretamente para que cada container tivesse seus próprios estilos, sem vazamento em nenhuma direção.' },
-        ],
-      },
       certs: CERTS_TEXT.pt,
       contact: {
         tag: '// contato',
@@ -570,7 +509,7 @@ const CONTENT = {
       hero: {
         badge: 'Disponible ahora, entrega rápida',
         headlineHtml: 'Correcciones rápidas y confiables para bugs de <span class="accent">React, CSS y JS</span>.',
-        desc: 'Arreglo layouts rotos, JS inestable y CSS que se comporta distinto entre navegadores. Comunicación clara, diagnóstico rápido, código en el que puedes confiar.',
+        desc: 'Soy Ryan Duarte Quintão. Arreglo layouts rotos, JS inestable y CSS que se comporta distinto entre navegadores. Comunicación clara, diagnóstico rápido, código en el que puedes confiar.',
         ctaPrimary: 'Ver Mi Trabajo',
         metaRole: 'Corrección de bugs & code review',
         metaFocus: 'Velocidad & confiabilidad',
@@ -591,23 +530,6 @@ const CONTENT = {
         title: 'Lo que construí',
         subtitle: 'Correcciones reales, proyectos reales. Este es el tipo de trabajo que entrego.',
       },
-      review: {
-        tag: '// cómo trabajo',
-        title: 'Cómo reviso código',
-        subtitle: 'Un proceso estructurado, no una adivinanza. Este es el checklist que aplico en cada corrección.',
-        steps: [
-          { n: '01', title: 'Reproducir', desc: 'Confirmo el bug de mi lado antes de tocar nada, con el mismo navegador, viewport y formato de datos que reportaste.' },
-          { n: '02', title: 'Aislar la causa raíz', desc: 'Rastreo la falla más allá del primer síntoma. Un bug de layout suele ser una regla de espaciado dos componentes antes, no el elemento que parece roto.' },
-          { n: '03', title: 'Corrección mínima posible', desc: 'Entrego el cambio mínimo y acotado que resuelve la causa raíz, no una reescritura de código que ya funciona.' },
-          { n: '04', title: 'Aviso, no corrijo sin avisar', desc: 'Si encuentro otro riesgo cerca, te aviso en lugar de expandir el alcance de la corrección en silencio.' },
-        ],
-        bugsTitle: 'Tres bugs reales que corregí',
-        bugs: [
-          { title: 'Scroll fantasma por un margin', problem: 'Una página tenía espacio de scroll extra e invisible, causado por colapso de margin contra el elemento body.', fix: 'Reseteé margin y box-sizing en el límite del elemento y validé contra la altura de scroll calculada.' },
-          { title: 'Autofill de Chrome rompiendo el tema', problem: 'El autofill de Chrome forzaba fondo amarillo y fuente del sistema en los campos, rompiendo un formulario con tema oscuro.', fix: 'Sobrescribí el estado de autofill con box-shadow y transition específicos, en vez de pelear con el valor por defecto del navegador.' },
-          { title: 'CSS filtrándose entre dos contenedores', problem: 'Un selector compartido dejaba que los estilos se filtraran entre el #login-container y un segundo contenedor de formulario que debía estar aislado.', fix: 'Delimité los selectores correctamente para que cada contenedor tuviera sus propios estilos, sin filtración en ninguna dirección.' },
-        ],
-      },
       certs: CERTS_TEXT.es,
       contact: {
         tag: '// contacto',
@@ -626,7 +548,7 @@ const CONTENT = {
       hero: {
         badge: 'Available for AI integration & full stack builds',
         headlineHtml: 'AI features that <span class="accent">actually ship</span>.',
-        desc: 'I integrate LLMs directly via API, no dependency on no-code platforms. Lower cost, more control, and a system you actually own.',
+        desc: "I'm Ryan Duarte Quintão. I integrate LLMs directly via API, no dependency on no-code platforms. Lower cost, more control, and a system you actually own.",
         personal: HERO_PERSONAL.en,
         ctaPrimary: 'See My Work',
         metaRole: 'AI Integration & Full Stack',
@@ -662,7 +584,7 @@ const CONTENT = {
       hero: {
         badge: 'Disponível para integração de IA e projetos full stack',
         headlineHtml: 'Recursos de IA que <span class="accent">realmente vão ao ar</span>.',
-        desc: 'Integro LLMs diretamente via API, sem depender de plataformas no-code. Menor custo, mais controle e um sistema que é realmente seu.',
+        desc: 'Sou Ryan Duarte Quintão. Integro LLMs diretamente via API, sem depender de plataformas no-code. Menor custo, mais controle e um sistema que é realmente seu.',
         personal: HERO_PERSONAL.pt,
         ctaPrimary: 'Ver Meu Trabalho',
         metaRole: 'Integração de IA & Full Stack',
@@ -698,7 +620,7 @@ const CONTENT = {
       hero: {
         badge: 'Disponible para integración de IA y proyectos full stack',
         headlineHtml: 'Funciones de IA que <span class="accent">realmente se publican</span>.',
-        desc: 'Integro LLMs directamente vía API, sin depender de plataformas no-code. Menor costo, más control y un sistema que realmente te pertenece.',
+        desc: 'Soy Ryan Duarte Quintão. Integro LLMs directamente vía API, sin depender de plataformas no-code. Menor costo, más control y un sistema que realmente te pertenece.',
         personal: HERO_PERSONAL.es,
         ctaPrimary: 'Ver Mi Trabajo',
         metaRole: 'Integración de IA & Full Stack',
@@ -738,7 +660,7 @@ const CONTENT = {
       hero: {
         badge: 'Available for freelance projects',
         headlineHtml: 'Full stack products, <span class="accent">built to ship</span>.',
-        desc: "I build and fix real products end to end: React and TypeScript frontends, Python and Java backends, PostgreSQL at the core, and AI features integrated directly via API when a project actually needs it. Clear communication, realistic estimates, code you can maintain after I'm gone.",
+        desc: "I'm Ryan Duarte Quintão. I build and fix real products end to end: React and TypeScript frontends, Python and Java backends, PostgreSQL at the core, and AI features integrated directly via API when a project actually needs it. Clear communication, realistic estimates, code you can maintain after I'm gone.",
         personal: HERO_PERSONAL.en,
         ctaPrimary: 'See My Work',
         metaRole: 'Full Stack Developer',
@@ -760,23 +682,6 @@ const CONTENT = {
         title: "What I've built",
         subtitle: "Real products, real code, real users. Here's the proof.",
       },
-      review: {
-        tag: '// how i work',
-        title: 'How I review code',
-        subtitle: 'A structured pass, not a guess. This is the checklist I run on every fix.',
-        steps: [
-          { n: '01', title: 'Reproduce', desc: 'I confirm the bug on my end before touching anything, with the same browser, viewport and data shape you reported.' },
-          { n: '02', title: 'Isolate the root cause', desc: 'I trace the failure back past the first symptom. A layout bug is often a spacing rule two components away, not the element that looks broken.' },
-          { n: '03', title: 'Smallest possible fix', desc: 'I ship the minimal, scoped change that resolves the root cause, not a rewrite of code that already works.' },
-          { n: '04', title: "Flag, don't fix uninvited", desc: 'If I spot something else risky nearby, I tell you about it instead of quietly expanding the scope of the fix.' },
-        ],
-        bugsTitle: 'Three real bugs I fixed',
-        bugs: [
-          { title: 'Ghost scroll from a margin', problem: 'A page had extra invisible scroll space caused by margin collapsing against the body element.', fix: 'Reset the margin and box-sizing at the boundary and verified the fix against the computed scroll height.' },
-          { title: "Chrome autofill breaking the theme", problem: "Chrome's autofill forced a yellow background and system font onto input fields, breaking a dark themed form.", fix: 'Overrode the autofill state with a targeted box-shadow and transition instead of fighting the browser default.' },
-          { title: 'CSS leaking between two containers', problem: 'A shared selector let styles bleed between #login-container and a second form container that should have been isolated.', fix: 'Scoped the selectors properly so each container owns its own styles, with no bleed either direction.' },
-        ],
-      },
       certs: CERTS_TEXT.en,
       contact: {
         tag: '// contact',
@@ -791,7 +696,7 @@ const CONTENT = {
       hero: {
         badge: 'Disponível para projetos freelance',
         headlineHtml: 'Produtos full stack, <span class="accent">prontos pra produção</span>.',
-        desc: 'Eu construo e conserto produtos reais de ponta a ponta: frontend em React e TypeScript, backend em Python e Java, PostgreSQL como base, e IA integrada direto via API quando o projeto realmente precisa. Comunicação clara, prazos realistas, código que dá pra manter depois que eu terminar.',
+        desc: 'Sou Ryan Duarte Quintão. Construo e conserto produtos reais de ponta a ponta: frontend em React e TypeScript, backend em Python e Java, PostgreSQL como base, e IA integrada direto via API quando o projeto realmente precisa. Comunicação clara, prazos realistas, código que dá pra manter depois que eu terminar.',
         personal: HERO_PERSONAL.pt,
         ctaPrimary: 'Ver Meu Trabalho',
         metaRole: 'Desenvolvedor Full Stack',
@@ -813,23 +718,6 @@ const CONTENT = {
         title: 'O que eu construí',
         subtitle: 'Produtos reais, código real, usuários reais. Aqui está a prova.',
       },
-      review: {
-        tag: '// como eu trabalho',
-        title: 'Como eu reviso código',
-        subtitle: 'Um processo estruturado, não um chute. Esse é o checklist que aplico em cada correção.',
-        steps: [
-          { n: '01', title: 'Reproduzir', desc: 'Confirmo o bug do meu lado antes de mexer em qualquer coisa, com o mesmo navegador, viewport e formato de dados que você reportou.' },
-          { n: '02', title: 'Isolar a causa raiz', desc: 'Rastreio a falha além do primeiro sintoma. Um bug de layout costuma ser uma regra de espaçamento dois componentes antes, não o elemento que parece quebrado.' },
-          { n: '03', title: 'Menor correção possível', desc: 'Entrego a mudança mínima e escopada que resolve a causa raiz, não uma reescrita de código que já funciona.' },
-          { n: '04', title: 'Sinalizo, não conserto sem avisar', desc: 'Se encontro outro risco por perto, eu te aviso em vez de expandir o escopo da correção silenciosamente.' },
-        ],
-        bugsTitle: 'Três bugs reais que corrigi',
-        bugs: [
-          { title: 'Scroll fantasma por causa de uma margin', problem: 'Uma página tinha espaço de scroll extra e invisível, causado por colapso de margin contra o elemento body.', fix: 'Resetei margin e box-sizing no limite do elemento e validei contra a altura de scroll computada.' },
-          { title: 'Autofill do Chrome quebrando o tema', problem: 'O autofill do Chrome forçava fundo amarelo e fonte do sistema nos campos, quebrando um formulário com tema escuro.', fix: 'Sobrescrevi o estado de autofill com box-shadow e transition direcionados, em vez de brigar com o padrão do navegador.' },
-          { title: 'CSS vazando entre dois containers', problem: 'Um seletor compartilhado deixava estilos vazarem entre o #login-container e um segundo container de formulário que deveria estar isolado.', fix: 'Escopei os seletores corretamente para que cada container tivesse seus próprios estilos, sem vazamento em nenhuma direção.' },
-        ],
-      },
       certs: CERTS_TEXT.pt,
       contact: {
         tag: '// contato',
@@ -844,7 +732,7 @@ const CONTENT = {
       hero: {
         badge: 'Disponible para proyectos freelance',
         headlineHtml: 'Productos full stack, <span class="accent">listos para producción</span>.',
-        desc: 'Construyo y arreglo productos reales de principio a fin: frontend en React y TypeScript, backend en Python y Java, PostgreSQL como base, e IA integrada directamente vía API cuando el proyecto realmente lo necesita. Comunicación clara, plazos realistas, código que se puede mantener después de que yo termine.',
+        desc: 'Soy Ryan Duarte Quintão. Construyo y arreglo productos reales de principio a fin: frontend en React y TypeScript, backend en Python y Java, PostgreSQL como base, e IA integrada directamente vía API cuando el proyecto realmente lo necesita. Comunicación clara, plazos realistas, código que se puede mantener después de que yo termine.',
         personal: HERO_PERSONAL.es,
         ctaPrimary: 'Ver Mi Trabajo',
         metaRole: 'Desarrollador Full Stack',
@@ -865,23 +753,6 @@ const CONTENT = {
         tag: '// proyectos',
         title: 'Lo que construí',
         subtitle: 'Productos reales, código real, usuarios reales. Aquí está la prueba.',
-      },
-      review: {
-        tag: '// cómo trabajo',
-        title: 'Cómo reviso código',
-        subtitle: 'Un proceso estructurado, no una adivinanza. Este es el checklist que aplico en cada corrección.',
-        steps: [
-          { n: '01', title: 'Reproducir', desc: 'Confirmo el bug de mi lado antes de tocar nada, con el mismo navegador, viewport y formato de datos que reportaste.' },
-          { n: '02', title: 'Aislar la causa raíz', desc: 'Rastreo la falla más allá del primer síntoma. Un bug de layout suele ser una regla de espaciado dos componentes antes, no el elemento que parece roto.' },
-          { n: '03', title: 'Corrección mínima posible', desc: 'Entrego el cambio mínimo y acotado que resuelve la causa raíz, no una reescritura de código que ya funciona.' },
-          { n: '04', title: 'Aviso, no corrijo sin avisar', desc: 'Si encuentro otro riesgo cerca, te aviso en lugar de expandir el alcance de la corrección en silencio.' },
-        ],
-        bugsTitle: 'Tres bugs reales que corregí',
-        bugs: [
-          { title: 'Scroll fantasma por un margin', problem: 'Una página tenía espacio de scroll extra e invisible, causado por colapso de margin contra el elemento body.', fix: 'Reseteé margin y box-sizing en el límite del elemento y validé contra la altura de scroll calculada.' },
-          { title: 'Autofill de Chrome rompiendo el tema', problem: 'El autofill de Chrome forzaba fondo amarillo y fuente del sistema en los campos, rompiendo un formulario con tema oscuro.', fix: 'Sobrescribí el estado de autofill con box-shadow y transition específicos, en vez de pelear con el valor por defecto del navegador.' },
-          { title: 'CSS filtrándose entre dos contenedores', problem: 'Un selector compartido dejaba que los estilos se filtraran entre el #login-container y un segundo contenedor de formulario que debía estar aislado.', fix: 'Delimité los selectores correctamente para que cada contenedor tuviera sus propios estilos, sin filtración en ninguna dirección.' },
-        ],
       },
       certs: CERTS_TEXT.es,
       contact: {

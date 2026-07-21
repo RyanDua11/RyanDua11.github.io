@@ -3,11 +3,6 @@
    ========================================================================== */
 
 const VALID_VERSIONS = ['default', 'estagio', 'freela-quickfix', 'freela-ai', 'freelance'];
-const REVIEW_VERSIONS = ['freela-quickfix', 'freelance'];
-// Os cards dos 3 bugs (CSS/autofill/login) só fazem sentido na versão de
-// correção rápida, onde debugar É o produto. Nas outras, o processo em 4 passos
-// já sinaliza método sem soar irrelevante pro cliente.
-const BUGS_VERSIONS = ['freela-quickfix'];
 // Versões de cliente usam stats de valor entregue (STATS_CLIENT) em vez das
 // stats de estudante (certificações/commits) das versões default/estagio.
 const CLIENT_STATS_VERSIONS = ['freela-quickfix', 'freela-ai', 'freelance'];
@@ -95,6 +90,7 @@ function renderProjects(lang) {
       if (el && val != null) el.textContent = val;
     };
     set('[data-proj-desc]', item.desc);
+    set('[data-proj-highlight]', item.highlight);
     set('[data-proj-badge]', item.typeBadge);
     set('[data-proj-status]', item.status);
     set('[data-proj-link]', item.linkText);
@@ -133,53 +129,6 @@ function renderSkills(lang) {
   }).join('');
 }
 
-function renderReview(version, data, lang) {
-  const section = document.getElementById('review');
-  if (!REVIEW_VERSIONS.includes(version)) {
-    section.classList.remove('show');
-    return;
-  }
-  // freelance mostra "Como eu trabalho" (pitch amplo); quickfix mostra o
-  // "Como eu reviso código" com os bugs (bug-fix é o produto dela).
-  const src = version === 'freelance' ? (WORK_PROCESS[lang] || WORK_PROCESS.pt) : data.review;
-  if (!src) {
-    section.classList.remove('show');
-    return;
-  }
-  section.classList.add('show');
-
-  // cabeçalho da seção (sobrescreve o data-i18n, pois freelance usa WORK_PROCESS)
-  const tagEl = section.querySelector('.section-tag');
-  const titleEl = section.querySelector('.section-title');
-  const subEl = section.querySelector('.section-subtitle');
-  if (tagEl) tagEl.textContent = src.tag;
-  if (titleEl) titleEl.textContent = src.title;
-  if (subEl) subEl.textContent = src.subtitle;
-
-  const labels = (SKILL_I18N[lang] || SKILL_I18N.pt).bugLabels;
-  const stepsEl = document.getElementById('review-steps');
-  stepsEl.innerHTML = src.steps.map(s => `
-    <div class="review-step">
-      <div class="review-step-n">${s.n}</div>
-      <div class="review-step-title">${s.title}</div>
-      <div class="review-step-desc">${s.desc}</div>
-    </div>`).join('');
-
-  const bugsEl = document.getElementById('bugs-grid');
-  const bugsTitle = document.querySelector('.bugs-title');
-  const showBugs = BUGS_VERSIONS.includes(version) && data.review && data.review.bugs;
-  if (bugsTitle) bugsTitle.style.display = showBugs ? '' : 'none';
-  bugsEl.style.display = showBugs ? '' : 'none';
-  bugsEl.innerHTML = showBugs ? data.review.bugs.map(b => `
-    <div class="bug-card">
-      <div class="bug-title">${b.title}</div>
-      <div class="bug-label">${labels.problem}</div>
-      <div class="bug-text">${b.problem}</div>
-      <div class="bug-label bug-fix-label">${labels.fix}</div>
-      <div class="bug-text">${b.fix}</div>
-    </div>`).join('') : '';
-}
-
 function renderLangSwitch(version, lang) {
   const available = getAvailableLangs(version);
   document.querySelectorAll('#lang-switch button').forEach(btn => {
@@ -211,7 +160,6 @@ function applyContent(version, lang) {
   renderSkills(lang);
   renderProjects(lang);
   renderProjectLearned(version, data);
-  renderReview(version, data, lang);
   renderLangSwitch(version, lang);
 
   const cv = document.getElementById('cv-cta');

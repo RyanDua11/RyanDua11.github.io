@@ -583,6 +583,14 @@ section { position: relative; z-index: 2; }
 }
 .project-learned.show { display: block; }
 
+/* linha de destaque com métrica/comparação, sempre visível (não gated por versão) */
+.project-highlight {
+  font-size: .78rem; font-weight: 600; color: var(--gold); line-height: 1.5;
+  margin: 0 0 1rem; padding: .55rem .8rem;
+  border-left: 2px solid var(--gold); background: rgba(244,208,111,.06); border-radius: 0 6px 6px 0;
+}
+.project-highlight:empty { display: none; }
+
 .project-stack { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.2rem; }
 .stack-tag {
   font-family: 'Fira Code', monospace; font-size: .72rem; padding: .2rem .55rem;
