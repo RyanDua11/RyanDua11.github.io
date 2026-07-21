@@ -43,6 +43,180 @@ const CERTS_TEXT = {
   es: { tag: '// formación', title: 'Certificaciones & Formación', subtitle: 'Aprendizaje continuo, del fundamento a la aplicación práctica.' },
 };
 
+/* ── SKILLS ──────────────────────────────────────────────────────────────
+   Estrutura canônica de grupos + chips. Nomes de tecnologia (React, Python,
+   PostgreSQL...) são universais e não traduzem. Rótulos descritivos usam `tr`
+   e são traduzidos por idioma em SKILL_I18N, evitando texto em PT vazando no
+   EN/ES e evitando que o navegador "traduza" nomes técnicos por conta própria. */
+const SKILL_GROUPS = [
+  { key: 'backend', chips: [
+    { t: 'Python',       i: 'devicon-python-plain colored' },
+    { t: 'Java 21',      i: 'devicon-java-plain colored' },
+    { t: 'Spring Boot',  i: 'devicon-spring-plain colored' },
+    { t: 'FastAPI',      i: 'devicon-fastapi-plain colored' },
+    { t: 'Hibernate ORM',i: 'devicon-hibernate-plain colored' },
+    { t: 'SQLAlchemy' },
+  ]},
+  { key: 'frontend', chips: [
+    { t: 'React',      i: 'devicon-react-original colored' },
+    { t: 'TypeScript', i: 'devicon-typescript-plain colored' },
+    { t: 'JavaScript', i: 'devicon-javascript-plain colored' },
+    { t: 'HTML5',      i: 'devicon-html5-plain colored' },
+    { t: 'CSS3',       i: 'devicon-css3-plain colored' },
+  ]},
+  { key: 'database', chips: [
+    { t: 'PostgreSQL', i: 'devicon-postgresql-plain colored' },
+    { t: 'MySQL',      i: 'devicon-mysql-plain colored' },
+    { t: 'Window Functions' },
+    { t: 'CTEs' },
+    { t: 'Triggers & Procedures' },
+    { t: 'Materialized Views' },
+    { tr: 'partitioning' },
+    { t: 'Full-Text Search' },
+    { tr: 'relationalModeling' },
+  ]},
+  { key: 'devops', chips: [
+    { t: 'Docker',         i: 'devicon-docker-plain colored' },
+    { t: 'Docker Compose' },
+    { t: 'Git',            i: 'devicon-git-plain colored' },
+    { t: 'GitHub',         i: 'devicon-github-original' },
+    { t: 'Linux',          i: 'devicon-linux-plain' },
+  ]},
+  { key: 'ai', chips: [
+    { t: 'Claude API (Anthropic)' },
+    { t: 'LLaMA 70B (Groq API)' },
+    { t: 'Google Gemini API' },
+    { tr: 'multiLLM' },
+    { tr: 'tokenCost' },
+    { t: 'Prompt Engineering' },
+    { tr: 'genAI' },
+    { t: 'BeautifulSoup4' },
+  ]},
+  { key: 'data', chips: [
+    { t: 'Power BI', i: 'devicon-microsoftsqlserver-plain colored' },
+    { tr: 'exploratory' },
+    { tr: 'dashboards' },
+    { t: 'SQL Analytics' },
+  ]},
+];
+
+const SKILL_I18N = {
+  pt: {
+    groups: { backend: 'Backend', frontend: 'Frontend', database: 'Banco de Dados', devops: 'DevOps & Ferramentas', ai: 'Inteligência Artificial', data: 'Dados & Análise' },
+    terms: { partitioning: 'Particionamento', relationalModeling: 'Modelagem Relacional', multiLLM: 'Orquestração Multi-LLM', tokenCost: 'Engenharia de Custo de Tokens', genAI: 'IA Generativa', exploratory: 'Análise Exploratória', dashboards: 'Dashboards' },
+    bugLabels: { problem: 'Problema', fix: 'Correção' },
+  },
+  en: {
+    groups: { backend: 'Backend', frontend: 'Frontend', database: 'Databases', devops: 'DevOps & Tools', ai: 'Artificial Intelligence', data: 'Data & Analytics' },
+    terms: { partitioning: 'Partitioning', relationalModeling: 'Relational Modeling', multiLLM: 'Multi-LLM Orchestration', tokenCost: 'Token Cost Engineering', genAI: 'Generative AI', exploratory: 'Exploratory Analysis', dashboards: 'Dashboards' },
+    bugLabels: { problem: 'Problem', fix: 'Fix' },
+  },
+  es: {
+    groups: { backend: 'Backend', frontend: 'Frontend', database: 'Bases de Datos', devops: 'DevOps & Herramientas', ai: 'Inteligencia Artificial', data: 'Datos & Análisis' },
+    terms: { partitioning: 'Particionamiento', relationalModeling: 'Modelado Relacional', multiLLM: 'Orquestación Multi-LLM', tokenCost: 'Ingeniería de Costo de Tokens', genAI: 'IA Generativa', exploratory: 'Análisis Exploratorio', dashboards: 'Dashboards' },
+    bugLabels: { problem: 'Problema', fix: 'Corrección' },
+  },
+};
+
+/* ── PROJETOS ────────────────────────────────────────────────────────────
+   Conteúdo dos cards por idioma (independe da versão/narrativa). Formato de
+   mini case-study: contexto/problema, o que foi construído, resultado. Nomes
+   de tecnologia ficam nas stack-tags do HTML (proper nouns, não traduzem). */
+const PROJECT_ITEMS = {
+  pt: {
+    medistudy: {
+      typeBadge: 'IA + Educação',
+      status: 'Em andamento',
+      linkText: 'Em desenvolvimento',
+      desc: 'Nasceu de acompanhar de perto a rotina puxada de quem cursa Medicina. É uma plataforma de estudos com IA: flashcards com repetição espaçada, casos clínicos e simulador de anamnese gerados por IA, interpretador de exames e mapas mentais. Por trás, orquestro Claude, Groq e Gemini com roteamento sensível a custo, mantendo cada resposta barata sem perder qualidade.',
+    },
+    candidatrack: {
+      typeBadge: 'IA + Backend',
+      linkText: 'Código',
+      desc: 'Construí porque eu mesmo precisava organizar minha busca por vaga. Rastreia candidaturas e usa IA para dar um score de compatibilidade entre currículo e vaga, com chat consultivo (LLaMA 70B) e web scraping automático das descrições. API assíncrona em FastAPI sobre PostgreSQL.',
+    },
+    gloway: {
+      typeBadge: 'Produto completo',
+      linkText: 'Site no ar',
+      desc: 'Produto de guia de viagens levado do zero à produção. Roteiros gerados por IA (Gemini) por menos de R$ 0,05 cada, mapa 3D, geolocalização em tempo real, comunidade LGBT+ e pagamento via Stripe. O coração foi a engenharia de custo: controlar prompt e modelo direto na API em vez de pagar por uma camada no-code.',
+    },
+    ledgerx: {
+      typeBadge: 'PostgreSQL avançado',
+      linkText: 'Código',
+      desc: 'Sistema de análise financeira com PostgreSQL como protagonista, não como mero armazenamento. Window Functions, CTEs, Materialized Views, Triggers, particionamento por mês e Full-Text Search resolvendo consultas reais de relatório, com exportação em Excel com gráficos.',
+    },
+    todolist: {
+      typeBadge: 'API REST',
+      linkText: 'Código',
+      desc: 'API REST em Java 21 com Spring Boot e Hibernate sobre PostgreSQL, tudo via Docker. Foco em fundamento sólido: CRUD validado com persistência real, ambiente 100% reproduzível via docker-compose e cada bug documentado até a causa raiz.',
+    },
+  },
+  en: {
+    medistudy: {
+      typeBadge: 'AI + Education',
+      status: 'In progress',
+      linkText: 'In development',
+      desc: 'It grew out of watching the intense routine of medical school up close. An AI-powered study platform: spaced-repetition flashcards, AI-generated clinical cases and an anamnesis simulator, an exam interpreter and mind maps. Under the hood, I orchestrate Claude, Groq and Gemini with cost-aware routing, keeping every response cheap without losing quality.',
+    },
+    candidatrack: {
+      typeBadge: 'AI + Backend',
+      linkText: 'Code',
+      desc: 'I built it because I needed it myself to organize my own job search. It tracks applications and uses AI to score how well a résumé matches a job, with a consultative chat (LLaMA 70B) and automatic web scraping of the listings. Async API in FastAPI on top of PostgreSQL.',
+    },
+    gloway: {
+      typeBadge: 'Full product',
+      linkText: 'Live site',
+      desc: 'A travel-guide product taken from zero to production. AI-generated itineraries (Gemini) for under one cent each, a 3D map, real-time geolocation, an LGBT+ community and Stripe payments. The core was cost engineering: controlling the prompt and model directly through the API instead of paying for a no-code layer.',
+    },
+    ledgerx: {
+      typeBadge: 'Advanced PostgreSQL',
+      linkText: 'Code',
+      desc: 'A financial-analysis system with PostgreSQL as the lead, not just storage. Window Functions, CTEs, Materialized Views, Triggers, monthly partitioning and Full-Text Search solving real reporting queries, with Excel export including charts.',
+    },
+    todolist: {
+      typeBadge: 'REST API',
+      linkText: 'Code',
+      desc: 'A REST API in Java 21 with Spring Boot and Hibernate on PostgreSQL, all through Docker. Focused on solid fundamentals: validated CRUD with real persistence, a 100% reproducible environment via docker-compose and every bug documented down to the root cause.',
+    },
+  },
+  es: {
+    medistudy: {
+      typeBadge: 'IA + Educación',
+      status: 'En curso',
+      linkText: 'En desarrollo',
+      desc: 'Nació de acompañar de cerca la rutina intensa de quien estudia Medicina. Es una plataforma de estudio con IA: flashcards con repetición espaciada, casos clínicos y simulador de anamnesis generados por IA, intérprete de exámenes y mapas mentales. Por detrás, orquesto Claude, Groq y Gemini con enrutamiento sensible al costo, manteniendo cada respuesta barata sin perder calidad.',
+    },
+    candidatrack: {
+      typeBadge: 'IA + Backend',
+      linkText: 'Código',
+      desc: 'Lo construí porque yo mismo necesitaba organizar mi búsqueda de empleo. Rastrea postulaciones y usa IA para dar un score de compatibilidad entre currículum y vacante, con chat consultivo (LLaMA 70B) y web scraping automático de las descripciones. API asíncrona en FastAPI sobre PostgreSQL.',
+    },
+    gloway: {
+      typeBadge: 'Producto completo',
+      linkText: 'Sitio en vivo',
+      desc: 'Un producto de guía de viajes llevado de cero a producción. Itinerarios generados por IA (Gemini) por menos de un centavo cada uno, mapa 3D, geolocalización en tiempo real, comunidad LGBT+ y pagos con Stripe. El corazón fue la ingeniería de costo: controlar el prompt y el modelo directamente por la API en vez de pagar por una capa no-code.',
+    },
+    ledgerx: {
+      typeBadge: 'PostgreSQL avanzado',
+      linkText: 'Código',
+      desc: 'Un sistema de análisis financiero con PostgreSQL como protagonista, no como simple almacenamiento. Window Functions, CTEs, Materialized Views, Triggers, particionamiento por mes y Full-Text Search resolviendo consultas reales de reportes, con exportación a Excel con gráficos.',
+    },
+    todolist: {
+      typeBadge: 'API REST',
+      linkText: 'Código',
+      desc: 'Una API REST en Java 21 con Spring Boot y Hibernate sobre PostgreSQL, todo vía Docker. Enfocada en fundamentos sólidos: CRUD validado con persistencia real, un entorno 100% reproducible vía docker-compose y cada bug documentado hasta la causa raíz.',
+    },
+  },
+};
+
+/* Parágrafo pessoal do Hero (substitui a antiga seção "Sobre" solta).
+   Traço pessoal, independe da versão; some no Hero como voz do Ryan. */
+const HERO_PERSONAL = {
+  pt: 'Gosto de tecnologia pelo desafio que ela traz, foi isso que me trouxe pra área e é o que me mantém nela. O MediStudy nasceu de acompanhar de perto a rotina puxada de quem cursa Medicina; o CandidaTrack, porque eu mesmo precisava dele pra organizar minha busca por vaga. Prefiro construir algo que resolve o problema de gente de verdade a fazer exercício de portfólio.',
+  en: "I'm in tech for the challenge it brings, that's what pulled me in and what keeps me here. MediStudy came from watching the intense routine of medical school up close; CandidaTrack, because I needed it myself to organize my own job search. I'd rather build something that solves a real person's problem than a portfolio exercise.",
+  es: 'Estoy en la tecnología por el desafío que trae, eso me atrajo y es lo que me mantiene. MediStudy nació de acompañar de cerca la rutina intensa de quien estudia Medicina; CandidaTrack, porque yo mismo lo necesitaba para organizar mi búsqueda de empleo. Prefiero construir algo que resuelve el problema de una persona real que un ejercicio de portafolio.',
+};
+
 const CONTENT = {
 
   /* ───────────────────────── DEFAULT / JÚNIOR ───────────────────────── */
@@ -55,6 +229,7 @@ const CONTENT = {
         badge: 'Disponível para novos projetos',
         headlineHtml: 'Construindo <span class="accent">soluções</span> reais.',
         desc: 'Desenvolvedor full stack focado em entregar código limpo, funcional e com resultado real. Do backend ao frontend, cada projeto nasce de um problema concreto.',
+        personal: HERO_PERSONAL.pt,
         ctaPrimary: 'Ver Projetos',
         metaRole: 'Full Stack',
         metaFocus: 'Código limpo & performance',
@@ -90,6 +265,7 @@ const CONTENT = {
         badge: 'Available for new projects',
         headlineHtml: 'Building real <span class="accent">solutions</span>.',
         desc: 'Full stack developer focused on shipping clean, functional code with real results. From backend to frontend, every project starts from a concrete problem.',
+        personal: HERO_PERSONAL.en,
         ctaPrimary: 'View Projects',
         metaRole: 'Full Stack',
         metaFocus: 'Clean code & performance',
@@ -129,6 +305,7 @@ const CONTENT = {
         badge: 'Disponível para estágio, início imediato',
         headlineHtml: 'Aprendendo a construir <span class="accent">soluções</span> reais.',
         desc: 'Estudante de Análise e Desenvolvimento de Sistemas construindo projetos reais desde o início do curso. Cada entrega é uma chance de aprender fazendo.',
+        personal: HERO_PERSONAL.pt,
         ctaPrimary: 'Ver Projetos',
         metaRole: 'Estagiário em formação',
         metaFocus: 'Aprendizado aplicado',
@@ -171,6 +348,7 @@ const CONTENT = {
         badge: 'Available for internship, immediate start',
         headlineHtml: 'Learning to build real <span class="accent">solutions</span>.',
         desc: 'Systems Analysis and Development student building real projects since the start of the course. Every delivery is a chance to learn by doing.',
+        personal: HERO_PERSONAL.en,
         ctaPrimary: 'View Projects',
         metaRole: 'Intern in training',
         metaFocus: 'Applied learning',
@@ -377,6 +555,7 @@ const CONTENT = {
         badge: 'Available for AI integration & full stack builds',
         headlineHtml: 'AI features that <span class="accent">actually ship</span>.',
         desc: 'I integrate LLMs directly via API, no dependency on no-code platforms. Lower cost, more control, and a system you actually own.',
+        personal: HERO_PERSONAL.en,
         ctaPrimary: 'See My Work',
         metaRole: 'AI Integration & Full Stack',
         metaFocus: 'Direct API, no no-code',
@@ -412,6 +591,7 @@ const CONTENT = {
         badge: 'Disponível para integração de IA e projetos full stack',
         headlineHtml: 'Recursos de IA que <span class="accent">realmente vão ao ar</span>.',
         desc: 'Integro LLMs diretamente via API, sem depender de plataformas no-code. Menor custo, mais controle e um sistema que é realmente seu.',
+        personal: HERO_PERSONAL.pt,
         ctaPrimary: 'Ver Meu Trabalho',
         metaRole: 'Integração de IA & Full Stack',
         metaFocus: 'API direta, sem no-code',
@@ -447,6 +627,7 @@ const CONTENT = {
         badge: 'Disponible para integración de IA y proyectos full stack',
         headlineHtml: 'Funciones de IA que <span class="accent">realmente se publican</span>.',
         desc: 'Integro LLMs directamente vía API, sin depender de plataformas no-code. Menor costo, más control y un sistema que realmente te pertenece.',
+        personal: HERO_PERSONAL.es,
         ctaPrimary: 'Ver Mi Trabajo',
         metaRole: 'Integración de IA & Full Stack',
         metaFocus: 'API directa, sin no-code',
@@ -486,6 +667,7 @@ const CONTENT = {
         badge: 'Available for freelance projects',
         headlineHtml: 'Full stack products, <span class="accent">built to ship</span>.',
         desc: "I build and fix real products end to end: React and TypeScript frontends, Python and Java backends, PostgreSQL at the core, and AI features integrated directly via API when a project actually needs it. Clear communication, realistic estimates, code you can maintain after I'm gone.",
+        personal: HERO_PERSONAL.en,
         ctaPrimary: 'See My Work',
         metaRole: 'Full Stack Developer',
         metaFocus: 'Web apps & AI integration',
@@ -538,6 +720,7 @@ const CONTENT = {
         badge: 'Disponível para projetos freelance',
         headlineHtml: 'Produtos full stack, <span class="accent">prontos pra produção</span>.',
         desc: 'Eu construo e conserto produtos reais de ponta a ponta: frontend em React e TypeScript, backend em Python e Java, PostgreSQL como base, e IA integrada direto via API quando o projeto realmente precisa. Comunicação clara, prazos realistas, código que dá pra manter depois que eu terminar.',
+        personal: HERO_PERSONAL.pt,
         ctaPrimary: 'Ver Meu Trabalho',
         metaRole: 'Desenvolvedor Full Stack',
         metaFocus: 'Apps web & integração de IA',
@@ -590,6 +773,7 @@ const CONTENT = {
         badge: 'Disponible para proyectos freelance',
         headlineHtml: 'Productos full stack, <span class="accent">listos para producción</span>.',
         desc: 'Construyo y arreglo productos reales de principio a fin: frontend en React y TypeScript, backend en Python y Java, PostgreSQL como base, e IA integrada directamente vía API cuando el proyecto realmente lo necesita. Comunicación clara, plazos realistas, código que se puede mantener después de que yo termine.',
+        personal: HERO_PERSONAL.es,
         ctaPrimary: 'Ver Mi Trabajo',
         metaRole: 'Desarrollador Full Stack',
         metaFocus: 'Apps web e integración de IA',

@@ -155,8 +155,19 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,.5); }
   color: var(--muted);
   line-height: 1.75;
   max-width: 480px;
-  margin-bottom: 2.3rem;
+  margin-bottom: 1.5rem;
 }
+
+.hero-personal {
+  font-size: clamp(.9rem,1.3vw,1rem);
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 500px;
+  margin: 0 0 2.2rem;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(244,208,111,.35);
+}
+.hero-personal:empty { display: none; }
 
 .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
 

@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-BR" id="html-root">
+<html lang="pt-BR" id="html-root" translate="no">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- O site tem seu próprio seletor PT/EN/ES. A tradução automática do navegador
+       reescreve o DOM e colide com essa troca de idioma (corrompe métricas, chips
+       e formação). Sinalizamos notranslate para o navegador não interferir. -->
+  <meta name="google" content="notranslate" />
   <title id="meta-title">Ryan Duarte Quintão, Desenvolvedor Full Stack</title>
   <meta id="meta-description" name="description" content="Portfólio de Ryan Duarte Quintão. Projetos reais em Python, Java, React e IA generativa." />
   <meta id="meta-og-title" property="og:title" content="Ryan Duarte Quintão, Desenvolvedor Full Stack" />
@@ -13,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
-  <link rel="stylesheet" href="style.css?v=14" />
+  <link rel="stylesheet" href="style.css?v=15" />
 </head>
 <body>
 
@@ -24,8 +28,6 @@
 <nav id="navbar">
   <div class="nav-logo"><span>//</span> ryan.dev</div>
   <ul class="nav-links" id="nav-links">
-    <li><a href="#about" data-i18n="nav.about">Sobre</a></li>
-    <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
     <li><a href="#projects" data-i18n="nav.projects">Projetos</a></li>
     <li><a href="#certs" data-i18n="nav.certs">Formação</a></li>
     <li><a href="#contact" data-i18n="nav.contact">Contato</a></li>
@@ -50,6 +52,7 @@
       </div>
       <h1 class="hero-name" data-i18n-html="hero.headlineHtml">Construindo <span class="accent">soluções</span> reais.</h1>
       <p class="hero-desc" data-i18n="hero.desc"></p>
+      <p class="hero-personal" id="hero-personal" data-i18n="hero.personal"></p>
       <div class="hero-buttons">
         <a href="#projects" class="btn btn-primary">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h12"/></svg>
@@ -222,112 +225,6 @@
   <div class="hero-stats fade-up" id="hero-stats"></div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-inner">
-    <div class="about-grid fade-up">
-      <div class="about-avatar-wrap">
-        <div class="about-avatar-ring"></div>
-        <div class="about-avatar">👨‍💻</div>
-      </div>
-      <div class="about-text">
-        <p class="section-tag" data-i18n="about.tag">// sobre mim</p>
-        <h2 class="section-title" data-i18n-html="about.titleHtml">Código, curiosidade<br/>e projetos reais.</h2>
-        <p data-i18n-html="about.p1"></p>
-        <p data-i18n-html="about.p2"></p>
-        <p data-i18n-html="about.p3"></p>
-        <p data-i18n-html="about.p4"></p>
-        <div class="about-facts" id="about-facts"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-inner">
-    <p class="section-tag fade-up" data-i18n="skills.tag">// habilidades</p>
-    <h2 class="section-title fade-up" data-i18n="skills.title">Stack técnica</h2>
-    <p class="section-subtitle fade-up" data-i18n="skills.subtitle"></p>
-    <div class="skills-grid">
-
-      <div class="skill-group fade-up">
-        <div class="skill-group-title">Backend</div>
-        <div class="skill-chips">
-          <span class="chip"><i class="devicon-python-plain colored"></i>Python</span>
-          <span class="chip"><i class="devicon-java-plain colored"></i>Java 21</span>
-          <span class="chip"><i class="devicon-spring-plain colored"></i>Spring Boot</span>
-          <span class="chip"><i class="devicon-fastapi-plain colored"></i>FastAPI</span>
-          <span class="chip"><i class="devicon-hibernate-plain colored"></i>Hibernate ORM</span>
-          <span class="chip">SQLAlchemy</span>
-        </div>
-      </div>
-
-      <div class="skill-group fade-up">
-        <div class="skill-group-title">Frontend</div>
-        <div class="skill-chips">
-          <span class="chip"><i class="devicon-react-original colored"></i>React</span>
-          <span class="chip"><i class="devicon-typescript-plain colored"></i>TypeScript</span>
-          <span class="chip"><i class="devicon-javascript-plain colored"></i>JavaScript</span>
-          <span class="chip"><i class="devicon-html5-plain colored"></i>HTML5</span>
-          <span class="chip"><i class="devicon-css3-plain colored"></i>CSS3</span>
-        </div>
-      </div>
-
-      <div class="skill-group fade-up">
-        <div class="skill-group-title">Banco de Dados</div>
-        <div class="skill-chips">
-          <span class="chip"><i class="devicon-postgresql-plain colored"></i>PostgreSQL</span>
-          <span class="chip"><i class="devicon-mysql-plain colored"></i>MySQL</span>
-          <span class="chip">Window Functions</span>
-          <span class="chip">CTEs</span>
-          <span class="chip">Triggers & Procedures</span>
-          <span class="chip">Materialized Views</span>
-          <span class="chip">Particionamento</span>
-          <span class="chip">Full-Text Search</span>
-          <span class="chip">Modelagem Relacional</span>
-        </div>
-      </div>
-
-      <div class="skill-group fade-up">
-        <div class="skill-group-title">DevOps & Ferramentas</div>
-        <div class="skill-chips">
-          <span class="chip"><i class="devicon-docker-plain colored"></i>Docker</span>
-          <span class="chip">Docker Compose</span>
-          <span class="chip"><i class="devicon-git-plain colored"></i>Git</span>
-          <span class="chip"><i class="devicon-github-original"></i>GitHub</span>
-          <span class="chip"><i class="devicon-linux-plain"></i>Linux</span>
-        </div>
-      </div>
-
-      <div class="skill-group fade-up">
-        <div class="skill-group-title">Inteligência Artificial</div>
-        <div class="skill-chips">
-          <span class="chip">Claude API (Anthropic)</span>
-          <span class="chip">LLaMA 70B (Groq API)</span>
-          <span class="chip">Google Gemini API</span>
-          <span class="chip">Orquestração Multi-LLM</span>
-          <span class="chip">Engenharia de Custo de Tokens</span>
-          <span class="chip">Prompt Engineering</span>
-          <span class="chip">IA Generativa</span>
-          <span class="chip">BeautifulSoup4</span>
-        </div>
-      </div>
-
-      <div class="skill-group fade-up">
-        <div class="skill-group-title">Dados & Análise</div>
-        <div class="skill-chips">
-          <span class="chip"><i class="devicon-microsoftsqlserver-plain colored"></i>Power BI</span>
-          <span class="chip">Análise Exploratória</span>
-          <span class="chip">Dashboards</span>
-          <span class="chip">SQL Analytics</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- PROJECTS -->
 <section id="projects">
   <div class="section-inner">
@@ -337,7 +234,7 @@
     <div class="projects-grid">
 
       <!-- MediStudy -->
-      <div class="project-card fade-up" style="--card-accent: linear-gradient(90deg,transparent,rgba(227,181,63,.75),transparent);">
+      <div class="project-card fade-up" data-project="medistudy" style="--card-accent: linear-gradient(90deg,transparent,rgba(227,181,63,.75),transparent);">
         <div class="project-visual" style="background: linear-gradient(135deg,#0a0700,#140d00,#1c1400);">
           <div style="position:absolute;top:0;left:0;right:0;height:28px;background:rgba(0,0,0,.4);display:flex;align-items:center;padding:0 10px;gap:6px;z-index:2;">
             <span style="width:10px;height:10px;border-radius:50%;background:#ff5f57;display:inline-block;"></span>
@@ -360,15 +257,15 @@
             <line x1="45" y1="150" x2="355" y2="150" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
           </svg>
           <span class="project-visual-icon" style="color:#e3b53f">⚕️</span>
-          <span class="project-type-badge">IA + Educação</span>
+          <span class="project-type-badge" data-proj-badge>IA + Educação</span>
         </div>
         <div class="project-body">
           <h3 class="project-name">MediStudy</h3>
           <span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#e3b53f;background:rgba(227,181,63,.1);border:1px solid rgba(227,181,63,.3);padding:3px 10px;border-radius:20px;margin-bottom:12px;font-family:'Fira Code',monospace;width:fit-content;">
             <span style="width:7px;height:7px;border-radius:50%;background:#e3b53f;box-shadow:0 0 8px #e3b53f;display:inline-block;"></span>
-            Em andamento
+            <span data-proj-status>Em andamento</span>
           </span>
-          <p class="project-desc">Plataforma de estudos de medicina potencializada por IA. Flashcards com repetição espaçada, casos clínicos gerados por IA, simulador de anamnese, interpretador de exames, mapas mentais e múltiplos métodos de estudo. Orquestração multi-LLM com engenharia de custo de tokens.</p>
+          <p class="project-desc" data-proj-desc>Plataforma de estudos de medicina potencializada por IA. Flashcards com repetição espaçada, casos clínicos gerados por IA, simulador de anamnese, interpretador de exames, mapas mentais e múltiplos métodos de estudo. Orquestração multi-LLM com engenharia de custo de tokens.</p>
           <p class="project-learned" data-learned="medistudy"></p>
           <div class="project-stack">
             <span class="stack-tag">JavaScript</span>
@@ -381,14 +278,14 @@
           <div class="project-links">
             <span class="project-link" style="opacity:.65;cursor:default;">
               <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6v6l4 2M22 12a10 10 0 11-20 0 10 10 0 0120 0z"/></svg>
-              Em desenvolvimento
+              <span data-proj-link>Em desenvolvimento</span>
             </span>
           </div>
         </div>
       </div>
 
       <!-- CandidaTrack -->
-      <div class="project-card fade-up" style="--card-accent: linear-gradient(90deg,transparent,rgba(59,130,246,.7),transparent);">
+      <div class="project-card fade-up" data-project="candidatrack" style="--card-accent: linear-gradient(90deg,transparent,rgba(59,130,246,.7),transparent);">
         <div class="project-visual" style="background: linear-gradient(135deg,#0a1628,#0f1f3d,#0d1835);">
           <div style="position:absolute;top:0;left:0;right:0;height:28px;background:rgba(0,0,0,.4);display:flex;align-items:center;padding:0 10px;gap:6px;z-index:2;">
             <span style="width:10px;height:10px;border-radius:50%;background:#ff5f57;display:inline-block;"></span>
@@ -412,11 +309,11 @@
             <line x1="60" y1="140" x2="340" y2="140" stroke="#3b82f6" stroke-width=".3" opacity=".2"/>
           </svg>
           <span class="project-visual-icon" style="color:#3b82f6">🧠</span>
-          <span class="project-type-badge">IA + Backend</span>
+          <span class="project-type-badge" data-proj-badge>IA + Backend</span>
         </div>
         <div class="project-body">
           <h3 class="project-name">CandidaTrack</h3>
-          <p class="project-desc">Sistema completo de rastreamento de candidaturas com análise inteligente de vagas via IA. Score de compatibilidade entre currículo e vaga, chat consultivo com LLaMA 70B e web scraping automático.</p>
+          <p class="project-desc" data-proj-desc>Sistema completo de rastreamento de candidaturas com análise inteligente de vagas via IA. Score de compatibilidade entre currículo e vaga, chat consultivo com LLaMA 70B e web scraping automático.</p>
           <p class="project-learned" data-learned="candidatrack"></p>
           <div class="project-stack">
             <span class="stack-tag">Python</span>
@@ -430,14 +327,14 @@
           <div class="project-links">
             <a href="https://github.com/RyanDua11/candidatrack" target="_blank" class="project-link">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-              Código
+              <span data-proj-link>Código</span>
             </a>
           </div>
         </div>
       </div>
 
       <!-- GloWay -->
-      <div class="project-card fade-up" style="--card-accent: linear-gradient(90deg,transparent,rgba(16,185,129,.7),transparent);">
+      <div class="project-card fade-up" data-project="gloway" style="--card-accent: linear-gradient(90deg,transparent,rgba(16,185,129,.7),transparent);">
         <div class="project-visual" style="background: linear-gradient(135deg,#091a14,#0a2018,#0c2a1e);">
           <div style="position:absolute;top:0;left:0;right:0;height:28px;background:rgba(0,0,0,.4);display:flex;align-items:center;padding:0 10px;gap:6px;z-index:2;">
             <span style="width:10px;height:10px;border-radius:50%;background:#ff5f57;display:inline-block;"></span>
@@ -462,11 +359,11 @@
             <line x1="200" y1="90" x2="290" y2="110" stroke="#10b981" stroke-width=".5" opacity=".4"/>
           </svg>
           <span class="project-visual-icon" style="color:#10b981">🗺️</span>
-          <span class="project-type-badge">Full Product</span>
+          <span class="project-type-badge" data-proj-badge>Full Product</span>
         </div>
         <div class="project-body">
           <h3 class="project-name">GloWay, Guia Urbano Inteligente</h3>
-          <p class="project-desc">Produto completo de guia de viagens com roteiros gerados por IA (Gemini). Mapa 3D, comunidade LGBT+, geolocalização em tempo real, integração com Stripe e engenharia de custo em IA, com cada roteiro saindo por menos de R$ 0,05.</p>
+          <p class="project-desc" data-proj-desc>Produto completo de guia de viagens com roteiros gerados por IA (Gemini). Mapa 3D, comunidade LGBT+, geolocalização em tempo real, integração com Stripe e engenharia de custo em IA, com cada roteiro saindo por menos de R$ 0,05.</p>
           <p class="project-learned" data-learned="gloway"></p>
           <div class="project-stack">
             <span class="stack-tag">React</span>
@@ -479,14 +376,14 @@
           <div class="project-links">
             <a href="https://glowaytour.online" target="_blank" class="project-link">
               <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
-              Site Live
+              <span data-proj-link>Site Live</span>
             </a>
           </div>
         </div>
       </div>
 
       <!-- LedgerX -->
-      <div class="project-card fade-up" style="--card-accent: linear-gradient(90deg,transparent,rgba(245,158,11,.7),transparent);">
+      <div class="project-card fade-up" data-project="ledgerx" style="--card-accent: linear-gradient(90deg,transparent,rgba(245,158,11,.7),transparent);">
         <div class="project-visual" style="background: linear-gradient(135deg,#0c0800,#160f00,#1a1200);">
           <div style="position:absolute;top:0;left:0;right:0;height:28px;background:rgba(0,0,0,.4);display:flex;align-items:center;padding:0 10px;gap:6px;z-index:2;">
             <span style="width:10px;height:10px;border-radius:50%;background:#ff5f57;display:inline-block;"></span>
@@ -518,11 +415,11 @@
             <line x1="45" y1="150" x2="315" y2="150" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
           </svg>
           <span class="project-visual-icon" style="color:#f59e0b">💰</span>
-          <span class="project-type-badge">PostgreSQL Avançado</span>
+          <span class="project-type-badge" data-proj-badge>PostgreSQL Avançado</span>
         </div>
         <div class="project-body">
           <h3 class="project-name">LedgerX</h3>
-          <p class="project-desc">Sistema de análise financeira com PostgreSQL como protagonista. Window Functions (LAG, AVG OVER), CTEs, Materialized Views, Triggers, Particionamento por mês, Full-Text Search, Stored Procedures e exportação de relatório Excel com gráficos.</p>
+          <p class="project-desc" data-proj-desc>Sistema de análise financeira com PostgreSQL como protagonista. Window Functions (LAG, AVG OVER), CTEs, Materialized Views, Triggers, Particionamento por mês, Full-Text Search, Stored Procedures e exportação de relatório Excel com gráficos.</p>
           <p class="project-learned" data-learned="ledgerx"></p>
           <div class="project-stack">
             <span class="stack-tag">PostgreSQL 16</span>
@@ -535,14 +432,14 @@
           <div class="project-links">
             <a href="https://github.com/RyanDua11/ledgerx" target="_blank" class="project-link">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-              Código
+              <span data-proj-link>Código</span>
             </a>
           </div>
         </div>
       </div>
 
       <!-- To-Do List API -->
-      <div class="project-card fade-up" style="--card-accent: linear-gradient(90deg,transparent,rgba(168,85,247,.7),transparent);">
+      <div class="project-card fade-up" data-project="todolist" style="--card-accent: linear-gradient(90deg,transparent,rgba(168,85,247,.7),transparent);">
         <div class="project-visual" style="background: linear-gradient(135deg,#130820,#1a0d30,#1c0f38);">
           <div style="position:absolute;top:0;left:0;right:0;height:28px;background:rgba(0,0,0,.4);display:flex;align-items:center;padding:0 10px;gap:6px;z-index:2;">
             <span style="width:10px;height:10px;border-radius:50%;background:#ff5f57;display:inline-block;"></span>
@@ -567,11 +464,11 @@
             <circle cx="85" cy="119" r="5" stroke="#a855f7" stroke-width="1" fill="none" opacity=".4"/>
           </svg>
           <span class="project-visual-icon" style="color:#a855f7">☕</span>
-          <span class="project-type-badge">API REST</span>
+          <span class="project-type-badge" data-proj-badge>API REST</span>
         </div>
         <div class="project-body">
           <h3 class="project-name">To-Do List API</h3>
-          <p class="project-desc">API REST completa com Java 21 + Spring Boot + Hibernate ORM + PostgreSQL via Docker. CRUD validado com persistência real, ambiente 100% reproduzível via docker-compose e debugging com causa raiz documentada.</p>
+          <p class="project-desc" data-proj-desc>API REST completa com Java 21 + Spring Boot + Hibernate ORM + PostgreSQL via Docker. CRUD validado com persistência real, ambiente 100% reproduzível via docker-compose e debugging com causa raiz documentada.</p>
           <p class="project-learned" data-learned="todolist"></p>
           <div class="project-stack">
             <span class="stack-tag">Java 21</span>
@@ -584,13 +481,23 @@
           <div class="project-links">
             <a href="https://github.com/RyanDua11/todolist-spring-postgres" target="_blank" class="project-link">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-              Código
+              <span data-proj-link>Código</span>
             </a>
           </div>
         </div>
       </div>
 
     </div>
+  </div>
+</section>
+
+<!-- SKILLS (referência de stack, fora da nav) -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-tag fade-up" data-i18n="skills.tag">// habilidades</p>
+    <h2 class="section-title fade-up" data-i18n="skills.title">Stack técnica</h2>
+    <p class="section-subtitle fade-up" data-i18n="skills.subtitle"></p>
+    <div class="skills-grid" id="skills-grid" translate="no"></div>
   </div>
 </section>
 
@@ -722,8 +629,8 @@
   Feito com <span>♥</span> e muito café · Ryan Duarte Quintão © 2026
 </footer>
 
-<script src="content.js?v=14"></script>
-<script src="galaxy-bg.js?v=14"></script>
-<script src="app.js?v=14"></script>
+<script src="content.js?v=15"></script>
+<script src="galaxy-bg.js?v=15"></script>
+<script src="app.js?v=15"></script>
 </body>
 </html>

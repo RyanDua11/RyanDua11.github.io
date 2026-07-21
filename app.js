@@ -4,6 +4,10 @@
 
 const VALID_VERSIONS = ['default', 'estagio', 'freela-quickfix', 'freela-ai', 'freelance'];
 const REVIEW_VERSIONS = ['freela-quickfix', 'freelance'];
+// Os cards dos 3 bugs (CSS/autofill/login) só fazem sentido na versão de
+// correção rápida, onde debugar É o produto. Nas outras, o processo em 4 passos
+// já sinaliza método sem soar irrelevante pro cliente.
+const BUGS_VERSIONS = ['freela-quickfix'];
 // Currículo (.docx) só faz sentido nas versões acadêmicas; nas de freela o portfólio já é a prova.
 const CV_VERSIONS = ['default', 'estagio'];
 // datas/semestre da faculdade só fazem sentido nas versões acadêmicas; pro cliente
@@ -78,15 +82,20 @@ function renderStats(container, stats) {
     </div>`).join('');
 }
 
-function renderAboutFacts(container, stats) {
-  container.innerHTML = stats.map((s, i) => `
-    <div class="fact-card">
-      <span class="fact-icon">${FACT_ICONS[i] || ''}</span>
-      <div>
-        <div class="fact-num">${s.num}</div>
-        <div class="fact-label">${s.label}</div>
-      </div>
-    </div>`).join('');
+function renderProjects(lang) {
+  const items = PROJECT_ITEMS[lang] || PROJECT_ITEMS.pt;
+  document.querySelectorAll('.project-card[data-project]').forEach(card => {
+    const item = items[card.getAttribute('data-project')];
+    if (!item) return;
+    const set = (sel, val) => {
+      const el = card.querySelector(sel);
+      if (el && val != null) el.textContent = val;
+    };
+    set('[data-proj-desc]', item.desc);
+    set('[data-proj-badge]', item.typeBadge);
+    set('[data-proj-status]', item.status);
+    set('[data-proj-link]', item.linkText);
+  });
 }
 
 function renderProjectLearned(version, data) {
@@ -103,13 +112,32 @@ function renderProjectLearned(version, data) {
   });
 }
 
-function renderReview(version, data) {
+function renderSkills(lang) {
+  const grid = document.getElementById('skills-grid');
+  if (!grid) return;
+  const i18n = SKILL_I18N[lang] || SKILL_I18N.pt;
+  grid.innerHTML = SKILL_GROUPS.map(group => {
+    const chips = group.chips.map(c => {
+      const label = c.tr ? (i18n.terms[c.tr] || c.tr) : c.t;
+      const icon = c.i ? `<i class="${c.i}"></i>` : '';
+      return `<span class="chip">${icon}${label}</span>`;
+    }).join('');
+    return `
+      <div class="skill-group fade-up">
+        <div class="skill-group-title">${i18n.groups[group.key] || group.key}</div>
+        <div class="skill-chips">${chips}</div>
+      </div>`;
+  }).join('');
+}
+
+function renderReview(version, data, lang) {
   const section = document.getElementById('review');
   if (!REVIEW_VERSIONS.includes(version) || !data.review) {
     section.classList.remove('show');
     return;
   }
   section.classList.add('show');
+  const labels = (SKILL_I18N[lang] || SKILL_I18N.pt).bugLabels;
   const stepsEl = document.getElementById('review-steps');
   stepsEl.innerHTML = data.review.steps.map(s => `
     <div class="review-step">
@@ -119,14 +147,18 @@ function renderReview(version, data) {
     </div>`).join('');
 
   const bugsEl = document.getElementById('bugs-grid');
-  bugsEl.innerHTML = data.review.bugs.map(b => `
+  const bugsTitle = document.querySelector('.bugs-title');
+  const showBugs = BUGS_VERSIONS.includes(version) && data.review.bugs;
+  if (bugsTitle) bugsTitle.style.display = showBugs ? '' : 'none';
+  bugsEl.style.display = showBugs ? '' : 'none';
+  bugsEl.innerHTML = showBugs ? data.review.bugs.map(b => `
     <div class="bug-card">
       <div class="bug-title">${b.title}</div>
-      <div class="bug-label">Problem</div>
+      <div class="bug-label">${labels.problem}</div>
       <div class="bug-text">${b.problem}</div>
-      <div class="bug-label bug-fix-label">Fix</div>
+      <div class="bug-label bug-fix-label">${labels.fix}</div>
       <div class="bug-text">${b.fix}</div>
-    </div>`).join('');
+    </div>`).join('') : '';
 }
 
 function renderLangSwitch(version, lang) {
@@ -156,9 +188,10 @@ function applyContent(version, lang) {
   });
 
   renderStats(document.getElementById('hero-stats'), data.stats);
-  renderAboutFacts(document.getElementById('about-facts'), data.stats);
+  renderSkills(lang);
+  renderProjects(lang);
   renderProjectLearned(version, data);
-  renderReview(version, data);
+  renderReview(version, data, lang);
   renderLangSwitch(version, lang);
 
   const cv = document.getElementById('cv-cta');
@@ -205,7 +238,7 @@ document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click
 }));
 
 // ── NAV ACTIVE SECTION (scroll spy) ──
-const navSections = ['about', 'skills', 'projects', 'certs', 'contact']
+const navSections = ['projects', 'certs', 'contact']
   .map(id => document.getElementById(id))
   .filter(Boolean);
 const navLinkFor = id => document.querySelector(`.nav-links a[href="#${id}"]`);
