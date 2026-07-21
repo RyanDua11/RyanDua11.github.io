@@ -526,8 +526,8 @@ const CONTENT = {
       certs: CERTS_TEXT.en,
       contact: {
         tag: '// contact',
-        title: 'Have a project in mind?',
-        subtitleHtml: "Tell me what you need built or fixed. I'll reply with a straight answer, not a sales pitch.",
+        title: "Let's talk about your project?",
+        subtitleHtml: "Tell me what you need built or fixed. I reply fast, with a realistic scope and timeline.",
       },
     },
     pt: {
@@ -578,8 +578,8 @@ const CONTENT = {
       certs: CERTS_TEXT.pt,
       contact: {
         tag: '// contato',
-        title: 'Tem um projeto em mente?',
-        subtitleHtml: 'Me conta o que você precisa construir ou consertar. Eu respondo com uma resposta direta, não um discurso de vendas.',
+        title: 'Vamos conversar sobre o seu projeto?',
+        subtitleHtml: 'Me conta o que você precisa construir ou consertar. Eu te respondo rápido, com escopo e prazo realistas.',
       },
     },
     es: {
@@ -630,8 +630,8 @@ const CONTENT = {
       certs: CERTS_TEXT.es,
       contact: {
         tag: '// contacto',
-        title: '¿Tienes un proyecto en mente?',
-        subtitleHtml: 'Cuéntame qué necesitas construir o arreglar. Te respondo con una respuesta directa, no un discurso de ventas.',
+        title: '¿Hablamos de tu proyecto?',
+        subtitleHtml: 'Cuéntame qué necesitas construir o arreglar. Te respondo rápido, con alcance y plazos realistas.',
       },
     },
   },
