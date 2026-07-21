@@ -655,6 +655,10 @@ section { position: relative; z-index: 2; }
 .contact-card:hover { border-color: rgba(244,208,111,.4); color: var(--gold); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
 .contact-card svg { width: 18px; height: 18px; flex-shrink: 0; }
 
+/* WhatsApp: canal preferido pra freela (BR), destaque verde sutil */
+.contact-card-wa { border-color: rgba(37,211,102,.35); color: #4ee07f; }
+.contact-card-wa:hover { border-color: rgba(37,211,102,.7); color: #25D366; box-shadow: 0 8px 24px rgba(37,211,102,.15); }
+
 /* ── FOOTER ── */
 footer {
   background: rgba(10,7,4,.6); border-top: 1px solid var(--border);

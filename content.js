@@ -31,6 +31,78 @@ const STATS = {
   ],
 };
 
+/* Stats orientados a CLIENTE (freela). "10+ certificações / ∞ commits" fala de
+   estudante; o cliente quer valor entregue: produtos no ar, IA em produção,
+   custo real, tempo de resposta. As versões default/estagio seguem com STATS. */
+const STATS_CLIENT = {
+  pt: [
+    { num: '5',        label: 'Projetos reais no portfólio' },
+    { num: '3',        label: 'LLMs em produção (Claude · Groq · Gemini)' },
+    { num: '&lt;R$0,05', label: 'Por roteiro de IA no GloWay' },
+    { num: '24h',      label: 'Tempo médio de resposta' },
+  ],
+  en: [
+    { num: '5',       label: 'Real projects in the portfolio' },
+    { num: '3',       label: 'LLMs in production (Claude · Groq · Gemini)' },
+    { num: '&lt;$0.01', label: 'Per AI itinerary on GloWay' },
+    { num: '24h',     label: 'Average response time' },
+  ],
+  es: [
+    { num: '5',       label: 'Proyectos reales en el portafolio' },
+    { num: '3',       label: 'LLMs en producción (Claude · Groq · Gemini)' },
+    { num: '&lt;$0.01', label: 'Por itinerario de IA en GloWay' },
+    { num: '24h',     label: 'Tiempo medio de respuesta' },
+  ],
+};
+
+/* WhatsApp: canal preferido pra freela no Brasil. Número + texto pré-preenchido
+   por idioma; o href final é montado no app.js. */
+const WHATSAPP_PHONE = '5527992029310';
+const WHATSAPP_TEXT = {
+  pt: 'Oi Ryan! Vi seu portfólio e queria conversar sobre um projeto.',
+  en: "Hi Ryan! I saw your portfolio and I'd like to talk about a project.",
+  es: '¡Hola Ryan! Vi tu portafolio y me gustaría hablar sobre un proyecto.',
+};
+
+/* "Como eu trabalho" da versão freelance (pitch amplo). Diferente do
+   "Como eu reviso código" da quickfix (que é sobre bug-fix). Inclui o passo de
+   "começar pequeno" como redutor de risco pro cliente cauteloso. */
+const WORK_PROCESS = {
+  pt: {
+    tag: '// como eu trabalho',
+    title: 'Como eu trabalho',
+    subtitle: 'Menos surpresa, mais previsibilidade. É assim que eu conduzo cada projeto, do primeiro contato à entrega.',
+    steps: [
+      { n: '01', title: 'Entendo o problema de verdade', desc: 'Antes de qualquer código, alinho o que você precisa e por quê. Escopo mal entendido é o que mais atrasa projeto, então começo por aí.' },
+      { n: '02', title: 'Escopo e prazo honestos', desc: 'Te digo o que é realista, o que não é e onde estão os riscos. Prefiro prometer de menos e entregar de mais.' },
+      { n: '03', title: 'Começo pequeno pra criar confiança', desc: 'Em projetos maiores, prefiro fechar um primeiro marco menor e já entregue antes de escopar o resto. Você vê resultado cedo, com risco baixo.' },
+      { n: '04', title: 'Comunico sempre, não sumo', desc: 'Updates no ritmo que a gente combinar. Se algo vai atrasar, você fica sabendo antes do prazo, não depois.' },
+    ],
+  },
+  en: {
+    tag: '// how i work',
+    title: 'How I work',
+    subtitle: 'Fewer surprises, more predictability. This is how I run every project, from first message to delivery.',
+    steps: [
+      { n: '01', title: 'I understand the real problem', desc: 'Before any code, I align on what you need and why. Misread scope is what delays projects most, so I start there.' },
+      { n: '02', title: 'Honest scope and timeline', desc: "I tell you what's realistic, what isn't and where the risks are. I'd rather under-promise and over-deliver." },
+      { n: '03', title: 'Start small to build trust', desc: 'On bigger projects, I prefer to close a small first milestone before scoping the rest. You see results early, with low risk.' },
+      { n: '04', title: "I communicate, I don't vanish", desc: 'Updates at whatever cadence we agree on. If something will slip, you hear it before the deadline, not after.' },
+    ],
+  },
+  es: {
+    tag: '// cómo trabajo',
+    title: 'Cómo trabajo',
+    subtitle: 'Menos sorpresas, más previsibilidad. Así llevo cada proyecto, del primer mensaje a la entrega.',
+    steps: [
+      { n: '01', title: 'Entiendo el problema de verdad', desc: 'Antes de cualquier código, alineo qué necesitas y por qué. Un alcance mal entendido es lo que más atrasa, así que empiezo por ahí.' },
+      { n: '02', title: 'Alcance y plazo honestos', desc: 'Te digo qué es realista, qué no y dónde están los riesgos. Prefiero prometer de menos y entregar de más.' },
+      { n: '03', title: 'Empiezo pequeño para crear confianza', desc: 'En proyectos grandes, prefiero cerrar un primer hito pequeño antes de definir el resto. Ves resultados pronto, con bajo riesgo.' },
+      { n: '04', title: 'Comunico siempre, no desaparezco', desc: 'Actualizaciones al ritmo que acordemos. Si algo se va a atrasar, te enteras antes de la fecha, no después.' },
+    ],
+  },
+};
+
 const SKILLS_TEXT = {
   pt: { tag: '// habilidades', title: 'Stack técnica', subtitle: 'Tecnologias com as quais trabalho ativamente em projetos reais.' },
   en: { tag: '// skills', title: 'Technical stack', subtitle: 'Technologies I actively work with on real projects.' },

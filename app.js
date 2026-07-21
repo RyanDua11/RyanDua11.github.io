@@ -8,6 +8,9 @@ const REVIEW_VERSIONS = ['freela-quickfix', 'freelance'];
 // correção rápida, onde debugar É o produto. Nas outras, o processo em 4 passos
 // já sinaliza método sem soar irrelevante pro cliente.
 const BUGS_VERSIONS = ['freela-quickfix'];
+// Versões de cliente usam stats de valor entregue (STATS_CLIENT) em vez das
+// stats de estudante (certificações/commits) das versões default/estagio.
+const CLIENT_STATS_VERSIONS = ['freela-quickfix', 'freela-ai', 'freelance'];
 // Currículo (.docx) só faz sentido nas versões acadêmicas; nas de freela o portfólio já é a prova.
 const CV_VERSIONS = ['default', 'estagio'];
 // datas/semestre da faculdade só fazem sentido nas versões acadêmicas; pro cliente
@@ -132,14 +135,30 @@ function renderSkills(lang) {
 
 function renderReview(version, data, lang) {
   const section = document.getElementById('review');
-  if (!REVIEW_VERSIONS.includes(version) || !data.review) {
+  if (!REVIEW_VERSIONS.includes(version)) {
+    section.classList.remove('show');
+    return;
+  }
+  // freelance mostra "Como eu trabalho" (pitch amplo); quickfix mostra o
+  // "Como eu reviso código" com os bugs (bug-fix é o produto dela).
+  const src = version === 'freelance' ? (WORK_PROCESS[lang] || WORK_PROCESS.pt) : data.review;
+  if (!src) {
     section.classList.remove('show');
     return;
   }
   section.classList.add('show');
+
+  // cabeçalho da seção (sobrescreve o data-i18n, pois freelance usa WORK_PROCESS)
+  const tagEl = section.querySelector('.section-tag');
+  const titleEl = section.querySelector('.section-title');
+  const subEl = section.querySelector('.section-subtitle');
+  if (tagEl) tagEl.textContent = src.tag;
+  if (titleEl) titleEl.textContent = src.title;
+  if (subEl) subEl.textContent = src.subtitle;
+
   const labels = (SKILL_I18N[lang] || SKILL_I18N.pt).bugLabels;
   const stepsEl = document.getElementById('review-steps');
-  stepsEl.innerHTML = data.review.steps.map(s => `
+  stepsEl.innerHTML = src.steps.map(s => `
     <div class="review-step">
       <div class="review-step-n">${s.n}</div>
       <div class="review-step-title">${s.title}</div>
@@ -148,7 +167,7 @@ function renderReview(version, data, lang) {
 
   const bugsEl = document.getElementById('bugs-grid');
   const bugsTitle = document.querySelector('.bugs-title');
-  const showBugs = BUGS_VERSIONS.includes(version) && data.review.bugs;
+  const showBugs = BUGS_VERSIONS.includes(version) && data.review && data.review.bugs;
   if (bugsTitle) bugsTitle.style.display = showBugs ? '' : 'none';
   bugsEl.style.display = showBugs ? '' : 'none';
   bugsEl.innerHTML = showBugs ? data.review.bugs.map(b => `
@@ -187,7 +206,8 @@ function applyContent(version, lang) {
     if (val !== undefined) el.innerHTML = val;
   });
 
-  renderStats(document.getElementById('hero-stats'), data.stats);
+  const statsData = CLIENT_STATS_VERSIONS.includes(version) ? (STATS_CLIENT[lang] || STATS_CLIENT.pt) : data.stats;
+  renderStats(document.getElementById('hero-stats'), statsData);
   renderSkills(lang);
   renderProjects(lang);
   renderProjectLearned(version, data);
@@ -201,6 +221,12 @@ function applyContent(version, lang) {
   document.querySelectorAll('.cert-academic-detail').forEach(el => {
     el.style.display = showAcademicDetail ? '' : 'none';
   });
+
+  const wa = document.getElementById('whatsapp-link');
+  if (wa) {
+    const text = WHATSAPP_TEXT[lang] || WHATSAPP_TEXT.pt;
+    wa.href = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(text)}`;
+  }
 }
 
 function switchLang(lang) {
