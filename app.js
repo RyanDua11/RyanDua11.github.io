@@ -6,6 +6,9 @@ const VALID_VERSIONS = ['default', 'estagio', 'freela-quickfix', 'freela-ai', 'f
 const REVIEW_VERSIONS = ['freela-quickfix', 'freelance'];
 // Currículo (.docx) só faz sentido nas versões acadêmicas; nas de freela o portfólio já é a prova.
 const CV_VERSIONS = ['default', 'estagio'];
+// datas/semestre da faculdade só fazem sentido nas versões acadêmicas; pro cliente
+// de freela, "cursando 2º semestre" enfraquece a percepção de profissional experiente.
+const ACADEMIC_DETAIL_VERSIONS = ['default', 'estagio'];
 const LANG_STORAGE_KEY = 'portfolio-lang';
 
 const FACT_ICONS = [
@@ -160,6 +163,11 @@ function applyContent(version, lang) {
 
   const cv = document.getElementById('cv-cta');
   if (cv) cv.style.display = CV_VERSIONS.includes(version) ? 'flex' : 'none';
+
+  const showAcademicDetail = ACADEMIC_DETAIL_VERSIONS.includes(version);
+  document.querySelectorAll('.cert-academic-detail').forEach(el => {
+    el.style.display = showAcademicDetail ? '' : 'none';
+  });
 }
 
 function switchLang(lang) {
