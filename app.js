@@ -1,45 +1,25 @@
 /* ==========================================================================
-   app.js — roteamento por ?v=, idioma por ?lang=/localStorage, montagem do DOM
+   app.js — idioma por ?lang=/localStorage, montagem do DOM.
+   Um único portfólio (sem narrativas por versão).
    ========================================================================== */
 
-const VALID_VERSIONS = ['default', 'estagio', 'freela-quickfix', 'freela-ai', 'freelance'];
-// Versões de cliente usam stats de valor entregue (STATS_CLIENT) em vez das
-// stats de estudante (certificações/commits) das versões default/estagio.
-const CLIENT_STATS_VERSIONS = ['freela-quickfix', 'freela-ai', 'freelance'];
-// Currículo (.docx) só faz sentido nas versões acadêmicas; nas de freela o portfólio já é a prova.
-const CV_VERSIONS = ['default', 'estagio'];
-// datas/semestre da faculdade só fazem sentido nas versões acadêmicas; pro cliente
-// de freela, "cursando 2º semestre" enfraquece a percepção de profissional experiente.
-const ACADEMIC_DETAIL_VERSIONS = ['default', 'estagio'];
 const LANG_STORAGE_KEY = 'portfolio-lang';
+const LANG_HTML_TAG = { pt: 'pt-BR', en: 'en' };
 
-const FACT_ICONS = [
-  '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 17h16M4 12h10M4 7h13"/></svg>', // projetos
-  '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5L7 21l5-3 5 3-1.5-8.5"/></svg>', // certificações
-  '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l9 5-9 5-9-5 9-5zM3 12l9 5 9-5M3 17l9 5 9-5"/></svg>', // tecnologias
-  '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 12a3 3 0 106 0 3 3 0 106 0 3 3 0 10-6 0 3 3 0 10-6 0z"/></svg>', // commits (infinito)
-];
-
-function getVersionFromUrl() {
-  const v = new URLSearchParams(window.location.search).get('v');
-  return VALID_VERSIONS.includes(v) ? v : 'default';
+function getAvailableLangs() {
+  return Object.keys(CONTENT);
 }
 
-function getAvailableLangs(version) {
-  return Object.keys(CONTENT[version]);
-}
-
-function getLangFromUrl(version) {
+function getLangFromUrl() {
   const params = new URLSearchParams(window.location.search);
   const urlLang = params.get('lang');
-  const available = getAvailableLangs(version);
+  const available = getAvailableLangs();
   if (urlLang && available.includes(urlLang)) return urlLang;
 
   const saved = localStorage.getItem(LANG_STORAGE_KEY);
   if (saved && available.includes(saved)) return saved;
 
-  const def = DEFAULT_LANG[version];
-  return available.includes(def) ? def : available[0];
+  return 'pt';
 }
 
 function resolvePath(obj, path) {
@@ -52,10 +32,7 @@ function setUrlParam(key, value) {
   window.history.replaceState({}, '', url);
 }
 
-const LANG_HTML_TAG = { pt: 'pt-BR', en: 'en', es: 'es' };
-
-let currentVersion = getVersionFromUrl();
-let currentLang = getLangFromUrl(currentVersion);
+let currentLang = getLangFromUrl();
 
 function setMeta(data) {
   document.getElementById('meta-title').textContent = data.metaTitle;
@@ -64,12 +41,11 @@ function setMeta(data) {
   document.getElementById('meta-og-description').setAttribute('content', data.metaDesc);
 }
 
-function applyHaloTheme(version) {
-  const theme = HALO_THEME[version] || HALO_THEME.default;
+function applyHaloTheme() {
   const root = document.documentElement;
-  root.style.setProperty('--halo-accent', theme.accent);
-  root.style.setProperty('--halo-accent2', theme.accent2);
-  root.style.setProperty('--halo-core-saturation', theme.coreSaturation);
+  root.style.setProperty('--halo-accent', HALO_THEME.accent);
+  root.style.setProperty('--halo-accent2', HALO_THEME.accent2);
+  root.style.setProperty('--halo-core-saturation', HALO_THEME.coreSaturation);
 }
 
 function renderStats(container, stats) {
@@ -97,20 +73,6 @@ function renderProjects(lang) {
   });
 }
 
-function renderProjectLearned(version, data) {
-  const learned = data.projects && data.projects.learned;
-  document.querySelectorAll('[data-learned]').forEach(el => {
-    const key = el.getAttribute('data-learned');
-    if (version === 'estagio' && learned && learned[key]) {
-      el.textContent = learned[key];
-      el.classList.add('show');
-    } else {
-      el.classList.remove('show');
-      el.textContent = '';
-    }
-  });
-}
-
 function renderSkills(lang) {
   const grid = document.getElementById('skills-grid');
   if (!grid) return;
@@ -129,8 +91,8 @@ function renderSkills(lang) {
   }).join('');
 }
 
-function renderLangSwitch(version, lang) {
-  const available = getAvailableLangs(version);
+function renderLangSwitch(lang) {
+  const available = getAvailableLangs();
   document.querySelectorAll('#lang-switch button').forEach(btn => {
     const btnLang = btn.getAttribute('data-lang');
     btn.style.display = available.includes(btnLang) ? '' : 'none';
@@ -138,13 +100,13 @@ function renderLangSwitch(version, lang) {
   });
 }
 
-function applyContent(version, lang) {
-  const data = CONTENT[version][lang];
+function applyContent(lang) {
+  const data = CONTENT[lang];
   if (!data) return;
 
   document.getElementById('html-root').setAttribute('lang', LANG_HTML_TAG[lang] || lang);
   setMeta(data);
-  applyHaloTheme(version);
+  applyHaloTheme();
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const val = resolvePath(data, el.getAttribute('data-i18n'));
@@ -155,19 +117,13 @@ function applyContent(version, lang) {
     if (val !== undefined) el.innerHTML = val;
   });
 
-  const statsData = CLIENT_STATS_VERSIONS.includes(version) ? (STATS_CLIENT[lang] || STATS_CLIENT.pt) : data.stats;
-  renderStats(document.getElementById('hero-stats'), statsData);
+  renderStats(document.getElementById('hero-stats'), data.stats);
   renderSkills(lang);
   renderProjects(lang);
-  renderProjectLearned(version, data);
-  renderLangSwitch(version, lang);
+  renderLangSwitch(lang);
 
-  const cv = document.getElementById('cv-cta');
-  if (cv) cv.style.display = CV_VERSIONS.includes(version) ? 'flex' : 'none';
-
-  const showAcademicDetail = ACADEMIC_DETAIL_VERSIONS.includes(version);
   document.querySelectorAll('.cert-academic-detail').forEach(el => {
-    el.style.display = showAcademicDetail ? '' : 'none';
+    el.style.display = '';
   });
 
   const wa = document.getElementById('whatsapp-link');
@@ -185,13 +141,13 @@ function switchLang(lang) {
     currentLang = lang;
     localStorage.setItem(LANG_STORAGE_KEY, lang);
     setUrlParam('lang', lang);
-    applyContent(currentVersion, currentLang);
+    applyContent(currentLang);
     main.classList.remove('i18n-fading');
   }, 180);
 }
 
 document.body.classList.add('i18n-fade');
-applyContent(currentVersion, currentLang);
+applyContent(currentLang);
 
 document.getElementById('lang-switch').addEventListener('click', (e) => {
   const btn = e.target.closest('button[data-lang]');
