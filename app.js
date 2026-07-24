@@ -22,6 +22,10 @@ function getLangFromUrl() {
   return 'pt';
 }
 
+function getVersionFromUrl() {
+  return new URLSearchParams(window.location.search).get('v');
+}
+
 function resolvePath(obj, path) {
   return path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj);
 }
@@ -56,23 +60,6 @@ function renderStats(container, stats) {
     </div>`).join('');
 }
 
-function renderProjects(lang) {
-  const items = PROJECT_ITEMS[lang] || PROJECT_ITEMS.pt;
-  document.querySelectorAll('.project-card[data-project]').forEach(card => {
-    const item = items[card.getAttribute('data-project')];
-    if (!item) return;
-    const set = (sel, val) => {
-      const el = card.querySelector(sel);
-      if (el && val != null) el.textContent = val;
-    };
-    set('[data-proj-desc]', item.desc);
-    set('[data-proj-highlight]', item.highlight);
-    set('[data-proj-badge]', item.typeBadge);
-    set('[data-proj-status]', item.status);
-    set('[data-proj-link]', item.linkText);
-  });
-}
-
 function renderSkills(lang) {
   const grid = document.getElementById('skills-grid');
   if (!grid) return;
@@ -105,7 +92,8 @@ function applyContent(lang) {
   if (!data) return;
 
   document.getElementById('html-root').setAttribute('lang', LANG_HTML_TAG[lang] || lang);
-  setMeta(data);
+  const estagioMeta = getVersionFromUrl() === 'estagio' ? ESTAGIO_META[lang] : null;
+  setMeta(estagioMeta ? { ...data, ...estagioMeta } : data);
   applyHaloTheme();
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -119,7 +107,7 @@ function applyContent(lang) {
 
   renderStats(document.getElementById('hero-stats'), data.stats);
   renderSkills(lang);
-  renderProjects(lang);
+  if (typeof renderConstellation === 'function') renderConstellation(lang);
   renderLangSwitch(lang);
 
   document.querySelectorAll('.cert-academic-detail').forEach(el => {
@@ -183,13 +171,6 @@ const spy = new IntersectionObserver((entries) => {
   });
 }, { rootMargin: '-45% 0px -45% 0px' });
 navSections.forEach(s => spy.observe(s));
-
-// ── PROJECT SPOTLIGHT ──
-const projectGrid = document.querySelector('.projects-grid');
-document.querySelectorAll('.project-card').forEach(card => {
-  card.addEventListener('mouseenter', () => projectGrid.classList.add('has-hover'));
-  card.addEventListener('mouseleave', () => projectGrid.classList.remove('has-hover'));
-});
 
 // ── SCROLL ANIMATIONS ──
 const observer = new IntersectionObserver((entries) => {

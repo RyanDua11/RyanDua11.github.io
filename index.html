@@ -24,7 +24,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
-  <link rel="stylesheet" href="style.css?v=19" />
+  <link rel="stylesheet" href="style.css?v=25" />
+  <link rel="stylesheet" href="constellation.css?v=25" />
 </head>
 <body>
 
@@ -76,17 +77,6 @@
     </div>
 
     <div class="hero-visual no-halo">
-      <div class="meta-col">
-        <div class="meta-item">
-          <div class="meta-label">Role</div>
-          <div class="meta-value" data-i18n="hero.metaRole">Full Stack</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Focus</div>
-          <div class="meta-value" data-i18n="hero.metaFocus">Código limpo</div>
-        </div>
-      </div>
-
       <!-- Buraco negro/halo pausado por decisão do Ryan em 2026-07-21: ainda não está no nível
            desejado (ficou "liso demais" / precisa mais profundidade). Código mantido intacto
            para retomar o refinamento depois, sem pressa de prazo. Oculto via .bh-hidden (style.css). -->
@@ -211,16 +201,6 @@
         </svg>
       </div>
 
-      <div class="tech-card">
-        <div class="tech-card-label">Tech Stack</div>
-        <div class="tech-card-icons">
-          <i class="devicon-react-original colored"></i>
-          <i class="devicon-python-plain colored"></i>
-          <i class="devicon-java-plain colored"></i>
-          <i class="devicon-postgresql-plain colored"></i>
-          <i class="devicon-docker-plain colored"></i>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -233,265 +213,15 @@
     <p class="section-tag fade-up" data-i18n="projects.tag">// projetos</p>
     <h2 class="section-title fade-up" data-i18n="projects.title">O que eu construí</h2>
     <p class="section-subtitle fade-up" data-i18n="projects.subtitle"></p>
-    <div class="projects-grid">
 
-      <!-- MediStudy -->
-      <div class="project-card fade-up" data-project="medistudy" style="--card-accent: linear-gradient(90deg,transparent,rgba(227,181,63,.75),transparent);">
-        <div class="project-visual" style="background: linear-gradient(135deg,#0a0700,#140d00,#1c1400);">
-          <div style="position:absolute;top:0;left:0;right:0;height:28px;background:rgba(0,0,0,.4);display:flex;align-items:center;padding:0 10px;gap:6px;z-index:2;">
-            <span style="width:10px;height:10px;border-radius:50%;background:#ff5f57;display:inline-block;"></span>
-            <span style="width:10px;height:10px;border-radius:50%;background:#febc2e;display:inline-block;"></span>
-            <span style="width:10px;height:10px;border-radius:50%;background:#28c840;display:inline-block;"></span>
-            <span style="flex:1;height:16px;background:rgba(255,255,255,.06);border-radius:4px;margin-left:6px;display:flex;align-items:center;padding:0 8px;font-size:9px;color:rgba(255,255,255,.3);font-family:'Fira Code',monospace;">medistudy/app/estudo</span>
-          </div>
-          <svg viewBox="0 0 400 180" preserveAspectRatio="none">
-            <defs>
-              <radialGradient id="gMedi" cx="50%" cy="50%" r="60%">
-                <stop offset="0%" stop-color="#e3b53f" stop-opacity=".22"/>
-                <stop offset="100%" stop-color="transparent"/>
-              </radialGradient>
-            </defs>
-            <rect width="400" height="180" fill="url(#gMedi)"/>
-            <polyline points="20,110 90,110 115,110 130,72 145,150 162,92 178,110 250,110 275,110 290,60 305,152 322,96 338,110 380,110" stroke="#e3b53f" stroke-width="1.6" fill="none" opacity=".85"/>
-            <circle cx="200" cy="90" r="62" stroke="#e3b53f" stroke-width=".4" fill="none" opacity=".25"/>
-            <circle cx="290" cy="60" r="3" fill="#e3b53f" opacity=".8"/>
-            <circle cx="130" cy="72" r="3" fill="#e3b53f" opacity=".8"/>
-            <line x1="45" y1="150" x2="355" y2="150" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
-          </svg>
-          <span class="project-visual-icon" style="color:#e3b53f">⚕️</span>
-          <span class="project-type-badge" data-proj-badge>IA + Educação</span>
-        </div>
-        <div class="project-body">
-          <h3 class="project-name">MediStudy</h3>
-          <span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#e3b53f;background:rgba(227,181,63,.1);border:1px solid rgba(227,181,63,.3);padding:3px 10px;border-radius:20px;margin-bottom:12px;font-family:'Fira Code',monospace;width:fit-content;">
-            <span style="width:7px;height:7px;border-radius:50%;background:#e3b53f;box-shadow:0 0 8px #e3b53f;display:inline-block;"></span>
-            <span data-proj-status>Em andamento</span>
-          </span>
-          <p class="project-desc" data-proj-desc>Plataforma de estudos de medicina potencializada por IA. Flashcards com repetição espaçada, casos clínicos gerados por IA, simulador de anamnese, interpretador de exames, mapas mentais e múltiplos métodos de estudo. Orquestração multi-LLM com engenharia de custo de tokens.</p>
-          <p class="project-highlight" data-proj-highlight></p>
-          <div class="project-stack">
-            <span class="stack-tag">JavaScript</span>
-            <span class="stack-tag">Claude API</span>
-            <span class="stack-tag">Groq API</span>
-            <span class="stack-tag">Gemini API</span>
-            <span class="stack-tag">Multi-LLM</span>
-            <span class="stack-tag">HTML/CSS</span>
-          </div>
-          <div class="project-links">
-            <span class="project-link" style="opacity:.65;cursor:default;">
-              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6v6l4 2M22 12a10 10 0 11-20 0 10 10 0 0120 0z"/></svg>
-              <span data-proj-link>Em desenvolvimento</span>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <!-- CandidaTrack -->
-      <div class="project-card fade-up" data-project="candidatrack" style="--card-accent: linear-gradient(90deg,transparent,rgba(59,130,246,.7),transparent);">
-        <div class="project-visual" style="background: linear-gradient(135deg,#0a1628,#0f1f3d,#0d1835);">
-          <div style="position:absolute;top:0;left:0;right:0;height:28px;background:rgba(0,0,0,.4);display:flex;align-items:center;padding:0 10px;gap:6px;z-index:2;">
-            <span style="width:10px;height:10px;border-radius:50%;background:#ff5f57;display:inline-block;"></span>
-            <span style="width:10px;height:10px;border-radius:50%;background:#febc2e;display:inline-block;"></span>
-            <span style="width:10px;height:10px;border-radius:50%;background:#28c840;display:inline-block;"></span>
-            <span style="flex:1;height:16px;background:rgba(255,255,255,.06);border-radius:4px;margin-left:6px;display:flex;align-items:center;padding:0 8px;font-size:9px;color:rgba(255,255,255,.3);font-family:'Fira Code',monospace;">candidatrack/api/analyze</span>
-          </div>
-          <svg viewBox="0 0 400 180" preserveAspectRatio="none">
-            <defs>
-              <radialGradient id="g1" cx="50%" cy="50%" r="60%">
-                <stop offset="0%" stop-color="#3b82f6" stop-opacity=".25"/>
-                <stop offset="100%" stop-color="transparent"/>
-              </radialGradient>
-            </defs>
-            <rect width="400" height="180" fill="url(#g1)"/>
-            <circle cx="200" cy="90" r="70" stroke="#3b82f6" stroke-width=".5" fill="none" opacity=".3"/>
-            <circle cx="200" cy="90" r="45" stroke="#3b82f6" stroke-width=".5" fill="none" opacity=".5"/>
-            <circle cx="200" cy="90" r="20" stroke="#3b82f6" stroke-width="1" fill="none" opacity=".7"/>
-            <line x1="60" y1="40" x2="340" y2="40" stroke="#3b82f6" stroke-width=".3" opacity=".2"/>
-            <line x1="60" y1="90" x2="340" y2="90" stroke="#3b82f6" stroke-width=".3" opacity=".2"/>
-            <line x1="60" y1="140" x2="340" y2="140" stroke="#3b82f6" stroke-width=".3" opacity=".2"/>
-          </svg>
-          <span class="project-visual-icon" style="color:#3b82f6">🧠</span>
-          <span class="project-type-badge" data-proj-badge>IA + Backend</span>
-        </div>
-        <div class="project-body">
-          <h3 class="project-name">CandidaTrack</h3>
-          <p class="project-desc" data-proj-desc>Sistema completo de rastreamento de candidaturas com análise inteligente de vagas via IA. Score de compatibilidade entre currículo e vaga, chat consultivo com LLaMA 70B e web scraping automático.</p>
-          <p class="project-highlight" data-proj-highlight></p>
-          <div class="project-stack">
-            <span class="stack-tag">Python</span>
-            <span class="stack-tag">FastAPI</span>
-            <span class="stack-tag">PostgreSQL</span>
-            <span class="stack-tag">SQLAlchemy</span>
-            <span class="stack-tag">LLaMA 70B</span>
-            <span class="stack-tag">Groq API</span>
-            <span class="stack-tag">BeautifulSoup4</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/RyanDua11/candidatrack" target="_blank" class="project-link">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-              <span data-proj-link>Código</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- GloWay -->
-      <div class="project-card fade-up" data-project="gloway" style="--card-accent: linear-gradient(90deg,transparent,rgba(16,185,129,.7),transparent);">
-        <div class="project-visual" style="background: linear-gradient(135deg,#091a14,#0a2018,#0c2a1e);">
-          <div style="position:absolute;top:0;left:0;right:0;height:28px;background:rgba(0,0,0,.4);display:flex;align-items:center;padding:0 10px;gap:6px;z-index:2;">
-            <span style="width:10px;height:10px;border-radius:50%;background:#ff5f57;display:inline-block;"></span>
-            <span style="width:10px;height:10px;border-radius:50%;background:#febc2e;display:inline-block;"></span>
-            <span style="width:10px;height:10px;border-radius:50%;background:#28c840;display:inline-block;"></span>
-            <span style="flex:1;height:16px;background:rgba(255,255,255,.06);border-radius:4px;margin-left:6px;display:flex;align-items:center;padding:0 8px;font-size:9px;color:rgba(255,255,255,.3);font-family:'Fira Code',monospace;">glowaytour.online/roteiro/ia</span>
-          </div>
-          <svg viewBox="0 0 400 180" preserveAspectRatio="none">
-            <defs>
-              <radialGradient id="g2" cx="50%" cy="50%" r="60%">
-                <stop offset="0%" stop-color="#10b981" stop-opacity=".2"/>
-                <stop offset="100%" stop-color="transparent"/>
-              </radialGradient>
-            </defs>
-            <rect width="400" height="180" fill="url(#g2)"/>
-            <path d="M0 120 Q100 60 200 100 Q300 140 400 80" stroke="#10b981" stroke-width="1" fill="none" opacity=".4"/>
-            <path d="M0 140 Q100 80 200 120 Q300 160 400 100" stroke="#10b981" stroke-width=".5" fill="none" opacity=".2"/>
-            <circle cx="200" cy="90" r="4" fill="#10b981" opacity=".8"/>
-            <circle cx="120" cy="70" r="3" fill="#10b981" opacity=".5"/>
-            <circle cx="290" cy="110" r="3" fill="#10b981" opacity=".5"/>
-            <line x1="120" y1="70" x2="200" y2="90" stroke="#10b981" stroke-width=".5" opacity=".4"/>
-            <line x1="200" y1="90" x2="290" y2="110" stroke="#10b981" stroke-width=".5" opacity=".4"/>
-          </svg>
-          <span class="project-visual-icon" style="color:#10b981">🗺️</span>
-          <span class="project-type-badge" data-proj-badge>Full Product</span>
-        </div>
-        <div class="project-body">
-          <h3 class="project-name">GloWay, Guia Urbano Inteligente</h3>
-          <p class="project-desc" data-proj-desc>Produto completo de guia de viagens com roteiros gerados por IA (Gemini). Mapa 3D, comunidade LGBT+, geolocalização em tempo real, integração com Stripe e engenharia de custo em IA, com cada roteiro saindo por menos de R$ 0,05.</p>
-          <p class="project-highlight" data-proj-highlight></p>
-          <div class="project-stack">
-            <span class="stack-tag">React</span>
-            <span class="stack-tag">TypeScript</span>
-            <span class="stack-tag">Supabase</span>
-            <span class="stack-tag">Gemini API</span>
-            <span class="stack-tag">Stripe</span>
-            <span class="stack-tag">Google Maps API</span>
-          </div>
-          <div class="project-links">
-            <a href="https://glowaytour.online" target="_blank" class="project-link">
-              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
-              <span data-proj-link>Site Live</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- LedgerX -->
-      <div class="project-card fade-up" data-project="ledgerx" style="--card-accent: linear-gradient(90deg,transparent,rgba(245,158,11,.7),transparent);">
-        <div class="project-visual" style="background: linear-gradient(135deg,#0c0800,#160f00,#1a1200);">
-          <div style="position:absolute;top:0;left:0;right:0;height:28px;background:rgba(0,0,0,.4);display:flex;align-items:center;padding:0 10px;gap:6px;z-index:2;">
-            <span style="width:10px;height:10px;border-radius:50%;background:#ff5f57;display:inline-block;"></span>
-            <span style="width:10px;height:10px;border-radius:50%;background:#febc2e;display:inline-block;"></span>
-            <span style="width:10px;height:10px;border-radius:50%;background:#28c840;display:inline-block;"></span>
-            <span style="flex:1;height:16px;background:rgba(255,255,255,.06);border-radius:4px;margin-left:6px;display:flex;align-items:center;padding:0 8px;font-size:9px;color:rgba(255,255,255,.3);font-family:'Fira Code',monospace;">localhost:8001/dashboard</span>
-          </div>
-          <svg viewBox="0 0 400 180" preserveAspectRatio="none">
-            <defs>
-              <radialGradient id="g0" cx="50%" cy="50%" r="60%">
-                <stop offset="0%" stop-color="#f59e0b" stop-opacity=".2"/>
-                <stop offset="100%" stop-color="transparent"/>
-              </radialGradient>
-            </defs>
-            <rect width="400" height="180" fill="url(#g0)"/>
-            <rect x="60"  y="110" width="28" height="40"  rx="3" fill="rgba(245,158,11,.5)"/>
-            <rect x="100" y="80"  width="28" height="70"  rx="3" fill="rgba(245,158,11,.65)"/>
-            <rect x="140" y="95"  width="28" height="55"  rx="3" fill="rgba(245,158,11,.55)"/>
-            <rect x="180" y="60"  width="28" height="90"  rx="3" fill="rgba(245,158,11,.75)"/>
-            <rect x="220" y="75"  width="28" height="75"  rx="3" fill="rgba(245,158,11,.6)"/>
-            <rect x="260" y="50"  width="28" height="100" rx="3" fill="rgba(245,158,11,.85)"/>
-            <polyline points="74,125 114,100 154,110 194,78 234,92 274,68" stroke="#10b981" stroke-width="2" fill="none" stroke-dasharray="4,2" opacity=".9"/>
-            <circle cx="74"  cy="125" r="3" fill="#10b981"/>
-            <circle cx="114" cy="100" r="3" fill="#10b981"/>
-            <circle cx="154" cy="110" r="3" fill="#10b981"/>
-            <circle cx="194" cy="78"  r="3" fill="#10b981"/>
-            <circle cx="234" cy="92"  r="3" fill="#10b981"/>
-            <circle cx="274" cy="68"  r="3" fill="#10b981"/>
-            <line x1="45" y1="150" x2="315" y2="150" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
-          </svg>
-          <span class="project-visual-icon" style="color:#f59e0b">💰</span>
-          <span class="project-type-badge" data-proj-badge>PostgreSQL Avançado</span>
-        </div>
-        <div class="project-body">
-          <h3 class="project-name">LedgerX</h3>
-          <p class="project-desc" data-proj-desc>Sistema de análise financeira com PostgreSQL como protagonista. Window Functions (LAG, AVG OVER), CTEs, Materialized Views, Triggers, Particionamento por mês, Full-Text Search, Stored Procedures e exportação de relatório Excel com gráficos.</p>
-          <p class="project-highlight" data-proj-highlight></p>
-          <div class="project-stack">
-            <span class="stack-tag">PostgreSQL 16</span>
-            <span class="stack-tag">FastAPI</span>
-            <span class="stack-tag">Python</span>
-            <span class="stack-tag">Window Functions</span>
-            <span class="stack-tag">Docker</span>
-            <span class="stack-tag">Chart.js</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/RyanDua11/ledgerx" target="_blank" class="project-link">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-              <span data-proj-link>Código</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- To-Do List API -->
-      <div class="project-card fade-up" data-project="todolist" style="--card-accent: linear-gradient(90deg,transparent,rgba(168,85,247,.7),transparent);">
-        <div class="project-visual" style="background: linear-gradient(135deg,#130820,#1a0d30,#1c0f38);">
-          <div style="position:absolute;top:0;left:0;right:0;height:28px;background:rgba(0,0,0,.4);display:flex;align-items:center;padding:0 10px;gap:6px;z-index:2;">
-            <span style="width:10px;height:10px;border-radius:50%;background:#ff5f57;display:inline-block;"></span>
-            <span style="width:10px;height:10px;border-radius:50%;background:#febc2e;display:inline-block;"></span>
-            <span style="width:10px;height:10px;border-radius:50%;background:#28c840;display:inline-block;"></span>
-            <span style="flex:1;height:16px;background:rgba(255,255,255,.06);border-radius:4px;margin-left:6px;display:flex;align-items:center;padding:0 8px;font-size:9px;color:rgba(255,255,255,.3);font-family:'Fira Code',monospace;">localhost:8080/api/tasks</span>
-          </div>
-          <svg viewBox="0 0 400 180" preserveAspectRatio="none">
-            <defs>
-              <radialGradient id="g3" cx="50%" cy="50%" r="60%">
-                <stop offset="0%" stop-color="#a855f7" stop-opacity=".2"/>
-                <stop offset="100%" stop-color="transparent"/>
-              </radialGradient>
-            </defs>
-            <rect width="400" height="180" fill="url(#g3)"/>
-            <rect x="100" y="50" width="200" height="18" rx="4" stroke="#a855f7" stroke-width=".8" fill="rgba(168,85,247,.06)" opacity=".8"/>
-            <rect x="100" y="80" width="160" height="18" rx="4" stroke="#a855f7" stroke-width=".8" fill="rgba(168,85,247,.06)" opacity=".6"/>
-            <rect x="100" y="110" width="180" height="18" rx="4" stroke="#a855f7" stroke-width=".8" fill="rgba(168,85,247,.06)" opacity=".4"/>
-            <circle cx="85" cy="59" r="5" stroke="#a855f7" stroke-width="1" fill="none" opacity=".8"/>
-            <path d="M82 59l2 2 4-4" stroke="#a855f7" stroke-width="1" fill="none" opacity=".8"/>
-            <circle cx="85" cy="89" r="5" stroke="#a855f7" stroke-width="1" fill="rgba(168,85,247,.2)" opacity=".6"/>
-            <circle cx="85" cy="119" r="5" stroke="#a855f7" stroke-width="1" fill="none" opacity=".4"/>
-          </svg>
-          <span class="project-visual-icon" style="color:#a855f7">☕</span>
-          <span class="project-type-badge" data-proj-badge>API REST</span>
-        </div>
-        <div class="project-body">
-          <h3 class="project-name">To-Do List API</h3>
-          <p class="project-desc" data-proj-desc>API REST completa com Java 21 + Spring Boot + Hibernate ORM + PostgreSQL via Docker. CRUD validado com persistência real, ambiente 100% reproduzível via docker-compose e debugging com causa raiz documentada.</p>
-          <p class="project-highlight" data-proj-highlight></p>
-          <div class="project-stack">
-            <span class="stack-tag">Java 21</span>
-            <span class="stack-tag">Spring Boot</span>
-            <span class="stack-tag">Hibernate ORM</span>
-            <span class="stack-tag">PostgreSQL</span>
-            <span class="stack-tag">Docker</span>
-            <span class="stack-tag">HTML/CSS/JS</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/RyanDua11/todolist-spring-postgres" target="_blank" class="project-link">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-              <span data-proj-link>Código</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
+    <div class="constellation fade-up" id="constellation">
+      <div class="constellation-core"></div>
+      <div class="orbit-ring"></div>
+      <!-- planetas injetados por constellation.js -->
     </div>
   </div>
 </section>
+
 
 <!-- SKILLS (referência de stack, fora da nav) -->
 <section id="skills">
@@ -601,21 +331,6 @@
       </a>
     </div>
 
-    <div class="cv-cta fade-up" id="cv-cta" style="display:flex;gap:1.4rem;align-items:stretch;justify-content:center;flex-wrap:wrap;margin-top:1.6rem;">
-      <a href="Ryan_Duarte_Quintao_ATS.docx" download class="btn btn-primary" style="display:inline-flex;">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        Baixar Currículo
-      </a>
-      <div style="display:flex;align-items:center;gap:1rem;padding:.75rem 1rem;border:1px solid rgba(244,208,111,.35);border-radius:16px;background:linear-gradient(135deg,rgba(244,208,111,.08),rgba(244,208,111,.02));">
-        <div style="width:104px;height:104px;background:#f6edd6;border-radius:10px;padding:9px;box-shadow:0 4px 18px rgba(0,0,0,.35);flex:none;">
-          <svg width="100%" height="100%" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39 39" class="segno"><path class="qrline" stroke="#141008" d="M3 3.5h7m1 0h1m1 0h4m3 0h2m2 0h1m4 0h7m-33 1h1m5 0h1m1 0h1m1 0h1m2 0h2m4 0h2m1 0h1m1 0h1m1 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m1 0h1m1 0h5m3 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m3 0h3m1 0h1m1 0h2m2 0h2m4 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h3m1 0h2m1 0h2m1 0h2m1 0h1m4 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m2 0h1m5 0h4m4 0h2m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-24 1h1m1 0h1m1 0h1m1 0h2m1 0h1m3 0h2m-24 1h1m2 0h6m3 0h1m1 0h1m2 0h1m2 0h1m2 0h3m2 0h1m1 0h3m-33 1h3m4 0h2m2 0h4m2 0h1m1 0h1m2 0h2m4 0h3m1 0h1m-33 1h4m1 0h3m2 0h1m2 0h1m1 0h2m4 0h1m1 0h4m1 0h5m-33 1h1m2 0h3m1 0h2m1 0h1m1 0h2m1 0h1m1 0h1m7 0h1m1 0h1m2 0h3m-33 1h3m3 0h4m1 0h1m1 0h1m6 0h1m3 0h1m1 0h2m-26 1h3m2 0h1m2 0h1m1 0h1m1 0h1m3 0h1m1 0h1m2 0h1m2 0h2m1 0h2m-30 1h7m2 0h6m3 0h4m3 0h3m1 0h1m-31 1h1m1 0h2m1 0h1m1 0h2m5 0h1m1 0h1m2 0h2m3 0h2m1 0h4m1 0h1m-29 1h1m1 0h1m2 0h2m1 0h1m2 0h1m4 0h1m3 0h5m-29 1h2m5 0h5m1 0h9m3 0h2m1 0h1m1 0h2m-31 1h1m1 0h2m1 0h3m2 0h5m2 0h2m3 0h1m3 0h1m1 0h2m1 0h1m-33 1h2m7 0h1m1 0h1m1 0h1m1 0h2m5 0h1m1 0h1m3 0h4m-31 1h6m4 0h1m1 0h1m2 0h2m1 0h3m2 0h1m4 0h1m2 0h1m-33 1h1m1 0h1m1 0h2m2 0h1m2 0h1m1 0h2m8 0h1m1 0h6m-31 1h1m1 0h2m2 0h2m1 0h2m2 0h2m3 0h1m1 0h2m1 0h1m2 0h3m1 0h3m-33 1h1m1 0h1m5 0h3m1 0h1m1 0h2m1 0h2m1 0h1m2 0h1m2 0h1m1 0h1m1 0h1m-31 1h2m2 0h3m5 0h1m3 0h1m1 0h3m1 0h8m1 0h1m-24 1h4m1 0h6m2 0h2m1 0h1m3 0h1m1 0h2m-32 1h7m1 0h3m1 0h1m2 0h1m2 0h2m3 0h2m1 0h1m1 0h1m1 0h1m-31 1h1m5 0h1m1 0h2m1 0h2m1 0h1m1 0h1m1 0h2m3 0h2m3 0h5m-33 1h1m1 0h3m1 0h1m1 0h4m5 0h3m1 0h8m3 0h1m-33 1h1m1 0h3m1 0h1m1 0h2m1 0h2m3 0h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h4m-33 1h1m1 0h3m1 0h1m7 0h3m2 0h1m1 0h3m3 0h2m1 0h3m-33 1h1m5 0h1m3 0h1m1 0h1m1 0h1m3 0h3m1 0h2m1 0h8m-33 1h7m1 0h1m1 0h1m4 0h3m1 0h1m2 0h3m2 0h3"/></svg>
-        </div>
-        <div style="text-align:left;">
-          <div style="font-family:'Fira Code',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#e3b53f;margin-bottom:.3rem;">▚ Escaneie</div>
-          <div style="font-size:.95rem;font-weight:600;color:var(--text);line-height:1.3;">Currículo no<br/>seu celular</div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -623,8 +338,10 @@
   Feito com <span>♥</span> e muito café · Ryan Duarte Quintão © 2026
 </footer>
 
-<script src="content.js?v=19"></script>
-<script src="galaxy-bg.js?v=19"></script>
-<script src="app.js?v=19"></script>
+<script src="content.js?v=25"></script>
+<script src="projects-content.js?v=25"></script>
+<script src="constellation.js?v=25"></script>
+<script src="galaxy-bg.js?v=25"></script>
+<script src="app.js?v=25"></script>
 </body>
 </html>

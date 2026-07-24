@@ -8,18 +8,30 @@ const NAV = {
   en: { projects: 'Projects', certs: 'Education', contact: 'Contact' },
 };
 
+/* ?v=estagio: única versão além do portfólio padrão. Ajusta apenas as meta
+   tags (título/descrição da aba e SEO) para o contexto de busca de estágio;
+   o conteúdo visível da página continua o mesmo. */
+const ESTAGIO_META = {
+  pt: {
+    metaTitle: 'Ryan Duarte Quintão, Candidato a Estágio em Desenvolvimento',
+    metaDesc: 'Portfólio de Ryan Duarte Quintão, candidato a estágio em desenvolvimento de software. Projetos reais em Python, Java, React e IA generativa.',
+  },
+  en: {
+    metaTitle: 'Ryan Duarte Quintão, Software Development Internship Candidate',
+    metaDesc: "Ryan Duarte Quintão's portfolio, a software development internship candidate. Real projects in Python, Java, React and generative AI.",
+  },
+};
+
 const STATS = {
   pt: [
     { num: '4',  label: 'Projetos completos entregues' },
-    { num: '10+', label: 'Certificações técnicas' },
+    { num: '11', label: 'Certificações técnicas' },
     { num: '8+', label: 'Tecnologias na stack' },
-    { num: '∞', label: 'Commits de aprendizado' },
   ],
   en: [
     { num: '4',  label: 'Complete projects shipped' },
-    { num: '10+', label: 'Technical certifications' },
+    { num: '11', label: 'Technical certifications' },
     { num: '8+', label: 'Technologies in the stack' },
-    { num: '∞', label: 'Commits of learning' },
   ],
 };
 
@@ -64,21 +76,18 @@ const SKILL_GROUPS = [
   ]},
   { key: 'database', chips: [
     { t: 'PostgreSQL', i: 'devicon-postgresql-plain colored' },
-    { t: 'MySQL',      i: 'devicon-mysql-plain colored' },
     { t: 'Window Functions' },
     { t: 'CTEs' },
     { t: 'Triggers & Procedures' },
     { t: 'Materialized Views' },
     { tr: 'partitioning' },
     { t: 'Full-Text Search' },
-    { tr: 'relationalModeling' },
   ]},
   { key: 'devops', chips: [
     { t: 'Docker',         i: 'devicon-docker-plain colored' },
     { t: 'Docker Compose' },
     { t: 'Git',            i: 'devicon-git-plain colored' },
     { t: 'GitHub',         i: 'devicon-github-original' },
-    { t: 'Linux',          i: 'devicon-linux-plain' },
   ]},
   { key: 'ai', chips: [
     { t: 'Claude API (Anthropic)' },
@@ -86,101 +95,21 @@ const SKILL_GROUPS = [
     { t: 'Google Gemini API' },
     { tr: 'multiLLM' },
     { tr: 'tokenCost' },
-    { t: 'Prompt Engineering' },
-    { tr: 'genAI' },
     { t: 'BeautifulSoup4' },
-  ]},
-  { key: 'data', chips: [
-    { t: 'Power BI', i: 'devicon-microsoftsqlserver-plain colored' },
-    { tr: 'exploratory' },
-    { tr: 'dashboards' },
-    { t: 'SQL Analytics' },
   ]},
 ];
 
 const SKILL_I18N = {
   pt: {
-    groups: { backend: 'Backend', frontend: 'Frontend', database: 'Banco de Dados', devops: 'DevOps & Ferramentas', ai: 'Inteligência Artificial', data: 'Dados & Análise' },
-    terms: { partitioning: 'Particionamento', relationalModeling: 'Modelagem Relacional', multiLLM: 'Orquestração Multi-LLM', tokenCost: 'Engenharia de Custo de Tokens', genAI: 'IA Generativa', exploratory: 'Análise Exploratória', dashboards: 'Dashboards' },
+    groups: { backend: 'Backend', frontend: 'Frontend', database: 'Banco de Dados', devops: 'DevOps & Ferramentas', ai: 'Inteligência Artificial' },
+    terms: { partitioning: 'Particionamento', multiLLM: 'Orquestração Multi-LLM', tokenCost: 'Engenharia de Custo de Tokens' },
   },
   en: {
-    groups: { backend: 'Backend', frontend: 'Frontend', database: 'Databases', devops: 'DevOps & Tools', ai: 'Artificial Intelligence', data: 'Data & Analytics' },
-    terms: { partitioning: 'Partitioning', relationalModeling: 'Relational Modeling', multiLLM: 'Multi-LLM Orchestration', tokenCost: 'Token Cost Engineering', genAI: 'Generative AI', exploratory: 'Exploratory Analysis', dashboards: 'Dashboards' },
+    groups: { backend: 'Backend', frontend: 'Frontend', database: 'Databases', devops: 'DevOps & Tools', ai: 'Artificial Intelligence' },
+    terms: { partitioning: 'Partitioning', multiLLM: 'Multi-LLM Orchestration', tokenCost: 'Token Cost Engineering' },
   },
 };
 
-/* ── PROJETOS ────────────────────────────────────────────────────────────
-   Conteúdo dos cards por idioma. Formato de mini case-study: contexto/
-   problema, o que foi construído, resultado. Nomes de tecnologia ficam nas
-   stack-tags do HTML (proper nouns, não traduzem). */
-const PROJECT_ITEMS = {
-  pt: {
-    medistudy: {
-      typeBadge: 'IA + Educação',
-      status: 'Em andamento',
-      linkText: 'Em desenvolvimento',
-      desc: 'O MediStudy nasceu de acompanhar de perto a rotina puxada da minha namorada na Medicina. Ela usava o Claude pra tirar dúvida, o Anki pra flashcard e o NotebookLM pra organizar anotação, três ferramentas separadas pra resolver um único problema. O MediStudy junta tudo isso num só lugar: flashcards com repetição espaçada, casos clínicos e simulador de anamnese gerados por IA, interpretador de exames, Pomodoro integrado e mapas mentais, com espaço pra estudar em grupo com as amigas dela. Por trás, orquestro Claude, Groq e Gemini com roteamento sensível a custo.',
-      highlight: 'Sem ele: Claude + Anki + NotebookLM, três apps separados. Com ele: tudo em um só lugar.',
-    },
-    candidatrack: {
-      typeBadge: 'IA + Backend',
-      linkText: 'Código',
-      desc: 'Resolve um problema que todo mundo que procura vaga conhece: candidatura espalhada em vários sites, sem visão nenhuma do todo. O CandidaTrack centraliza tudo, analisa currículo e portfólio contra a vaga, aponta o que está bom e o que precisa melhorar, e devolve um percentual de compatibilidade, além de um chat consultivo (LLaMA 70B) pra tirar dúvida na hora. API assíncrona em FastAPI sobre PostgreSQL, tudo via Docker.',
-      highlight: 'Currículo + portfólio + vaga analisados, com % de compatibilidade na hora.',
-    },
-    gloway: {
-      typeBadge: 'Produto completo',
-      linkText: 'Site no ar',
-      desc: 'Meu maior projeto até hoje. A ideia nasceu sozinha, numa madrugada, e virou um produto completo do zero ao protótipo funcional, sem cofundador, direto no Google AI Studio. Um guia de Vitória/ES pra turista e morador ao mesmo tempo: roteiros gerados por IA, mapa 3D de avaliação urbana, comunidade LGBT+ e monitoramento de bike compartilhada. Parou não por falha de produto, mas por falta de verba de marketing. O protótipo funciona e está no ar até hoje.',
-      highlight: 'Menos de R$ 0,005 de custo de infraestrutura por roteiro gerado.',
-    },
-    ledgerx: {
-      typeBadge: 'PostgreSQL avançado',
-      linkText: 'Código',
-      desc: 'Construí por pura curiosidade, pra aprender PostgreSQL de verdade e organizar minha própria vida financeira. Hoje sou eu e mais duas pessoas usando ele no dia a dia. Window Functions, CTEs, Materialized Views, Triggers, particionamento por mês e Full-Text Search resolvendo relatório financeiro real, com exportação em Excel com gráficos.',
-      highlight: '3 pessoas usando no dia a dia, eu incluído.',
-    },
-    todolist: {
-      typeBadge: 'API REST',
-      linkText: 'Código',
-      desc: 'Meu primeiro projeto, de propósito simples: uma lista de tarefas. Mas uso ele todo santo dia até hoje pra anotar o que preciso fazer. Base sólida em Java 21, Spring Boot, Hibernate e PostgreSQL, tudo via Docker, com ambiente 100% reproduzível.',
-      highlight: 'Primeiro projeto, ainda em uso diário até hoje.',
-    },
-  },
-  en: {
-    medistudy: {
-      typeBadge: 'AI + Education',
-      status: 'In progress',
-      linkText: 'In development',
-      desc: "MediStudy came from watching my girlfriend's demanding routine in medical school up close. She used Claude for questions, Anki for flashcards and NotebookLM for notes, three separate tools to solve one problem. MediStudy puts all of that in one place: spaced-repetition flashcards, AI-generated clinical cases and an anamnesis simulator, an exam interpreter, a built-in Pomodoro timer and mind maps, plus room to study together with her friends. Under the hood, I orchestrate Claude, Groq and Gemini with cost-aware routing.",
-      highlight: 'Without it: Claude + Anki + NotebookLM, three separate apps. With it: all in one place.',
-    },
-    candidatrack: {
-      typeBadge: 'AI + Backend',
-      linkText: 'Code',
-      desc: "Solves a problem every job seeker knows: applications scattered across a dozen sites, with zero overview. CandidaTrack centralizes everything, analyzes your résumé and portfolio against the job posting, flags what's strong and what needs work, and returns a compatibility percentage, plus a consultative chat (LLaMA 70B) for instant questions. Async API in FastAPI on top of PostgreSQL, all through Docker.",
-      highlight: 'Résumé + portfolio + job posting analyzed, with an instant compatibility score.',
-    },
-    gloway: {
-      typeBadge: 'Full product',
-      linkText: 'Live site',
-      desc: 'My biggest project to date. The idea came to me alone, overnight, and became a full product, from zero to a working prototype, no co-founder, built directly in Google AI Studio. A guide to Vitória, Brazil for tourists and residents alike: AI-generated itineraries, a 3D map for crowd-sourced urban ratings, an LGBT+ community and shared-bike monitoring. It stopped not from a product failure, but from a lack of marketing budget. The prototype works and is still live today.',
-      highlight: 'Under R$0.005 (about $0.001) in infrastructure cost per itinerary generated.',
-    },
-    ledgerx: {
-      typeBadge: 'Advanced PostgreSQL',
-      linkText: 'Code',
-      desc: "Built out of pure curiosity, to really learn PostgreSQL and organize my own personal finances. Today it's me and two other people using it day to day. Window Functions, CTEs, Materialized Views, Triggers, monthly partitioning and Full-Text Search solving real financial reporting, with Excel export including charts.",
-      highlight: '3 people using it daily, myself included.',
-    },
-    todolist: {
-      typeBadge: 'REST API',
-      linkText: 'Code',
-      desc: 'My first project, deliberately simple: a to-do list. I still use it every single day to jot down what I need to do. Solid fundamentals in Java 21, Spring Boot, Hibernate and PostgreSQL, all through Docker, with a 100% reproducible environment.',
-      highlight: 'First project ever, still in daily use today.',
-    },
-  },
-};
 
 const CONTENT = {
   pt: {
@@ -190,11 +119,9 @@ const CONTENT = {
     hero: {
       badge: 'Disponível para novos projetos',
       headlineHtml: 'Construindo <span class="accent">soluções</span> reais.',
-      desc: 'Sou Ryan Duarte Quintão, desenvolvedor full stack autodidata, com base sólida em Python, Java, SQL e desenvolvimento web. Construo cada projeto do backend ao frontend, sempre a partir de um problema real, com código limpo e boas práticas de engenharia de software.',
-      personal: 'Tenho 22 anos e sigo nessa carreira em constante aprendizado, movido pelo desafio genuíno que a tecnologia me traz desde o início. O MediStudy nasceu de acompanhar de perto a rotina puxada da minha namorada na Medicina; o CandidaTrack, porque eu mesmo precisava organizar minha busca por vaga. Prefiro construir algo que resolve o problema de gente de verdade a fazer exercício de portfólio, e é assim que quero contribuir desde o primeiro dia em qualquer time que eu entrar.',
+      desc: 'Eu vejo um problema e começo a pensar no que poderia existir no lugar. Foi assim que eu cheguei à programação. Sempre fui fascinado por tecnologia, mas por muito tempo isso ficou só como curiosidade. O que mudou foi uma frustração que fui acumulando: toda vez que eu precisava de alguma ferramenta, nunca achava uma completa. Sempre faltava um pedaço, sempre eram dois ou três apps diferentes pra resolver uma coisa só. Quando entendi o que a inteligência artificial realmente é capaz de fazer, percebi que o mais interessante não era só usar o que já existia, mas construir aquilo que ainda estava faltando. Hoje é isso que me move: pegar um problema real e pensar no que poderia existir no lugar dele.',
+      personal: 'Curso Análise e Desenvolvimento de Sistemas na Multivix, em Serra/ES. Tenho 22 anos, e meu jeito de ser curioso é assim: quando alguma área me interessa, eu busco um curso, tiro uma certificação, e procuro aplicar aquilo em algum projeto real. Hoje já são 11 certificações técnicas, cada uma com um pedaço implementado em algo que você vai ver abaixo. O padrão se repete em tudo que eu construo: encontro uma ferramenta que devia existir e não existe, ou existe espalhada em vários lugares, e em vez de continuar procurando, eu construo. Cada projeto abaixo é essa mesma pergunta aplicada a um problema diferente: e se isso tudo coubesse num lugar só?',
       ctaPrimary: 'Ver Projetos',
-      metaRole: 'Full Stack',
-      metaFocus: 'Código limpo & performance',
     },
     stats: STATS.pt,
     skills: SKILLS_TEXT.pt,
@@ -217,11 +144,9 @@ const CONTENT = {
     hero: {
       badge: 'Available for new projects',
       headlineHtml: 'Building real <span class="accent">solutions</span>.',
-      desc: "I'm Ryan Duarte Quintão, a self-taught full stack developer with a solid base in Python, Java, SQL and web development. I build every project from backend to frontend, always starting from a real problem, with clean code and solid software engineering practices.",
-      personal: "I'm 22, and I'm in this career through constant, hands-on learning, driven by the genuine challenge tech has brought me from the start. MediStudy came from watching my girlfriend's demanding routine in medical school up close; CandidaTrack, because I needed it myself to organize my own job search. I'd rather build something that solves a real person's problem than a portfolio exercise, and that's how I want to contribute from day one on any team I join.",
+      desc: "I see a problem and start thinking about what could exist in its place. That's how I got into programming. I was always fascinated by technology, but for a long time that stayed just as curiosity. What changed was a frustration that kept building up: every time I needed some tool, I could never find a complete one. There was always a piece missing, always two or three different apps to solve one single thing. When I understood what artificial intelligence is actually capable of, I realized the interesting part wasn't just using what already existed, but building the thing that was still missing. That's what drives me today: taking a real problem and thinking about what could exist in its place.",
+      personal: "I'm studying Systems Analysis and Development at Multivix, in Serra, Brazil. I'm 22, and this is how my curiosity works: when a field interests me, I look for a course, get a certification, and try to apply it in some real project. Today that's already 11 technical certifications, each one with a piece implemented in something you'll see below. The same pattern repeats in everything I build: I find a tool that should exist and doesn't, or exists scattered across several places, and instead of keep looking for it, I build it. Each project below is that same question applied to a different problem: what if all of this fit in one single place?",
       ctaPrimary: 'View Projects',
-      metaRole: 'Full Stack',
-      metaFocus: 'Clean code & performance',
     },
     stats: STATS.en,
     skills: SKILLS_TEXT.en,

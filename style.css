@@ -113,10 +113,16 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,.5); }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.05fr .95fr;
+  grid-template-columns: 1fr;
+  max-width: 820px;
   gap: 2rem;
   align-items: center;
 }
+
+/* coluna direita do hero (halo/meta/tech-card) pausada junto com o buraco negro
+   (ver comentário no HTML) — sem meta-col/tech-card sobrando, some da renderização
+   inteira em vez de deixar um vazio de 420px no layout. Código mantido intacto. */
+.hero-visual { display: none; }
 
 .hero-badge {
   display: inline-flex; align-items: center; gap: .5rem;
@@ -496,75 +502,7 @@ section { position: relative; z-index: 2; }
 
 /* ── PROJECTS ── */
 #projects { background: rgba(16,11,6,.5); backdrop-filter: blur(2px); }
-
-.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
-
-.project-card {
-  background: rgba(23,17,10,.65); border: 1px solid var(--border); border-radius: var(--r);
-  overflow: hidden; backdrop-filter: blur(16px);
-  transition: transform .4s cubic-bezier(.22,1,.36,1), border-color .3s, box-shadow .4s, opacity .4s, filter .4s;
-  display: flex; flex-direction: column; position: relative;
-}
-.project-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: var(--card-accent, linear-gradient(90deg, transparent, rgba(244,208,111,.6), transparent));
-  z-index: 1;
-}
-.projects-grid.has-hover .project-card:not(:hover) { opacity: .35; filter: blur(1px) saturate(.5); transform: scale(.97); }
-.project-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  border-color: rgba(244,208,111,.5);
-  box-shadow: 0 32px 80px rgba(0,0,0,.6), 0 0 50px rgba(244,208,111,.18);
-  z-index: 10;
-}
-
-.project-visual { height: 190px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-.project-visual svg { position: absolute; width: 100%; height: 100%; }
-
-.project-visual::after {
-  content: ''; position: absolute; inset: 0; z-index: 3;
-  background: repeating-linear-gradient(0deg, rgba(0,0,0,.06) 0px, rgba(0,0,0,.06) 1px, transparent 1px, transparent 3px);
-  pointer-events: none; animation: scanline-scroll 8s linear infinite;
-}
-@keyframes scanline-scroll { from { background-position: 0 0; } to { background-position: 0 100px; } }
-
-.project-visual-icon { font-size: 3.5rem; position: relative; z-index: 4; filter: drop-shadow(0 0 20px currentColor); }
-
-.project-type-badge {
-  position: absolute; top: 2.2rem; right: .75rem; z-index: 5;
-  background: rgba(0,0,0,.75); backdrop-filter: blur(8px);
-  border: 1px solid var(--border); border-radius: 4px;
-  font-size: .65rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
-  padding: .2rem .55rem; color: var(--gold);
-}
-
-.project-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
-.project-name { font-size: 1.1rem; font-weight: 700; margin-bottom: .4rem; font-family: 'Cinzel', serif; }
-.project-desc { font-size: .87rem; color: var(--muted); line-height: 1.65; margin-bottom: .8rem; flex: 1; }
-/* linha de destaque com métrica/comparação */
-.project-highlight {
-  font-size: .78rem; font-weight: 600; color: var(--gold); line-height: 1.5;
-  margin: 0 0 1rem; padding: .55rem .8rem;
-  border-left: 2px solid var(--gold); background: rgba(244,208,111,.06); border-radius: 0 6px 6px 0;
-}
-.project-highlight:empty { display: none; }
-
-.project-stack { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.2rem; }
-.stack-tag {
-  font-family: 'Fira Code', monospace; font-size: .72rem; padding: .2rem .55rem;
-  background: rgba(244,208,111,.1); border: 1px solid rgba(244,208,111,.22);
-  border-radius: 4px; color: var(--gold-dim);
-}
-
-.project-links { display: flex; gap: .75rem; }
-.project-link {
-  display: inline-flex; align-items: center; gap: .4rem;
-  font-size: .82rem; font-weight: 600; text-decoration: none; color: var(--muted);
-  padding: .4rem .9rem; border: 1px solid var(--border); border-radius: 6px;
-  transition: all .2s;
-}
-.project-link:hover { color: var(--gold); border-color: rgba(244,208,111,.4); background: rgba(244,208,111,.06); }
-.project-link svg { width: 14px; height: 14px; }
+/* mecânica de constelação (planetas) em constellation.css */
 
 /* ── HOW I REVIEW CODE (só freela-quickfix) ── */
 #review { background: rgba(10,7,4,.45); backdrop-filter: blur(2px); display: none; }
@@ -653,7 +591,6 @@ footer span { color: var(--gold); }
   .nav-links { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: var(--bg2); padding: 1.5rem; border-bottom: 1px solid var(--border); gap: 1.2rem; }
   .nav-links.open { display: flex; }
   .hamburger { display: flex; }
-  .projects-grid { grid-template-columns: 1fr; }
   .hero-stats { grid-template-columns: 1fr 1fr; }
   .hero-stat { border-bottom: 1px solid var(--border); }
   /* performance: no mobile os filamentos e o disco ficam parados (evita repaint contínuo) */
