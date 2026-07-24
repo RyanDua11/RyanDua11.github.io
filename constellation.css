@@ -39,10 +39,10 @@
   transition: transform .35s cubic-bezier(.22,1,.36,1);
   z-index: 2;
 }
-.planet-medistudy    { top: 2%;  left: 50%; }
-.planet-candidatrack { top: 50%; left: 96%; }
-.planet-gloway       { top: 98%; left: 50%; }
-.planet-ledgerx      { top: 50%; left: 4%;  }
+.planet-medistudy    { top: 6%;  left: 50%; }
+.planet-candidatrack { top: 50%; left: 90%; }
+.planet-gloway       { top: 94%; left: 50%; }
+.planet-ledgerx      { top: 50%; left: 10%; }
 
 .planet-body {
   width: 84px; height: 84px; border-radius: 50%;
