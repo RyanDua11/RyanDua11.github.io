@@ -26,12 +26,12 @@ const STATS = {
   pt: [
     { num: '4',  label: 'Projetos completos entregues' },
     { num: '11', label: 'Certificações técnicas' },
-    { num: '8+', label: 'Tecnologias na stack' },
+    { num: '8',  label: 'Tecnologias na stack' },
   ],
   en: [
     { num: '4',  label: 'Complete projects shipped' },
     { num: '11', label: 'Technical certifications' },
-    { num: '8+', label: 'Technologies in the stack' },
+    { num: '8',  label: 'Technologies in the stack' },
   ],
 };
 
@@ -58,55 +58,38 @@ const CERTS_TEXT = {
    PostgreSQL...) são universais e não traduzem. Rótulos descritivos usam `tr`
    e são traduzidos por idioma em SKILL_I18N, evitando texto em PT vazando no
    EN e evitando que o navegador "traduza" nomes técnicos por conta própria. */
+/* Cortado ao núcleo real usado nos 4 projetos da constelação (medistudy,
+   candidatrack, gloway, ledgerx) — sem tag solta sem uso comprovado. */
 const SKILL_GROUPS = [
   { key: 'backend', chips: [
-    { t: 'Python',       i: 'devicon-python-plain colored' },
-    { t: 'Java 21',      i: 'devicon-java-plain colored' },
-    { t: 'Spring Boot',  i: 'devicon-spring-plain colored' },
-    { t: 'FastAPI',      i: 'devicon-fastapi-plain colored' },
-    { t: 'Hibernate ORM',i: 'devicon-hibernate-plain colored' },
-    { t: 'SQLAlchemy' },
+    { t: 'Python',  i: 'devicon-python-plain colored' },
+    { t: 'Java 21', i: 'devicon-java-plain colored' },
   ]},
   { key: 'frontend', chips: [
     { t: 'React',      i: 'devicon-react-original colored' },
-    { t: 'TypeScript', i: 'devicon-typescript-plain colored' },
     { t: 'JavaScript', i: 'devicon-javascript-plain colored' },
-    { t: 'HTML5',      i: 'devicon-html5-plain colored' },
-    { t: 'CSS3',       i: 'devicon-css3-plain colored' },
   ]},
   { key: 'database', chips: [
     { t: 'PostgreSQL', i: 'devicon-postgresql-plain colored' },
-    { t: 'Window Functions' },
-    { t: 'CTEs' },
-    { t: 'Triggers & Procedures' },
-    { t: 'Materialized Views' },
-    { tr: 'partitioning' },
-    { t: 'Full-Text Search' },
   ]},
   { key: 'devops', chips: [
-    { t: 'Docker',         i: 'devicon-docker-plain colored' },
-    { t: 'Docker Compose' },
-    { t: 'Git',            i: 'devicon-git-plain colored' },
-    { t: 'GitHub',         i: 'devicon-github-original' },
+    { t: 'Docker', i: 'devicon-docker-plain colored' },
   ]},
   { key: 'ai', chips: [
     { t: 'Claude API (Anthropic)' },
-    { t: 'LLaMA 70B (Groq API)' },
+    { t: 'Groq API' },
     { t: 'Google Gemini API' },
-    { tr: 'multiLLM' },
-    { tr: 'tokenCost' },
-    { t: 'BeautifulSoup4' },
   ]},
 ];
 
 const SKILL_I18N = {
   pt: {
-    groups: { backend: 'Backend', frontend: 'Frontend', database: 'Banco de Dados', devops: 'DevOps & Ferramentas', ai: 'Inteligência Artificial' },
-    terms: { partitioning: 'Particionamento', multiLLM: 'Orquestração Multi-LLM', tokenCost: 'Engenharia de Custo de Tokens' },
+    groups: { backend: 'Backend', frontend: 'Frontend', database: 'Banco de Dados', devops: 'DevOps', ai: 'Inteligência Artificial' },
+    terms: {},
   },
   en: {
-    groups: { backend: 'Backend', frontend: 'Frontend', database: 'Databases', devops: 'DevOps & Tools', ai: 'Artificial Intelligence' },
-    terms: { partitioning: 'Partitioning', multiLLM: 'Multi-LLM Orchestration', tokenCost: 'Token Cost Engineering' },
+    groups: { backend: 'Backend', frontend: 'Frontend', database: 'Databases', devops: 'DevOps', ai: 'Artificial Intelligence' },
+    terms: {},
   },
 };
 
@@ -118,8 +101,8 @@ const CONTENT = {
     nav: NAV.pt,
     hero: {
       badge: 'Disponível para novos projetos',
-      headlineHtml: 'Construindo <span class="accent">soluções</span> reais.',
-      desc: 'Eu vejo um problema e começo a pensar no que poderia existir no lugar. Foi assim que eu cheguei à programação. Sempre fui fascinado por tecnologia, mas por muito tempo isso ficou só como curiosidade. O que mudou foi uma frustração que fui acumulando: toda vez que eu precisava de alguma ferramenta, nunca achava uma completa. Sempre faltava um pedaço, sempre eram dois ou três apps diferentes pra resolver uma coisa só. Quando entendi o que a inteligência artificial realmente é capaz de fazer, percebi que o mais interessante não era só usar o que já existia, mas construir aquilo que ainda estava faltando. Hoje é isso que me move: pegar um problema real e pensar no que poderia existir no lugar dele.',
+      headlineHtml: 'Eu vejo um <span class="accent">problema</span> e penso no que poderia existir no lugar.',
+      desc: 'Foi assim que eu cheguei à programação. Sempre fui fascinado por tecnologia, mas por muito tempo isso ficou só como curiosidade. O que mudou foi uma frustração que fui acumulando: toda vez que eu precisava de alguma ferramenta, nunca achava uma completa. Sempre faltava um pedaço, sempre eram dois ou três apps diferentes pra resolver uma coisa só. Quando entendi o que a inteligência artificial realmente é capaz de fazer, percebi que o mais interessante não era só usar o que já existia, mas construir aquilo que ainda estava faltando. Hoje é isso que me move: pegar um problema real e pensar no que poderia existir no lugar dele.',
       personal: 'Curso Análise e Desenvolvimento de Sistemas na Multivix, em Serra/ES. Tenho 22 anos, e meu jeito de ser curioso é assim: quando alguma área me interessa, eu busco um curso, tiro uma certificação, e procuro aplicar aquilo em algum projeto real. Hoje já são 11 certificações técnicas, cada uma com um pedaço implementado em algo que você vai ver abaixo. O padrão se repete em tudo que eu construo: encontro uma ferramenta que devia existir e não existe, ou existe espalhada em vários lugares, e em vez de continuar procurando, eu construo. Cada projeto abaixo é essa mesma pergunta aplicada a um problema diferente: e se isso tudo coubesse num lugar só?',
       ctaPrimary: 'Ver Projetos',
     },
@@ -143,8 +126,8 @@ const CONTENT = {
     nav: NAV.en,
     hero: {
       badge: 'Available for new projects',
-      headlineHtml: 'Building real <span class="accent">solutions</span>.',
-      desc: "I see a problem and start thinking about what could exist in its place. That's how I got into programming. I was always fascinated by technology, but for a long time that stayed just as curiosity. What changed was a frustration that kept building up: every time I needed some tool, I could never find a complete one. There was always a piece missing, always two or three different apps to solve one single thing. When I understood what artificial intelligence is actually capable of, I realized the interesting part wasn't just using what already existed, but building the thing that was still missing. That's what drives me today: taking a real problem and thinking about what could exist in its place.",
+      headlineHtml: 'I see a <span class="accent">problem</span> and think about what could exist in its place.',
+      desc: "That's how I got into programming. I was always fascinated by technology, but for a long time that stayed just as curiosity. What changed was a frustration that kept building up: every time I needed some tool, I could never find a complete one. There was always a piece missing, always two or three different apps to solve one single thing. When I understood what artificial intelligence is actually capable of, I realized the interesting part wasn't just using what already existed, but building the thing that was still missing. That's what drives me today: taking a real problem and thinking about what could exist in its place.",
       personal: "I'm studying Systems Analysis and Development at Multivix, in Serra, Brazil. I'm 22, and this is how my curiosity works: when a field interests me, I look for a course, get a certification, and try to apply it in some real project. Today that's already 11 technical certifications, each one with a piece implemented in something you'll see below. The same pattern repeats in everything I build: I find a tool that should exist and doesn't, or exists scattered across several places, and instead of keep looking for it, I build it. Each project below is that same question applied to a different problem: what if all of this fit in one single place?",
       ctaPrimary: 'View Projects',
     },
