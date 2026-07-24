@@ -26,12 +26,12 @@ const STATS = {
   pt: [
     { num: '4',  label: 'Projetos completos entregues' },
     { num: '11', label: 'Certificações técnicas' },
-    { num: '8',  label: 'Tecnologias na stack' },
+    { num: '9',  label: 'Tecnologias na stack' },
   ],
   en: [
     { num: '4',  label: 'Complete projects shipped' },
     { num: '11', label: 'Technical certifications' },
-    { num: '8',  label: 'Technologies in the stack' },
+    { num: '9',  label: 'Technologies in the stack' },
   ],
 };
 
