@@ -64,6 +64,7 @@ const SKILL_GROUPS = [
   { key: 'backend', chips: [
     { t: 'Python',  i: 'devicon-python-plain colored' },
     { t: 'Java 21', i: 'devicon-java-plain colored' },
+    { t: 'Docker',  i: 'devicon-docker-plain colored' },
   ]},
   { key: 'frontend', chips: [
     { t: 'React',      i: 'devicon-react-original colored' },
@@ -71,9 +72,6 @@ const SKILL_GROUPS = [
   ]},
   { key: 'database', chips: [
     { t: 'PostgreSQL', i: 'devicon-postgresql-plain colored' },
-  ]},
-  { key: 'devops', chips: [
-    { t: 'Docker', i: 'devicon-docker-plain colored' },
   ]},
   { key: 'ai', chips: [
     { t: 'Claude API (Anthropic)' },
@@ -84,11 +82,11 @@ const SKILL_GROUPS = [
 
 const SKILL_I18N = {
   pt: {
-    groups: { backend: 'Backend', frontend: 'Frontend', database: 'Banco de Dados', devops: 'DevOps', ai: 'Inteligência Artificial' },
+    groups: { backend: 'Backend', frontend: 'Frontend', database: 'Banco de Dados', ai: 'Inteligência Artificial' },
     terms: {},
   },
   en: {
-    groups: { backend: 'Backend', frontend: 'Frontend', database: 'Databases', devops: 'DevOps', ai: 'Artificial Intelligence' },
+    groups: { backend: 'Backend', frontend: 'Frontend', database: 'Databases', ai: 'Artificial Intelligence' },
     terms: {},
   },
 };
