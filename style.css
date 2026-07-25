@@ -147,17 +147,6 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,.5); }
 }
 @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
 
-.hero-name {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(2.4rem, 4.6vw, 4.2rem);
-  font-weight: 700;
-  line-height: 1.12;
-  letter-spacing: .01em;
-  margin-bottom: 1.2rem;
-  color: var(--text);
-}
-.hero-name .accent { color: var(--gold); }
-
 .hero-desc {
   font-size: clamp(.95rem,1.4vw,1.05rem);
   color: var(--muted);
