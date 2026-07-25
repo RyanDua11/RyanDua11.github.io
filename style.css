@@ -124,11 +124,6 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,.5); }
   align-items: center;
 }
 
-/* coluna direita do hero (halo/meta/tech-card) pausada junto com o buraco negro
-   (ver comentário no HTML) — sem meta-col/tech-card sobrando, some da renderização
-   inteira em vez de deixar um vazio de 420px no layout. Código mantido intacto. */
-.hero-visual { display: none; }
-
 .hero-badge {
   display: inline-flex; align-items: center; gap: .5rem;
   padding: .4rem 1.1rem;
@@ -196,10 +191,17 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,.5); }
 }
 .btn-outline:hover { border-color: var(--gold); color: var(--gold); background: rgba(244,208,111,.06); }
 
-/* ── HALO ── */
+/* ── HALO ──
+   .hero-visual (coluna direita do hero: halo/meta/tech-card) pausada junto
+   com o buraco negro (ver comentário no HTML). Bug real encontrado aqui:
+   esta regra (com min-height:420px) vinha DEPOIS da regra display:none no
+   arquivo, e com especificidade igual, a que vem por último vence a cascata
+   — ou seja, o display:none nunca surtia efeito e o vao de ~420px sempre
+   esteve la, mesmo depois de "removido". Consolidado num só lugar. */
 .hero-visual {
+  display: none;
   position: relative;
-  display: flex; align-items: center; justify-content: center;
+  align-items: center; justify-content: center;
   min-height: 420px;
 }
 
