@@ -60,24 +60,6 @@ function renderStats(container, stats) {
     </div>`).join('');
 }
 
-function renderSkills(lang) {
-  const grid = document.getElementById('skills-grid');
-  if (!grid) return;
-  const i18n = SKILL_I18N[lang] || SKILL_I18N.pt;
-  grid.innerHTML = SKILL_GROUPS.map(group => {
-    const chips = group.chips.map(c => {
-      const label = c.tr ? (i18n.terms[c.tr] || c.tr) : c.t;
-      const icon = c.i ? `<i class="${c.i}"></i>` : '';
-      return `<span class="chip">${icon}${label}</span>`;
-    }).join('');
-    return `
-      <div class="skill-group fade-up">
-        <div class="skill-group-title">${i18n.groups[group.key] || group.key}</div>
-        <div class="skill-chips">${chips}</div>
-      </div>`;
-  }).join('');
-}
-
 function renderLangSwitch(lang) {
   const available = getAvailableLangs();
   document.querySelectorAll('#lang-switch button').forEach(btn => {
@@ -106,7 +88,6 @@ function applyContent(lang) {
   });
 
   renderStats(document.getElementById('hero-stats'), data.stats);
-  renderSkills(lang);
   if (typeof renderConstellation === 'function') renderConstellation(lang);
   renderLangSwitch(lang);
 

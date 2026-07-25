@@ -43,54 +43,10 @@ const WHATSAPP_TEXT = {
   en: "Hi Ryan! I saw your portfolio and I'd like to talk.",
 };
 
-const SKILLS_TEXT = {
-  pt: { tag: '// habilidades', title: 'Stack técnica', subtitle: 'Tecnologias com as quais trabalho ativamente em projetos reais.' },
-  en: { tag: '// skills', title: 'Technical stack', subtitle: 'Technologies I actively work with on real projects.' },
-};
-
 const CERTS_TEXT = {
   pt: { tag: '// formação', title: 'Certificações & Formação', subtitle: 'Aprendizado contínuo, do fundamento à aplicação prática.' },
   en: { tag: '// education', title: 'Certifications & Education', subtitle: 'Continuous learning, from fundamentals to practical application.' },
 };
-
-/* ── SKILLS ──────────────────────────────────────────────────────────────
-   Estrutura canônica de grupos + chips. Nomes de tecnologia (React, Python,
-   PostgreSQL...) são universais e não traduzem. Rótulos descritivos usam `tr`
-   e são traduzidos por idioma em SKILL_I18N, evitando texto em PT vazando no
-   EN e evitando que o navegador "traduza" nomes técnicos por conta própria. */
-/* Cortado ao núcleo real usado nos 4 projetos da constelação (medistudy,
-   candidatrack, gloway, ledgerx) — sem tag solta sem uso comprovado. */
-const SKILL_GROUPS = [
-  { key: 'backend', chips: [
-    { t: 'Python',  i: 'devicon-python-plain colored' },
-    { t: 'Java 21', i: 'devicon-java-plain colored' },
-    { t: 'Docker',  i: 'devicon-docker-plain colored' },
-  ]},
-  { key: 'frontend', chips: [
-    { t: 'React',      i: 'devicon-react-original colored' },
-    { t: 'JavaScript', i: 'devicon-javascript-plain colored' },
-  ]},
-  { key: 'database', chips: [
-    { t: 'PostgreSQL', i: 'devicon-postgresql-plain colored' },
-  ]},
-  { key: 'ai', chips: [
-    { t: 'Claude API (Anthropic)' },
-    { t: 'Groq API' },
-    { t: 'Google Gemini API' },
-  ]},
-];
-
-const SKILL_I18N = {
-  pt: {
-    groups: { backend: 'Backend', frontend: 'Frontend', database: 'Banco de Dados', ai: 'Inteligência Artificial' },
-    terms: {},
-  },
-  en: {
-    groups: { backend: 'Backend', frontend: 'Frontend', database: 'Databases', ai: 'Artificial Intelligence' },
-    terms: {},
-  },
-};
-
 
 const CONTENT = {
   pt: {
@@ -105,7 +61,6 @@ const CONTENT = {
       ctaPrimary: 'Ver Projetos',
     },
     stats: STATS.pt,
-    skills: SKILLS_TEXT.pt,
     projects: {
       tag: '// projetos',
       title: 'O que eu construí',
@@ -130,7 +85,6 @@ const CONTENT = {
       ctaPrimary: 'View Projects',
     },
     stats: STATS.en,
-    skills: SKILLS_TEXT.en,
     projects: {
       tag: '// projects',
       title: 'What I built',

@@ -475,39 +475,6 @@ section { position: relative; z-index: 2; }
 }
 
 
-/* ── SKILLS ── */
-#skills { background: rgba(10,7,4,.45); backdrop-filter: blur(2px); }
-
-/* grid fixo de 2 colunas: com 4 grupos, evita linha final com 1 item isolado
-   e um vazio grande ao lado (o que acontecia com auto-fit em telas largas).
-   align-items: start evita que um card curto (ex: só PostgreSQL) estique pra
-   acompanhar a altura do vizinho mais alto, deixando vazio dentro da caixa. */
-.skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; align-items: start; }
-
-.skill-group {
-  background: rgba(23,17,10,.55); border: 1px solid var(--border); border-radius: var(--r);
-  padding: 1.5rem; backdrop-filter: blur(14px);
-  transition: border-color .3s, transform .3s, box-shadow .3s;
-}
-.skill-group:hover { border-color: rgba(244,208,111,.4); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(244,208,111,.1); }
-
-.skill-group-title {
-  font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: .5rem;
-}
-.skill-group-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(244,208,111,.35), transparent); }
-
-.skill-chips { display: flex; flex-wrap: wrap; gap: .5rem; }
-.chip {
-  display: inline-flex; align-items: center; gap: .4rem;
-  padding: .35rem .75rem; background: rgba(255,255,255,.04);
-  border: 1px solid var(--border); border-radius: 6px;
-  font-size: .8rem; font-weight: 500; color: var(--text);
-  transition: background .2s, border-color .2s, color .2s;
-}
-.chip:hover { background: rgba(244,208,111,.1); border-color: rgba(244,208,111,.4); color: var(--gold); }
-.chip i { font-size: 1rem; }
-
 /* ── PROJECTS ── */
 #projects { background: rgba(16,11,6,.5); backdrop-filter: blur(2px); }
 /* mecânica de constelação (planetas) em constellation.css */
@@ -593,7 +560,6 @@ footer span { color: var(--gold); }
   .hero-visual { min-height: 320px; margin-top: 2rem; }
   .meta-col { position: static; flex-direction: row; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.5rem; }
   .tech-card { position: static; margin-top: 1.5rem; align-self: center; }
-  .skills-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
   .nav-links { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: var(--bg2); padding: 1.5rem; border-bottom: 1px solid var(--border); gap: 1.2rem; }
