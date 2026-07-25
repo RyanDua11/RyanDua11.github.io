@@ -478,7 +478,11 @@ section { position: relative; z-index: 2; }
 /* ── SKILLS ── */
 #skills { background: rgba(10,7,4,.45); backdrop-filter: blur(2px); }
 
-.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+/* grid fixo de 2 colunas: com 4 grupos, evita linha final com 1 item isolado
+   e um vazio grande ao lado (o que acontecia com auto-fit em telas largas).
+   align-items: start evita que um card curto (ex: só PostgreSQL) estique pra
+   acompanhar a altura do vizinho mais alto, deixando vazio dentro da caixa. */
+.skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; align-items: start; }
 
 .skill-group {
   background: rgba(23,17,10,.55); border: 1px solid var(--border); border-radius: var(--r);
@@ -589,6 +593,7 @@ footer span { color: var(--gold); }
   .hero-visual { min-height: 320px; margin-top: 2rem; }
   .meta-col { position: static; flex-direction: row; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.5rem; }
   .tech-card { position: static; margin-top: 1.5rem; align-self: center; }
+  .skills-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
   .nav-links { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: var(--bg2); padding: 1.5rem; border-bottom: 1px solid var(--border); gap: 1.2rem; }
