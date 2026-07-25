@@ -114,7 +114,9 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,.5); }
 .hero-grid {
   display: grid;
   grid-template-columns: 1fr;
+  width: 100%;
   max-width: 820px;
+  margin: 0 auto;
   gap: 2rem;
   align-items: center;
 }
@@ -426,9 +428,11 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,.5); }
 
 /* ── HERO BOTTOM STATS BAR ── */
 .hero-stats {
-  margin-top: 4rem;
+  width: 100%;
+  max-width: 820px;
+  margin: 4rem auto 0;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   border: 1px solid var(--border);
   border-radius: 16px;
   overflow: hidden;
@@ -585,14 +589,14 @@ footer span { color: var(--gold); }
   .hero-visual { min-height: 320px; margin-top: 2rem; }
   .meta-col { position: static; flex-direction: row; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.5rem; }
   .tech-card { position: static; margin-top: 1.5rem; align-self: center; }
-  .hero-stats { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 768px) {
   .nav-links { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: var(--bg2); padding: 1.5rem; border-bottom: 1px solid var(--border); gap: 1.2rem; }
   .nav-links.open { display: flex; }
   .hamburger { display: flex; }
-  .hero-stats { grid-template-columns: 1fr 1fr; }
-  .hero-stat { border-bottom: 1px solid var(--border); }
+  .hero-stats { grid-template-columns: 1fr; }
+  .hero-stat { border-right: none; border-bottom: 1px solid var(--border); }
+  .hero-stat:last-child { border-bottom: none; }
   /* performance: no mobile os filamentos e o disco ficam parados (evita repaint contínuo) */
   .bh-filaments, .bh-filaments-alt, .bh-disk-spin { animation: none; }
 }
