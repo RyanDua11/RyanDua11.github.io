@@ -1,61 +1,20 @@
 <!DOCTYPE html>
-<html lang="pt-BR" id="html-root" translate="no">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="google" content="notranslate" />
-  <title id="meta-title">Case Study — ryan.dev</title>
-  <meta id="meta-description" name="description" content="" />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=35" />
-  <link rel="stylesheet" href="project.css?v=35" />
+  <title>Redirecionando... — ryan.dev</title>
+  <script>
+    /* Rota antiga (project.html?slug=x) substituída por /projetos/x/.
+       Mantido como redirect para não quebrar links já indexados. */
+    var slug = new URLSearchParams(window.location.search).get('slug');
+    var lang = new URLSearchParams(window.location.search).get('lang');
+    var target = slug ? 'projetos/' + slug + '/index.html' : 'index.html#projects';
+    if (lang) target += (target.indexOf('?') === -1 ? '?' : '&') + 'lang=' + lang;
+    window.location.replace(target);
+  </script>
 </head>
 <body>
-
-<canvas id="canvas-bg"></canvas>
-<div id="grain"></div>
-
-<!-- NAV -->
-<nav id="navbar" class="scrolled">
-  <div class="nav-logo"><a href="index.html" style="color:inherit;text-decoration:none;"><span>//</span> ryan.dev</a></div>
-  <ul class="nav-links" id="nav-links">
-    <li><a href="index.html#projects" id="back-link">← <span data-i18n="back">Voltar ao portfólio</span></a></li>
-    <li class="lang-switch" id="lang-switch">
-      <button data-lang="pt">PT</button>
-      <button data-lang="en">EN</button>
-    </li>
-  </ul>
-</nav>
-
-<main id="case-study">
-  <header class="cs-hero" id="cs-hero">
-    <div class="cs-hero-inner">
-      <span class="cs-icon" id="cs-icon"></span>
-      <p class="cs-type-badge" id="cs-type-badge"></p>
-      <h1 class="cs-name" id="cs-name"></h1>
-      <p class="cs-status" id="cs-status"></p>
-    </div>
-  </header>
-
-  <div class="cs-body" id="cs-body"></div>
-
-  <div class="cs-adjacent" id="cs-adjacent"></div>
-
-  <footer class="cs-footer">
-    <div class="cs-footer-links" id="cs-footer-links"></div>
-    <a href="index.html#projects" class="btn btn-outline">← <span data-i18n="back">Voltar ao portfólio</span></a>
-  </footer>
-</main>
-
-<footer class="site-footer">
-  Feito com <span>♥</span> e muito café · Ryan Duarte Quintão © 2026
-</footer>
-
-<script src="projects-content.js?v=35"></script>
-<script src="galaxy-bg.js?v=35"></script>
-<script src="project.js?v=35"></script>
+  <p>Redirecionando... <a id="fallback" href="index.html#projects">clique aqui se não for redirecionado</a>.</p>
 </body>
 </html>

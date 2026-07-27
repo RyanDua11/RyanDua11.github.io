@@ -1,9 +1,10 @@
 /* ==========================================================================
-   projects-content.js — conteúdo completo das páginas de case study.
-   Cada projeto tem blocos tipados (p, h2, visual, stats, vision, status)
-   renderizados em ordem por project.js. Fase 2: sem mecânica de revelação
-   por scroll ainda (isso é fase 4) — aqui é conteúdo completo + identidade
-   visual, em scroll normal.
+   projects-content.js — dados de cada projeto: identidade visual (accent,
+   icon), storytelling curto (intro: motivation/built/numbers) exibido no
+   topo da página de projeto, e o README completo (blocks) exibido abaixo,
+   atrás do botão "Ver histórico técnico completo".
+   Consumido pelo navegador (via <script>) e pelo script gerador de páginas
+   em scripts/build-projects.js (via require).
    ========================================================================== */
 
 const PROJECTS_CONTENT = {
@@ -15,7 +16,20 @@ const PROJECTS_CONTENT = {
     accent2: '#7a2438',
     typeBadge: { pt: 'IA + Educação', en: 'AI + Education' },
     hook: { pt: '15 ferramentas viraram uma, moldada do jeito que ela estuda.', en: '15 tools became one, shaped to how she studies.' },
+    cardMetric: { pt: '15 ferramentas viraram uma, moldada do jeito que ela estuda.', en: '15 tools became one, shaped to how she studies.' },
     link: { type: 'none', label: { pt: 'Em desenvolvimento', en: 'In development' } },
+    intro: {
+      pt: {
+        motivation: 'Acompanhando minha namorada na jornada de estudar Medicina, via ela usando mais de 10 ferramentas diferentes pra estudar: uma IA pra conversar, outra pra debater ideias, Anki pra flashcard, mais uma pra gerar imagem. Como ela tem TDAH, esse tanto de ferramenta espalhada dificultava ainda mais o foco. Construí o MediStudy pra juntar tudo isso num lugar só, e ir além: um sistema que aprende com as respostas dela e se adapta ao jeito dela estudar.',
+        built: 'Um chat único onde, em vez de perguntar pra uma IA, copiar a resposta e levar pra outra, várias IAs debatem entre si e devolvem um relatório com os pontos de vista já cruzados. Também tem gerador de prova que aprende o estilo de cada professor a partir de provas antigas, e um modo grupo com ranking colaborativo, pensado pro jeito que ela estuda com as amigas: em chamada, testando conhecimento junto.',
+        numbers: 'Em fase de arquitetura. Estou desenhando a stack (Docker, com visão de rodar em container portátil) pensando em engenharia de custo e performance antes de escalar o desenvolvimento.',
+      },
+      en: {
+        motivation: "Following my girlfriend through her Medicine studies, I saw her using more than 10 different tools just to study: one AI to talk to, another to debate ideas with, Anki for flashcards, another one to generate images. Since she has ADHD, that many scattered tools made it even harder to focus. I built MediStudy to bring all of that into one place, and go further: a system that learns from her answers and adapts to how she studies.",
+        built: "A single chat where, instead of asking one AI, copying the answer and taking it to another, several AIs debate among themselves and return a report with the viewpoints already cross-checked. It also has an exam generator that learns each professor's style from past exams, and a group mode with a collaborative ranking, built around how she studies with her friends: on a call, testing knowledge together.",
+        numbers: "Still in the architecture phase. I'm designing the stack (Docker, with a portable-container setup in mind) thinking about cost and performance engineering before scaling development.",
+      },
+    },
     pt: {
       name: 'MediStudy',
       status: 'Em desenvolvimento ativo',
@@ -28,9 +42,9 @@ const PROJECTS_CONTENT = {
         { t: 'p', text: 'O plano nasceu pensando em grupo, porque é assim que ela estuda de verdade: com as amigas, em chamada. Uma aluna gera um caso clínico e chama o grupo pra debater dentro do próprio app. Uma prova simulada gerada por uma aluna fica disponível pra turma revisar. Um diário de erros aponta padrão de erro individual, e pode apontar onde a turma inteira mais erra, sem expor nota de ninguém.' },
         { t: 'h2', text: 'Uma estimativa do que isso significa na prática' },
         { t: 'visual', label: 'Antes / Depois', text: 'Pra montar um caso clínico do jeito que ela fazia antes: prompt no ChatGPT, copiar pro grupo do WhatsApp, às vezes colar em outra IA pra revisar. Isso facilmente passava de 10 a 15 minutos por caso. Dentro do MediStudy, esse fluxo cai pra menos de um minuto, sem trocar de aba.' },
-        { t: 'visual', label: 'Antes / Depois', text: 'Uma prova simulada específica de um professor, hoje, ela teria que montar sozinha, juntando material manualmente — o que levaria facilmente mais de uma hora. Com o histórico do professor já acumulado, isso vira questão de segundos.' },
+        { t: 'visual', label: 'Antes / Depois', text: 'Uma prova simulada específica de um professor, hoje, ela teria que montar sozinha, juntando material manualmente. Isso levaria facilmente mais de uma hora. Com o histórico do professor já acumulado, isso vira questão de segundos.' },
         { t: 'h2', text: 'Engenharia de custo por trás' },
-        { t: 'p', text: 'Se toda vez que alguém pedisse uma prova simulada a IA precisasse reler o histórico inteiro de PDFs do professor do zero, o consumo de token ia explodir rápido — e o projeto roda quase todo em camada gratuita de API. Por isso penso o banco não só como lugar de guardar dado, mas como parte da estratégia de custo: resumir e indexar o material uma vez, guardar o resumo, e só reler o PDF inteiro quando for estritamente necessário.' },
+        { t: 'p', text: 'Se toda vez que alguém pedisse uma prova simulada a IA precisasse reler o histórico inteiro de PDFs do professor do zero, o consumo de token ia explodir rápido, e o projeto roda quase todo em camada gratuita de API. Por isso penso o banco não só como lugar de guardar dado, mas como parte da estratégia de custo: resumir e indexar o material uma vez, guardar o resumo, e só reler o PDF inteiro quando for estritamente necessário.' },
         { t: 'p', text: 'Hoje uso três IAs (Claude pro raciocínio pesado, Groq pra resposta rápida, Gemini pra imagem e PDF), mas a visão é ir além: uma camada própria de orquestração decidindo em tempo real qual entre várias LLMs deve responder cada pedido, sempre otimizando custo.' },
         { t: 'vision', text: 'Essa parte ainda está na fase de desenho, não de código.' },
         { t: 'h2', text: 'A parte difícil' },
@@ -72,7 +86,20 @@ const PROJECTS_CONTENT = {
     accent2: '#3b82f6',
     typeBadge: { pt: 'IA + Backend', en: 'AI + Backend' },
     hook: { pt: 'Currículo, portfólio e vaga comparados em segundos, não em planilha.', en: 'Résumé, portfolio and job posting compared in seconds, not in a spreadsheet.' },
+    cardMetric: { pt: 'Cerca de 60 vagas já rodadas pelo score de compatibilidade.', en: 'About 60 job postings already run through the compatibility score.' },
     link: { type: 'github', url: 'https://github.com/RyanDua11/candidatrack', label: { pt: 'Código', en: 'Code' } },
+    intro: {
+      pt: {
+        motivation: 'Enquanto buscava minha própria vaga, via post atrás de post de gente na mesma situação: currículo genérico, vaga que não bate com o perfil, tempo perdido lendo descrição que não ia dar em nada. Construí o CandidaTrack pra resolver isso com dado, não com achismo.',
+        built: 'Extração e estruturação automática de currículo, web scraping de vaga, e um score de compatibilidade ponderado entre o que a vaga pede e o que eu tenho. Um chat consultivo por vaga, rodando LLaMA 70B via Groq, ajuda a entender onde o perfil bate ou não bate com o que foi pedido.',
+        numbers: 'Já rodei cerca de 60 vagas pelo score de compatibilidade. Uso até hoje na minha própria busca.',
+      },
+      en: {
+        motivation: "While looking for my own job, I saw post after post from people in the same situation: a generic résumé, a job that didn't match the profile, time lost reading a description that was going nowhere. I built CandidaTrack to solve this with data, not with guesswork.",
+        built: "Automatic résumé extraction and structuring, job posting scraping, and a compatibility score weighted between what the job asks for and what I have. A consultative chat per job, running LLaMA 70B via Groq, helps understand where the profile matches or doesn't match what was requested.",
+        numbers: "I've already run about 60 job postings through the compatibility score. I still use it in my own job search today.",
+      },
+    },
     pt: {
       name: 'CandidaTrack',
       status: 'Em uso ativo',
@@ -80,17 +107,17 @@ const PROJECTS_CONTENT = {
         { t: 'p', text: 'Esse foi meu segundo projeto, e nasceu de um problema que eu mesmo tava vivendo. Eu estava me candidatando a várias vagas ao mesmo tempo e perdi o controle: não sabia mais onde já tinha me candidatado, em que status tava cada processo, e não tinha jeito rápido de comparar meu currículo com o que cada vaga pedia de verdade. Planilha não dava conta. Então construí a solução.' },
         { t: 'h2', text: 'O que eu construí' },
         { t: 'p', text: 'O sistema centraliza toda candidatura: empresa, cargo, plataforma, status, com edição inline sem reload de página. Faço upload do currículo em PDF ou DOCX e o sistema extrai o texto sozinho. Colo o link de uma vaga e o sistema faz scraping automático pra puxar título, empresa, requisitos obrigatórios e desejáveis. Se o site bloquear o scraping (o que acontece bastante com portais corporativos e o LinkedIn), o campo de texto aparece automaticamente pra eu colar manualmente, sem travar o fluxo.' },
-        { t: 'p', text: 'O coração do projeto é o comparador: ele cruza meu currículo, minhas certificações e meu GitHub com os requisitos da vaga, e devolve um score de compatibilidade, com peso maior pros requisitos obrigatórios que pros desejáveis. E não é comparação de texto exato: o sistema entende equivalência semântica de verdade — "cursando ADS" conta como atendimento pra "Superior em andamento em Sistemas de Informação ou afins", por exemplo. Depois de analisar qualquer vaga, abre um chat consultivo com IA que já sabe todo o contexto e responde perguntas tipo "vale a pena me candidatar?" ou "o que eu reforço nessa entrevista?".' },
+        { t: 'p', text: 'O coração do projeto é o comparador: ele cruza meu currículo, minhas certificações e meu GitHub com os requisitos da vaga, e devolve um score de compatibilidade, com peso maior pros requisitos obrigatórios que pros desejáveis. E não é comparação de texto exato: o sistema entende equivalência semântica de verdade: "cursando ADS" conta como atendimento pra "Superior em andamento em Sistemas de Informação ou afins", por exemplo. Depois de analisar qualquer vaga, abre um chat consultivo com IA que já sabe todo o contexto e responde perguntas tipo "vale a pena me candidatar?" ou "o que eu reforço nessa entrevista?".' },
         { t: 'h2', text: 'Engenharia de custo aplicada aqui também' },
         { t: 'p', text: 'Uso dois modelos de propósito diferente: o mais leve e rápido pra extração e comparação, que são tarefas estruturadas onde não compensa pagar mais caro, e o modelo maior só no chat consultivo, onde a resposta elaborada realmente justifica o custo extra. É a mesma lógica que aplico em outros projetos meus: gastar mais só na parte que exige mais, nunca por padrão.' },
         { t: 'h2', text: 'O que isso substitui' },
         { t: 'visual', label: 'Antes / Depois', text: 'Sem o CandidaTrack: candidatura espalhada em planilha ou memória, sem noção real de compatibilidade até a entrevista acontecer (ou não acontecer). Com o CandidaTrack: currículo e vaga comparados automaticamente, com percentual de compatibilidade na hora, e um consultor de IA disponível pra tirar dúvida específica daquela vaga.' },
         { t: 'h2', text: 'Dificuldades reais que resolvi' },
-        { t: 'p', text: 'A IA tinha o hábito de quebrar requisito composto tipo "Sistemas de Informação, Ciência da Computação ou afins" em três itens separados, distorcendo o score. Resolvi com instrução explícita no prompt pra tratar isso como uma exigência só. O comparador inicial também marcava "falta" pra tudo que não fosse menção textual idêntica — resolvi ensinando a IA a fazer equivalência semântica de verdade, com exemplo concreto no prompt. Também enfrentei scraping bloqueado por sites que detectam bot (resolvido com o fallback manual) e um bug de histórico que só carregava depois de analisar uma vaga nova, nunca ao abrir a página pela primeira vez.' },
+        { t: 'p', text: 'A IA tinha o hábito de quebrar requisito composto tipo "Sistemas de Informação, Ciência da Computação ou afins" em três itens separados, distorcendo o score. Resolvi com instrução explícita no prompt pra tratar isso como uma exigência só. O comparador inicial também marcava "falta" pra tudo que não fosse menção textual idêntica. Resolvi ensinando a IA a fazer equivalência semântica de verdade, com exemplo concreto no prompt. Também enfrentei scraping bloqueado por sites que detectam bot (resolvido com o fallback manual) e um bug de histórico que só carregava depois de analisar uma vaga nova, nunca ao abrir a página pela primeira vez.' },
         { t: 'h2', text: 'Decisões técnicas conscientes' },
-        { t: 'p', text: 'O chat não guarda histórico no banco — vive na memória da sessão e reseta a cada vaga nova, porque não faz sentido persistir uma conversa que é contextual por natureza. O currículo entra truncado em 1500 caracteres no chat pra não estourar o contexto sem perder o que importa. As migrations de banco são ALTER TABLE automático no início da aplicação, sem ferramenta externa — suficiente e mais rápido de manter pra esse tamanho de projeto.' },
+        { t: 'p', text: 'O chat não guarda histórico no banco, vive na memória da sessão e reseta a cada vaga nova, porque não faz sentido persistir uma conversa que é contextual por natureza. O currículo entra truncado em 1500 caracteres no chat pra não estourar o contexto sem perder o que importa. As migrations de banco são ALTER TABLE automático no início da aplicação, sem ferramenta externa. Suficiente e mais rápido de manter pra esse tamanho de projeto.' },
         { t: 'h2', text: 'Onde está hoje' },
-        { t: 'status', text: 'Em uso ativo — é a ferramenta que eu mesmo uso pra gerenciar minha busca de vaga agora. Meu primeiro projeto foi uma To-Do List API em Java com Spring Boot, PostgreSQL e Docker, onde aprendi na prática os fundamentos de backend e persistência de dados antes de partir pra esse.' },
+        { t: 'status', text: 'Em uso ativo. É a ferramenta que eu mesmo uso pra gerenciar minha busca de vaga agora. Meu primeiro projeto foi uma To-Do List API em Java com Spring Boot, PostgreSQL e Docker, onde aprendi na prática os fundamentos de backend e persistência de dados antes de partir pra esse.' },
       ],
     },
     en: {
@@ -122,36 +149,49 @@ const PROJECTS_CONTENT = {
     accent: '#14b8a6',
     accent2: '#14b8a6',
     typeBadge: { pt: 'Produto completo', en: 'Full product' },
-    hook: { pt: 'Uma noite, uma ideia, um produto validado no SEBRAE.', en: 'One night, one idea, a product validated at SEBRAE.' },
+    hook: { pt: '15 usuários reais, validado no SEBRAE.', en: 'Validated by 15 real users, presented at SEBRAE.' },
+    cardMetric: { pt: '15 usuários reais, validado no SEBRAE.', en: 'Validated by 15 real users, presented at SEBRAE.' },
     link: { type: 'external', url: 'https://glowaytour.online', label: { pt: 'Site no ar', en: 'Live site' } },
+    intro: {
+      pt: {
+        motivation: 'Turista chega em Vitória sem saber pra onde ir, morador nunca conheceu metade da própria cidade, e todo guia turístico que eu via era só lista de ponto, sem inteligência nenhuma por trás.',
+        built: 'Um roteiro que cruza orçamento, segurança, acessibilidade e contexto pessoal, junto com atlas de qualidade urbana avaliado pelos próprios usuários. Em vez de abrir dez abas pra montar uma viagem, o GloWay entrega isso pronto.',
+        numbers: '15 usuários reais testaram, 13 sessões simultâneas ao vivo, custo de infraestrutura abaixo de R$0,005 por roteiro gerado, projeto apresentado e validado pelo SEBRAE.',
+      },
+      en: {
+        motivation: "A tourist arrives in Vitória with no idea where to go, a resident never got to know half of their own city, and every travel guide I saw was just a list of spots, with no intelligence behind it.",
+        built: "An itinerary that cross-references budget, safety, accessibility and personal context, together with an urban quality atlas rated by the users themselves. Instead of opening ten tabs to put a trip together, GloWay delivers it ready.",
+        numbers: "15 real users tested it, 13 simultaneous live sessions, infrastructure cost under R$0.005 per generated itinerary, project presented and validated at SEBRAE.",
+      },
+    },
     pt: {
       name: 'GloWay',
       status: 'Validado, protótipo funcional no ar',
       blocks: [
-        { t: 'p', text: 'Essa foi minha maior ideia até hoje, e nasceu sozinha, numa madrugada. Sem curso empurrando, sem disciplina de faculdade pedindo, sem cofundador. Eu olhava pra Vitória e via um problema que ninguém tinha resolvido direito: turista chega numa cidade sem saber pra onde ir de verdade, e morador vive na própria cidade sem enxergar metade dela. Cada guia turístico que eu via era só uma lista de pontos, sem nenhuma inteligência por trás.' },
+        { t: 'p', text: 'Vitória tem turista chegando sem saber pra onde ir de verdade, e morador que vive na própria cidade sem enxergar metade dela. Todo guia turístico que eu via era só uma lista de pontos, sem nenhuma inteligência por trás. Foi esse problema que ninguém tinha resolvido direito que me fez começar o GloWay.' },
         { t: 'h2', text: 'O que eu construí' },
         { t: 'p', text: 'O coração do produto era o Neuro-Planner. Você escolhia se queria o roteiro por horas ou por dias inteiros, definia um orçamento, e a IA buscava tudo dentro daquele valor, incluindo mobilidade. Dava pra filtrar por acessibilidade, por pet friendly, por local seguro pra comunidade LGBT+, ou pedir um roteiro pensado especificamente pra isso. Cobria de passeio náutico a expedição de trilha, cinema a passeio de caiaque. A IA ainda checava o clima e avisava, e se a pessoa quisesse mudar tudo em cima da hora, dava pra ajustar o roteiro na mão, sem perder o que já tinha sido planejado. Quando o roteiro incluía reserva (hospedagem, passeio, voo), o app direcionava direto pro site certo pra fechar o pagamento ou ver mais detalhes.' },
         { t: 'p', text: 'Construí também um Atlas de memórias em 3D, onde o próprio usuário avaliava iluminação, segurança e mobilidade do lugar onde estava, criando um mapa de qualidade urbana feito pela cidade, não por burocracia. E um monitor de bike-sharing em tempo real, o Velô, além de gamificação e ferramentas offline. Fui até o fim: integrei pagamento via Stripe em modo live, não sandbox, porque queria validar de verdade, não só maquete.' },
         { t: 'h2', text: 'O que isso substitui' },
-        { t: 'visual', label: 'Antes / Depois', text: 'Sem o GloWay, montar essa mesma viagem significa abrir dez abas: pesquisar hospedagem num site, comparar preço no outro, procurar comentário de segurança do bairro num terceiro, tentar achar se aquele lugar é acessível ou pet friendly em algum lugar perdido de review. Isso facilmente leva dias de pesquisa espalhada. O Neuro-Planner entregava local, valor estimado, avaliação e comentário prontos, dentro do orçamento definido, em questão de segundos — ou algumas horas se a pessoa quisesse revisar tudo com calma antes de fechar.' },
+        { t: 'visual', label: 'Antes / Depois', text: 'Sem o GloWay, montar essa mesma viagem significa abrir dez abas: pesquisar hospedagem num site, comparar preço no outro, procurar comentário de segurança do bairro num terceiro, tentar achar se aquele lugar é acessível ou pet friendly em algum lugar perdido de review. Isso facilmente leva dias de pesquisa espalhada. O Neuro-Planner entregava local, valor estimado, avaliação e comentário prontos, dentro do orçamento definido, em questão de segundos, ou algumas horas se a pessoa quisesse revisar tudo com calma antes de fechar.' },
         { t: 'h2', text: 'O que eu validei' },
         { t: 'stats', items: [
           { num: '15', label: 'usuários reais testaram o produto' },
           { num: '13', label: 'sessões simultâneas ao vivo' },
           { num: '< R$0,005', label: 'de custo de infraestrutura por roteiro gerado por IA' },
         ] },
-        { t: 'p', text: 'Rodei o produto com 15 usuários reais, cheguei a ter 13 sessões simultâneas ao vivo, e apresentei o projeto no SEBRAE. O custo de infraestrutura ficou abaixo de R$0,005 por roteiro gerado por IA — o que na prática significa que gerar mil roteiros custava menos de R$5 de infraestrutura. Provava que o modelo era sustentável em escala, não só bonito em demonstração.' },
+        { t: 'p', text: 'Rodei o produto com 15 usuários reais, cheguei a ter 13 sessões simultâneas ao vivo, e apresentei o projeto no SEBRAE. O custo de infraestrutura ficou abaixo de R$0,005 por roteiro gerado por IA, o que na prática significa que gerar mil roteiros custava menos de R$5 de infraestrutura. Provava que o modelo era sustentável em escala, não só bonito em demonstração.' },
         { t: 'h2', text: 'Por que parou' },
         { t: 'p', text: 'O produto funcionava, e continua funcionando: o protótipo ainda está de pé no Google AI Studio, onde foi construído. O que faltou foi verba de marketing pra crescer a base de usuários, não limitação técnica. Sigo aberto a retomar no futuro.' },
         { t: 'h2', text: 'Por que acho que ela pode ir longe' },
-        { t: 'p', text: 'O modelo foi desenhado pra ser modular desde o início: uma plataforma pensada pra funcionar em qualquer cidade, não só Vitória, com custo por usuário baixo o bastante pra escalar sem virar problema financeiro. Também via espaço pro pequeno comerciante local se conectar com quem visita a cidade, do mesmo jeito que uma grande marca poderia — um caminho de crescimento que vai do pequeno negócio ao grande player, sem precisar refazer o produto do zero em cada etapa.' },
+        { t: 'p', text: 'O modelo foi desenhado pra ser modular desde o início: uma plataforma pensada pra funcionar em qualquer cidade, não só Vitória, com custo por usuário baixo o bastante pra escalar sem virar problema financeiro. Também via espaço pro pequeno comerciante local se conectar com quem visita a cidade, do mesmo jeito que uma grande marca poderia, um caminho de crescimento que vai do pequeno negócio ao grande player, sem precisar refazer o produto do zero em cada etapa.' },
       ],
     },
     en: {
       name: 'GloWay',
       status: 'Validated, working prototype still live',
       blocks: [
-        { t: 'p', text: "This was my biggest idea to date, and it came on its own, overnight. No course pushing it, no college assignment asking for it, no co-founder. I was looking at Vitória and saw a problem nobody had really solved: a tourist arrives in a city with no real idea where to go, and a resident lives in their own city without seeing half of it. Every travel guide I saw was just a list of spots, with no intelligence behind it." },
+        { t: 'p', text: "Vitória has tourists arriving with no real idea where to go, and residents living in their own city without seeing half of it. Every travel guide I saw was just a list of spots, with no intelligence behind it. That was the problem nobody had really solved, and it's what got me started on GloWay." },
         { t: 'h2', text: 'What I built' },
         { t: 'p', text: "The heart of the product was the Neuro-Planner. You'd choose whether you wanted the itinerary by the hour or for full days, set a budget, and the AI searched for everything within that value, including transportation. You could filter by accessibility, pet-friendliness, LGBT+-safe locations, or ask for an itinerary built specifically around that. It covered everything from boat trips to hiking expeditions, movies to kayaking. The AI also checked the weather and would warn you, and if you wanted to change everything last minute, you could adjust the itinerary by hand without losing what had already been planned. When the itinerary included a booking (lodging, a tour, a flight), the app routed straight to the right site to complete the payment or see more details." },
         { t: 'p', text: "I also built a 3D memory Atlas, where the user themself rated the lighting, safety and accessibility of the place they were at, creating a map of urban quality made by the city, not by bureaucracy. And a real-time bike-sharing monitor, Velô, plus gamification and offline tools. I went all the way: I integrated Stripe payments in live mode, not sandbox, because I wanted to validate it for real, not just as a mockup." },
@@ -180,7 +220,20 @@ const PROJECTS_CONTENT = {
     accent2: '#22c55e',
     typeBadge: { pt: 'PostgreSQL avançado', en: 'Advanced PostgreSQL' },
     hook: { pt: 'PostgreSQL avançado organizando minha vida financeira de verdade.', en: 'Advanced PostgreSQL organizing my real financial life.' },
+    cardMetric: { pt: 'Usado com dado financeiro real por 3 pessoas.', en: 'Used with real financial data by 3 people.' },
     link: { type: 'github', url: 'https://github.com/RyanDua11/ledgerx', label: { pt: 'Código', en: 'Code' } },
+    intro: {
+      pt: {
+        motivation: 'Eu e alguns amigos tínhamos o mesmo problema: gastar sem perceber, sem nenhum alerta até a conta já estar no vermelho. Aproveitei esse problema real pra estudar PostgreSQL avançado e Docker a fundo, construindo o LedgerX pra resolver isso com dado, não com força de vontade.',
+        built: 'Um score de saúde financeira calculado direto no banco, usando window functions, CTEs e materialized views. Alertas automáticos disparados por trigger quando o gasto foge do padrão, com audit log completo e exportação de relatório pra Excel.',
+        numbers: 'Usado com dado financeiro real por 3 pessoas (eu e dois amigos). Um dos usuários identificou, através dos alertas, um padrão de gasto recorrente que não tinha percebido antes.',
+      },
+      en: {
+        motivation: "A few friends and I had the same problem: spending without noticing, with no alert until the account was already in the red. I used that real problem to study advanced PostgreSQL and Docker in depth, building LedgerX to solve it with data, not with willpower.",
+        built: 'A financial health score calculated directly in the database, using window functions, CTEs and materialized views. Automatic alerts fired by a trigger when spending strays from the pattern, with a complete audit log and Excel report export.',
+        numbers: 'Used with real financial data by 3 people (me and two friends). One of the users spotted, through the alerts, a recurring spending pattern they hadn\'t noticed before.',
+      },
+    },
     pt: {
       name: 'LedgerX',
       status: 'Em uso ativo',
@@ -188,7 +241,7 @@ const PROJECTS_CONTENT = {
         { t: 'p', text: 'Esse projeto nasceu de pura curiosidade técnica. Eu queria aprender PostgreSQL de verdade, não só o básico de SELECT e JOIN que qualquer curso ensina, e resolvi usar minha própria vida financeira como caso de uso real. Hoje sou eu e mais duas pessoas usando o LedgerX no dia a dia pra organizar gasto.' },
         { t: 'h2', text: 'O que eu construí' },
         { t: 'p', text: 'A tabela de transações é particionada por mês. Isso significa que, em vez de guardar todo o histórico financeiro numa tabela gigante só, o banco separa fisicamente cada mês em sua própria partição. Na prática, isso evita que uma consulta simples, tipo "quanto eu gastei em março", precise varrer anos de dado irrelevante pra achar um mês específico.' },
-        { t: 'p', text: 'Tem duas materialized views: uma resume receita, despesa e saldo por mês, outra cruza gasto por categoria com o percentual do limite definido. Diferente de uma view comum, que recalcula tudo toda vez que é consultada, a materialized view guarda o resultado pronto — então abrir o relatório é instantâneo, não um recálculo pesado a cada clique.' },
+        { t: 'p', text: 'Tem duas materialized views: uma resume receita, despesa e saldo por mês, outra cruza gasto por categoria com o percentual do limite definido. Diferente de uma view comum, que recalcula tudo toda vez que é consultada, a materialized view guarda o resultado pronto. Abrir o relatório é instantâneo, não um recálculo pesado a cada clique.' },
         { t: 'p', text: 'Uso window functions pra gerar dois relatórios que view comum não resolve sozinha: um comparativo mês a mês por categoria usando LAG (quanto eu gastei em mercado esse mês comparado ao mês passado, categoria por categoria), e uma média móvel de três meses pra suavizar gasto e mostrar tendência real, não só o número isolado de um mês bom ou ruim.' },
         { t: 'p', text: 'Tenho full-text search em português rodando sobre a descrição de cada transação, atualizado automaticamente por trigger toda vez que insiro ou edito um lançamento. E o banco toma decisão sozinho: um trigger dispara um alerta automático assim que uma categoria bate 80% do limite mensal que eu defini. Todo INSERT, UPDATE e DELETE de transação fica registrado num audit log completo, em JSONB, guardando o valor antes e depois da mudança.' },
         { t: 'h2', text: 'O que isso substitui' },
@@ -196,7 +249,7 @@ const PROJECTS_CONTENT = {
         { t: 'h2', text: 'Por que fiz assim' },
         { t: 'p', text: 'Cada decisão técnica aqui tem um motivo de performance ou de negócio por trás, não foi escolha aleatória de "porque é avançado". Particionar por mês existe porque relatório financeiro quase sempre filtra por período. Materialized view existe porque dashboard tem que abrir na hora, não depois de recalcular tudo. O trigger de 80% existe porque de nada adianta um relatório bonito se ninguém olha ele a tempo de evitar estourar o orçamento.' },
         { t: 'h2', text: 'Onde está hoje' },
-        { t: 'status', text: 'Em uso ativo, com exportação de relatório em Excel com gráfico via Chart.js. Continuo evoluindo o projeto enquanto aprendo mais sobre PostgreSQL avançado — é o projeto que eu mais mexo por puro interesse técnico, não por necessidade de portfólio.' },
+        { t: 'status', text: 'Em uso ativo, com exportação de relatório em Excel com gráfico via Chart.js. Continuo evoluindo o projeto enquanto aprendo mais sobre PostgreSQL avançado. É o projeto que eu mais mexo por puro interesse técnico, não por necessidade de portfólio.' },
       ],
     },
     en: {
@@ -221,3 +274,7 @@ const PROJECTS_CONTENT = {
 };
 
 const PROJECT_ORDER = ['medistudy', 'candidatrack', 'gloway', 'ledgerx'];
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { PROJECTS_CONTENT, PROJECT_ORDER };
+}

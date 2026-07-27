@@ -4,8 +4,8 @@
    ========================================================================== */
 
 const NAV = {
-  pt: { projects: 'Projetos', certs: 'Formação', contact: 'Contato' },
-  en: { projects: 'Projects', certs: 'Education', contact: 'Contact' },
+  pt: { projects: 'Projetos', about: 'Sobre', certs: 'Formação', contact: 'Contato' },
+  en: { projects: 'Projects', about: 'About', certs: 'Education', contact: 'Contact' },
 };
 
 /* ?v=estagio: única versão além do portfólio padrão. Ajusta apenas as meta
@@ -55,8 +55,7 @@ const CONTENT = {
     nav: NAV.pt,
     hero: {
       badge: 'Disponível para novos projetos',
-      descHtml: '<span class="hero-lead">Eu vejo um problema e penso no que poderia existir no lugar.</span> Foi assim que eu cheguei à programação. Sempre fui fascinado por tecnologia, mas por muito tempo isso ficou só como curiosidade. O que mudou foi uma frustração que fui acumulando: toda vez que eu precisava de alguma ferramenta, nunca achava uma completa. Sempre faltava um pedaço, sempre eram dois ou três apps diferentes pra resolver uma coisa só. Quando entendi o que a inteligência artificial realmente é capaz de fazer, percebi que o mais interessante não era só usar o que já existia, mas construir aquilo que ainda estava faltando. Hoje é isso que me move: pegar um problema real e pensar no que poderia existir no lugar dele.',
-      personal: 'Curso Análise e Desenvolvimento de Sistemas na Multivix, em Serra/ES. Tenho 22 anos, e meu jeito de ser curioso é assim: quando alguma área me interessa, eu busco um curso, tiro uma certificação, e procuro aplicar aquilo em algum projeto real. Hoje já são 11 certificações técnicas, cada uma com um pedaço implementado em algo que você vai ver abaixo. O padrão se repete em tudo que eu construo: encontro uma ferramenta que devia existir e não existe, ou existe espalhada em vários lugares, e em vez de continuar procurando, eu construo. Cada projeto abaixo é essa mesma pergunta aplicada a um problema diferente: e se isso tudo coubesse num lugar só?',
+      role: 'Desenvolvedor Full Stack',
       ctaPrimary: 'Ver Projetos',
     },
     stats: STATS.pt,
@@ -65,11 +64,17 @@ const CONTENT = {
       title: 'O que eu construí',
       subtitle: 'Projetos reais, com código real. Cada um resolve um problema concreto.',
     },
+    about: {
+      tag: '// sobre',
+      title: 'Sobre mim',
+      bodyHtml: '<p>Sou Ryan, tenho 22 anos, e há uns meses decidi aprofundar meus estudos em desenvolvimento de verdade.</p><p>O que mudou foi perceber um padrão: toda vez que eu precisava de alguma ferramenta, nunca achava uma completa. Sempre faltava um pedaço, sempre eram duas ou três coisas diferentes pra resolver um problema só. Foi assim com o MediStudy, o LedgerX, o CandidaTrack e o GloWay: cada um começou porque eu vivia esse problema de perto, na minha vida ou na de alguém próximo, e resolvi construir o que faltava em vez de continuar procurando.</p><p>Estudo Análise e Desenvolvimento de Sistemas na Multivix, e gosto de aprender testando na prática. Os projetos abaixo mostram isso em ação.</p>',
+    },
     certs: CERTS_TEXT.pt,
     contact: {
       tag: '// contato',
       title: 'Vamos conversar?',
       subtitleHtml: 'Estou disponível para novas oportunidades em desenvolvimento de software.<br/>Me manda uma mensagem, respondo rápido.',
+      cvLabel: 'Baixar Currículo',
     },
   },
   en: {
@@ -78,8 +83,7 @@ const CONTENT = {
     nav: NAV.en,
     hero: {
       badge: 'Available for new projects',
-      descHtml: '<span class="hero-lead">I see a problem and think about what could exist in its place.</span> That\'s how I got into programming. I was always fascinated by technology, but for a long time that stayed just as curiosity. What changed was a frustration that kept building up: every time I needed some tool, I could never find a complete one. There was always a piece missing, always two or three different apps to solve one single thing. When I understood what artificial intelligence is actually capable of, I realized the interesting part wasn\'t just using what already existed, but building the thing that was still missing. That\'s what drives me today: taking a real problem and thinking about what could exist in its place.',
-      personal: "I'm studying Systems Analysis and Development at Multivix, in Serra, Brazil. I'm 22, and this is how my curiosity works: when a field interests me, I look for a course, get a certification, and try to apply it in some real project. Today that's already 11 technical certifications, each one with a piece implemented in something you'll see below. The same pattern repeats in everything I build: I find a tool that should exist and doesn't, or exists scattered across several places, and instead of keep looking for it, I build it. Each project below is that same question applied to a different problem: what if all of this fit in one single place?",
+      role: 'Full Stack Developer',
       ctaPrimary: 'View Projects',
     },
     stats: STATS.en,
@@ -88,11 +92,17 @@ const CONTENT = {
       title: 'What I built',
       subtitle: 'Real projects, with real code. Each one solves a concrete problem.',
     },
+    about: {
+      tag: '// about',
+      title: 'About me',
+      bodyHtml: "<p>I'm Ryan, 22 years old, and a few months ago I decided to dive deeper into real software development.</p><p>What changed was noticing a pattern: every time I needed some tool, I could never find one that was complete. There was always a missing piece, always two or three different things needed to solve one problem. That's how MediStudy, LedgerX, CandidaTrack and GloWay started: each one began because I was living that problem up close, in my own life or someone close to me, and I decided to build what was missing instead of continuing to search for it.</p><p>I study Systems Analysis and Development at Multivix, and I like learning by testing things in practice. The projects below show that in action.</p>",
+    },
     certs: CERTS_TEXT.en,
     contact: {
       tag: '// contact',
       title: "Let's talk?",
       subtitleHtml: "I'm available for new opportunities in software development.<br/>Send me a message, I reply fast.",
+      cvLabel: 'Download Resume',
     },
   },
 };

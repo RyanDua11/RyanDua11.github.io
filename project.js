@@ -1,8 +1,7 @@
 /* ==========================================================================
-   project.js — página dinâmica de case study (?slug=medistudy|candidatrack|
-   gloway|ledgerx). Conteúdo completo com identidade de cor por projeto e
-   scrollytelling: blocos revelam-se conforme o scroll (IntersectionObserver)
-   e métricas numéricas contam de 0 até o valor final ao entrar em vista.
+   project.js — página de case study de cada projeto. Storytelling curto
+   (motivação -> construção -> números) no topo, botão de convite pro README
+   completo (blocks), que fica logo abaixo âncora #readme.
    ========================================================================== */
 
 const LANG_STORAGE_KEY = 'portfolio-lang';
@@ -10,8 +9,8 @@ const LANG_HTML_TAG = { pt: 'pt-BR', en: 'en' };
 const AVAILABLE_LANGS = ['pt', 'en'];
 
 const UI_TEXT = {
-  pt: { back: 'Voltar ao portfólio', visionBadge: 'Visão futura, ainda não implementado', prev: 'Anterior', next: 'Próximo', notFoundTitle: 'Projeto não encontrado', notFoundDesc: 'Esse case study não existe.' },
-  en: { back: 'Back to portfolio', visionBadge: 'Future vision, not built yet', prev: 'Previous', next: 'Next', notFoundTitle: 'Project not found', notFoundDesc: "This case study doesn't exist." },
+  pt: { back: 'Voltar ao portfólio', visionBadge: 'Visão futura, ainda não implementado', prev: 'Anterior', next: 'Próximo', notFoundTitle: 'Projeto não encontrado', notFoundDesc: 'Esse case study não existe.', readmeCta: 'Ver histórico técnico completo', motivation: 'Motivação', built: 'O que foi construído', numbers: 'Números de impacto' },
+  en: { back: 'Back to portfolio', visionBadge: 'Future vision, not built yet', prev: 'Previous', next: 'Next', notFoundTitle: 'Project not found', notFoundDesc: "This case study doesn't exist.", readmeCta: 'See the full technical history', motivation: 'Motivation', built: 'What was built', numbers: 'Impact numbers' },
 };
 
 function getLangFromUrl() {
@@ -24,8 +23,15 @@ function getLangFromUrl() {
 }
 
 function getSlugFromUrl() {
+  const fromBody = document.body.getAttribute('data-project-slug');
+  if (fromBody && fromBody !== '{{SLUG}}') return fromBody;
   const params = new URLSearchParams(window.location.search);
-  return params.get('slug');
+  const fromQuery = params.get('slug');
+  if (fromQuery) return fromQuery;
+  const segments = window.location.pathname.split('/').filter(Boolean);
+  const projIndex = segments.indexOf('projetos');
+  if (projIndex !== -1 && segments[projIndex + 1]) return segments[projIndex + 1];
+  return null;
 }
 
 function setUrlParam(key, value) {
@@ -66,6 +72,23 @@ function renderBlockInner(block) {
 
 function renderBlock(block) {
   return `<div class="cs-reveal">${renderBlockInner(block)}</div>`;
+}
+
+function renderIntro(intro, t) {
+  if (!intro) return '';
+  return `
+    <div class="cs-intro-item cs-reveal">
+      <span class="cs-intro-label">${t.motivation}</span>
+      <p>${intro.motivation}</p>
+    </div>
+    <div class="cs-intro-item cs-reveal">
+      <span class="cs-intro-label">${t.built}</span>
+      <p>${intro.built}</p>
+    </div>
+    <div class="cs-intro-item cs-reveal">
+      <span class="cs-intro-label">${t.numbers}</span>
+      <p>${intro.numbers}</p>
+    </div>`;
 }
 
 function animateCount(el) {
@@ -119,6 +142,10 @@ function renderNotFound() {
   const t = UI_TEXT[currentLang];
   document.getElementById('meta-title').textContent = `${t.notFoundTitle} — ryan.dev`;
   document.getElementById('cs-hero').style.display = 'none';
+  const intro = document.getElementById('cs-intro');
+  if (intro) intro.innerHTML = '';
+  const cta = document.getElementById('readme-cta');
+  if (cta) cta.style.display = 'none';
   document.getElementById('cs-body').innerHTML = `<p class="cs-p">${t.notFoundDesc}</p>`;
   document.getElementById('cs-footer-links').innerHTML = '';
   const adjacent = document.getElementById('cs-adjacent');
@@ -131,6 +158,7 @@ function render() {
   if (!project) { renderNotFound(); return; }
 
   const data = project[currentLang] || project.pt;
+  const intro = project.intro && (project.intro[currentLang] || project.intro.pt);
   const t = UI_TEXT[currentLang];
 
   const root = document.documentElement;
@@ -138,14 +166,21 @@ function render() {
   root.style.setProperty('--case-accent2', project.accent2);
 
   document.getElementById('meta-title').textContent = `${data.name} — Case Study — ryan.dev`;
-  document.getElementById('meta-description').setAttribute('content', data.blocks.find(b => b.t === 'p')?.text.slice(0, 155) || '');
+  document.getElementById('meta-description').setAttribute('content', (intro && intro.motivation.slice(0, 155)) || '');
 
   document.getElementById('cs-icon').textContent = project.icon;
   document.getElementById('cs-type-badge').textContent = project.typeBadge[currentLang] || project.typeBadge.pt;
   document.getElementById('cs-name').textContent = data.name;
   document.getElementById('cs-status').innerHTML = `<span class="cs-status-dot"></span>${data.status}`;
 
+  document.getElementById('cs-intro').innerHTML = renderIntro(intro, t);
   document.getElementById('cs-body').innerHTML = data.blocks.map(b => renderBlock(b)).join('');
+
+  const readmeBody = document.getElementById('cs-body');
+  readmeBody.id = 'readme';
+  readmeBody.classList.add('cs-body');
+
+  document.querySelectorAll('[data-i18n="readmeCta"]').forEach(el => { el.textContent = t.readmeCta; });
 
   // link externo (github/site/em desenvolvimento)
   const linkWrap = document.getElementById('cs-footer-links');
@@ -184,11 +219,11 @@ function renderAdjacentNav(t) {
   const nextName = (nextProj[currentLang] || nextProj.pt).name;
 
   wrap.innerHTML = `
-    <a href="project.html?slug=${prevSlug}" class="cs-adjacent-link cs-adjacent-prev" style="--adj-accent:${prevProj.accent}">
+    <a href="../${prevSlug}/index.html" class="cs-adjacent-link cs-adjacent-prev" style="--adj-accent:${prevProj.accent}">
       <span class="cs-adjacent-dir">← ${t.prev}</span>
       <span class="cs-adjacent-name">${prevName}</span>
     </a>
-    <a href="project.html?slug=${nextSlug}" class="cs-adjacent-link cs-adjacent-next" style="--adj-accent:${nextProj.accent}">
+    <a href="../${nextSlug}/index.html" class="cs-adjacent-link cs-adjacent-next" style="--adj-accent:${nextProj.accent}">
       <span class="cs-adjacent-dir">${t.next} →</span>
       <span class="cs-adjacent-name">${nextName}</span>
     </a>`;

@@ -1,6 +1,6 @@
 /* ==========================================================================
-   app.js — idioma por ?lang=/localStorage, montagem do DOM.
-   Um único portfólio (sem narrativas por versão).
+   app.js — idioma por ?lang=/localStorage, montagem do DOM, scroll reveal
+   e parallax leve entre texto (fixo) e fundo (glow/grain).
    ========================================================================== */
 
 const LANG_STORAGE_KEY = 'portfolio-lang';
@@ -45,19 +45,41 @@ function setMeta(data) {
   document.getElementById('meta-og-description').setAttribute('content', data.metaDesc);
 }
 
-function applyHaloTheme() {
-  const root = document.documentElement;
-  root.style.setProperty('--halo-accent', HALO_THEME.accent);
-  root.style.setProperty('--halo-accent2', HALO_THEME.accent2);
-  root.style.setProperty('--halo-core-saturation', HALO_THEME.coreSaturation);
-}
-
 function renderStats(container, stats) {
-  container.innerHTML = stats.map((s, i) => `
+  container.innerHTML = stats.map((s) => `
     <div class="hero-stat">
       <div class="hero-stat-num">${s.num}</div>
       <div class="hero-stat-label">${s.label}</div>
     </div>`).join('');
+}
+
+function renderProjectsGrid(lang) {
+  const container = document.getElementById('projects-grid');
+  if (!container || typeof PROJECTS_CONTENT === 'undefined') return;
+
+  container.innerHTML = PROJECT_ORDER.map((slug) => {
+    const proj = PROJECTS_CONTENT[slug];
+    const data = proj[lang] || proj.pt;
+    const metric = (proj.cardMetric && (proj.cardMetric[lang] || proj.cardMetric.pt)) || '';
+    return `
+      <a href="projetos/${slug}/index.html" class="project-card reveal-up" style="--project-accent:${proj.accent}">
+        <span class="project-card-icon">${proj.icon}</span>
+        <span class="project-card-badge">${proj.typeBadge[lang] || proj.typeBadge.pt}</span>
+        <span class="project-card-name">${data.name}</span>
+        <span class="project-card-metric">${metric}</span>
+      </a>`;
+  }).join('');
+
+  observeReveals();
+}
+
+function renderAbout(lang) {
+  const el = document.getElementById('about-body');
+  const section = document.getElementById('about');
+  if (!el) return;
+  const html = CONTENT[lang]?.about?.bodyHtml || '';
+  el.innerHTML = html;
+  if (section) section.style.display = html ? '' : 'none';
 }
 
 function renderLangSwitch(lang) {
@@ -76,7 +98,6 @@ function applyContent(lang) {
   document.getElementById('html-root').setAttribute('lang', LANG_HTML_TAG[lang] || lang);
   const estagioMeta = getVersionFromUrl() === 'estagio' ? ESTAGIO_META[lang] : null;
   setMeta(estagioMeta ? { ...data, ...estagioMeta } : data);
-  applyHaloTheme();
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const val = resolvePath(data, el.getAttribute('data-i18n'));
@@ -88,7 +109,8 @@ function applyContent(lang) {
   });
 
   renderStats(document.getElementById('hero-stats'), data.stats);
-  if (typeof renderConstellation === 'function') renderConstellation(lang);
+  renderProjectsGrid(lang);
+  renderAbout(lang);
   renderLangSwitch(lang);
 
   document.querySelectorAll('.cert-academic-detail').forEach(el => {
@@ -115,8 +137,32 @@ function switchLang(lang) {
   }, 180);
 }
 
+// ── SCROLL REVEAL: fade + sobe de baixo pra cima ──
+// Declarado antes do primeiro applyContent() abaixo: renderProjectsGrid chama
+// observeReveals(), que precisa de revealObserver já inicializado (senão
+// "let" ainda em temporal dead zone quebra o applyContent inteiro em silêncio).
+let revealObserver = null;
+function observeReveals() {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!revealObserver) {
+    revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (!entry.isIntersecting) return;
+        if (prefersReduced) entry.target.classList.add('visible');
+        else setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        revealObserver.unobserve(entry.target);
+      });
+    }, { threshold: .12 });
+  }
+  document.querySelectorAll('.reveal-up:not(.visible)').forEach(el => {
+    if (prefersReduced) { el.classList.add('visible'); return; }
+    revealObserver.observe(el);
+  });
+}
+
 document.body.classList.add('i18n-fade');
 applyContent(currentLang);
+observeReveals();
 
 document.getElementById('lang-switch').addEventListener('click', (e) => {
   const btn = e.target.closest('button[data-lang]');
@@ -137,7 +183,7 @@ document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click
 }));
 
 // ── NAV ACTIVE SECTION (scroll spy) ──
-const navSections = ['projects', 'certs', 'contact']
+const navSections = ['projects', 'about', 'certs', 'contact']
   .map(id => document.getElementById(id))
   .filter(Boolean);
 const navLinkFor = id => document.querySelector(`.nav-links a[href="#${id}"]`);
@@ -153,54 +199,20 @@ const spy = new IntersectionObserver((entries) => {
 }, { rootMargin: '-45% 0px -45% 0px' });
 navSections.forEach(s => spy.observe(s));
 
-// ── SCROLL ANIMATIONS ──
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 80);
-    }
+// ── PARALLAX: fundo (glow/grain) se move mais devagar que o conteúdo ──
+const parallaxLayers = [document.getElementById('canvas-bg'), document.getElementById('grain')].filter(Boolean);
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!prefersReducedMotion) {
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const offset = window.scrollY * 0.18;
+      parallaxLayers.forEach(layer => {
+        layer.style.transform = `translateY(${offset}px)`;
+      });
+      ticking = false;
+    });
   });
-}, { threshold: .12 });
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-// ── CAMPO DE FAGULHAS DO BURACO NEGRO (leque de partículas do disco) ──
-function seedBlackHoleSparks() {
-  const g = document.getElementById('bh-sparks');
-  if (!g) return;
-  const NS = 'http://www.w3.org/2000/svg';
-  const rand = (a, b) => a + Math.random() * (b - a);
-
-  // fagulhas cintilantes espalhadas pelo leque (baixo/direita do disco)
-  for (let i = 0; i < 22; i++) {
-    // amostra num setor elíptico inclinado, mais denso perto do disco
-    const t = Math.pow(Math.random(), 0.6);          // viés para o centro do disco
-    const ang = rand(-0.35, Math.PI + 0.15);          // metade de baixo, abrindo à direita
-    const rx = 178, ry = 116;
-    let x = 236 + Math.cos(ang) * rx * t;
-    let y = 250 + Math.sin(ang) * ry * t;
-    x += rand(-10, 10); y += rand(-8, 8);
-    const c = document.createElementNS(NS, 'circle');
-    c.setAttribute('cx', x.toFixed(1));
-    c.setAttribute('cy', y.toFixed(1));
-    c.setAttribute('r', rand(0.4, 1.9).toFixed(2));
-    c.setAttribute('class', 'bh-spark');
-    c.style.animationDelay = (-rand(0, 3)).toFixed(2) + 's';
-    c.style.animationDuration = rand(2.2, 4.5).toFixed(2) + 's';
-    g.appendChild(c);
-  }
-
-  // embers que sobem/derivam do disco para fora (spray)
-  for (let i = 0; i < 6; i++) {
-    const x = rand(150, 340), y = rand(210, 250);
-    const c = document.createElementNS(NS, 'circle');
-    c.setAttribute('cx', x.toFixed(1));
-    c.setAttribute('cy', y.toFixed(1));
-    c.setAttribute('r', rand(0.6, 1.4).toFixed(2));
-    c.setAttribute('class', 'bh-spark');
-    c.style.setProperty('--dx', rand(20, 70).toFixed(0) + 'px');
-    c.style.setProperty('--dy', rand(30, 90).toFixed(0) + 'px');
-    c.style.animation = `bh-drift ${rand(4, 7).toFixed(1)}s linear ${(-rand(0, 6)).toFixed(1)}s infinite`;
-    g.appendChild(c);
-  }
 }
-seedBlackHoleSparks();
