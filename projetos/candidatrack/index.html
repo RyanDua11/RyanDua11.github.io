@@ -14,10 +14,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../../style.css?v=40" />
-  <link rel="stylesheet" href="../../project.css?v=40" />
+  <link rel="stylesheet" href="../../style.css?v=45" />
+  <link rel="stylesheet" href="../../project.css?v=45" />
 </head>
 <body data-project-slug="candidatrack">
+
+<a href="#case-study" class="skip-link" data-i18n="skipLink">Pular para o conteúdo</a>
 
 <canvas id="canvas-bg"></canvas>
 <div id="grain"></div>
@@ -34,7 +36,7 @@
   </ul>
 </nav>
 
-<main id="case-study">
+<main id="case-study" tabindex="-1">
   <header class="cs-hero" id="cs-hero">
     <div class="cs-hero-inner">
       <span class="cs-icon" id="cs-icon"></span>
@@ -67,8 +69,14 @@
   Feito com <span>♥</span> e muito café · Ryan Duarte Quintão © 2026
 </footer>
 
-<script src="../../projects-content.js?v=40"></script>
-<script src="../../galaxy-bg.js?v=40"></script>
-<script src="../../project.js?v=40"></script>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Fechar">✕</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+  <p class="lightbox-caption" id="lightbox-caption"></p>
+</div>
+
+<script src="../../projects-content.js?v=45"></script>
+<script src="../../galaxy-bg.js?v=45"></script>
+<script src="../../project.js?v=45"></script>
 </body>
 </html>

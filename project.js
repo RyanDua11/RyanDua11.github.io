@@ -9,8 +9,8 @@ const LANG_HTML_TAG = { pt: 'pt-BR', en: 'en' };
 const AVAILABLE_LANGS = ['pt', 'en'];
 
 const UI_TEXT = {
-  pt: { back: 'Voltar ao portfólio', visionBadge: 'Visão futura, ainda não implementado', prev: 'Anterior', next: 'Próximo', notFoundTitle: 'Projeto não encontrado', notFoundDesc: 'Esse case study não existe.', readmeCta: 'Ver histórico técnico completo', motivation: 'Motivação', built: 'O que foi construído', numbers: 'Números de impacto' },
-  en: { back: 'Back to portfolio', visionBadge: 'Future vision, not built yet', prev: 'Previous', next: 'Next', notFoundTitle: 'Project not found', notFoundDesc: "This case study doesn't exist.", readmeCta: 'See the full technical history', motivation: 'Motivation', built: 'What was built', numbers: 'Impact numbers' },
+  pt: { back: 'Voltar ao portfólio', visionBadge: 'Visão futura, ainda não implementado', prev: 'Anterior', next: 'Próximo', notFoundTitle: 'Projeto não encontrado', notFoundDesc: 'Esse case study não existe.', readmeCta: 'Ver histórico técnico completo', motivation: 'Motivação', built: 'O que foi construído', numbers: 'Números de impacto', skipLink: 'Pular para o conteúdo', lightboxClose: 'Fechar' },
+  en: { back: 'Back to portfolio', visionBadge: 'Future vision, not built yet', prev: 'Previous', next: 'Next', notFoundTitle: 'Project not found', notFoundDesc: "This case study doesn't exist.", readmeCta: 'See the full technical history', motivation: 'Motivation', built: 'What was built', numbers: 'Impact numbers', skipLink: 'Skip to content', lightboxClose: 'Close' },
 };
 
 function getLangFromUrl() {
@@ -65,6 +65,19 @@ function renderBlockInner(block) {
       return `<div class="cs-vision"><span class="cs-vision-badge">${UI_TEXT[currentLang].visionBadge}</span><p>${block.text}</p></div>`;
     case 'status':
       return `<div class="cs-status-block"><p>${block.text}</p></div>`;
+    case 'gallery':
+      return `<div class="cs-gallery"><span class="cs-gallery-label">${block.label}</span><div class="cs-gallery-grid">${block.items.map(item => `
+        <a class="cs-shot" href="${item.src}" data-lightbox-src="${item.src}" data-lightbox-caption="${item.caption}">
+          <img src="${item.src}" alt="${item.caption}" loading="lazy" />
+          <span class="cs-shot-caption">${item.caption}</span>
+        </a>`).join('')}</div></div>`;
+    case 'diagram':
+      return `<div class="cs-diagram"><span class="cs-diagram-label">${block.label}</span><div class="cs-diagram-flow">${block.nodes.map((node, i) => `
+        ${i > 0 ? '<span class="cs-diagram-arrow" aria-hidden="true"></span>' : ''}
+        <div class="cs-diagram-node">
+          <span class="cs-diagram-node-title">${node.title}</span>
+          <span class="cs-diagram-node-desc">${node.desc}</span>
+        </div>`).join('')}</div></div>`;
     default:
       return '';
   }
@@ -251,4 +264,47 @@ document.getElementById('lang-switch').addEventListener('click', (e) => {
 
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+/* ── LIGHTBOX: abre os prints da galeria em overlay, sem sair do site ── */
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxCaption = document.getElementById('lightbox-caption');
+const lightboxClose = document.getElementById('lightbox-close');
+let lastFocusedEl = null;
+
+function openLightbox(src, caption) {
+  lastFocusedEl = document.activeElement;
+  lightboxImg.src = src;
+  lightboxImg.alt = caption || '';
+  lightboxCaption.textContent = caption || '';
+  lightbox.classList.add('active');
+  lightbox.setAttribute('aria-hidden', 'false');
+  lightboxClose.setAttribute('aria-label', UI_TEXT[currentLang].lightboxClose);
+  document.documentElement.classList.add('lightbox-open');
+  lightboxClose.focus();
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  lightbox.setAttribute('aria-hidden', 'true');
+  document.documentElement.classList.remove('lightbox-open');
+  lightboxImg.src = '';
+  if (lastFocusedEl) lastFocusedEl.focus();
+}
+
+document.addEventListener('click', (e) => {
+  const shot = e.target.closest('[data-lightbox-src]');
+  if (shot) {
+    e.preventDefault();
+    openLightbox(shot.getAttribute('data-lightbox-src'), shot.getAttribute('data-lightbox-caption'));
+    return;
+  }
+  if (lightbox.classList.contains('active') && (e.target === lightbox || e.target === lightboxClose)) {
+    closeLightbox();
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
 });

@@ -82,6 +82,22 @@ function renderAbout(lang) {
   if (section) section.style.display = html ? '' : 'none';
 }
 
+function renderTimeline(lang) {
+  const el = document.getElementById('about-timeline');
+  if (!el || typeof TIMELINE === 'undefined') return;
+  const items = TIMELINE[lang] || TIMELINE.pt;
+  el.innerHTML = items.map(item => `
+    <div class="timeline-item reveal-up">
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
+        <span class="timeline-date">${item.year} &middot; ${item.label}</span>
+        <span class="timeline-title">${item.title}</span>
+        <span class="timeline-desc">${item.desc}</span>
+      </div>
+    </div>`).join('');
+  observeReveals();
+}
+
 function renderLangSwitch(lang) {
   const available = getAvailableLangs();
   document.querySelectorAll('#lang-switch button').forEach(btn => {
@@ -111,6 +127,7 @@ function applyContent(lang) {
   renderStats(document.getElementById('hero-stats'), data.stats);
   renderProjectsGrid(lang);
   renderAbout(lang);
+  renderTimeline(lang);
   renderLangSwitch(lang);
 
   document.querySelectorAll('.cert-academic-detail').forEach(el => {
@@ -163,6 +180,32 @@ function observeReveals() {
 document.body.classList.add('i18n-fade');
 applyContent(currentLang);
 observeReveals();
+
+// ── SPOTLIGHT + TILT: brilho e inclinação leve seguindo o mouse nos cards ──
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const projectsGrid = document.getElementById('projects-grid');
+  if (projectsGrid) {
+    projectsGrid.addEventListener('mousemove', (e) => {
+      const card = e.target.closest('.project-card');
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const px = x / rect.width;
+      const py = y / rect.height;
+      card.style.setProperty('--spot-x', `${px * 100}%`);
+      card.style.setProperty('--spot-y', `${py * 100}%`);
+      card.style.setProperty('--tilt-y', `${(px - .5) * 6}deg`);
+      card.style.setProperty('--tilt-x', `${(.5 - py) * 6}deg`);
+    });
+    projectsGrid.addEventListener('mouseleave', (e) => {
+      const card = e.target.closest('.project-card');
+      if (!card) return;
+      card.style.setProperty('--tilt-x', '0deg');
+      card.style.setProperty('--tilt-y', '0deg');
+    }, true);
+  }
+}
 
 document.getElementById('lang-switch').addEventListener('click', (e) => {
   const btn = e.target.closest('button[data-lang]');

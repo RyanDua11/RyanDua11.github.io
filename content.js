@@ -43,6 +43,28 @@ const WHATSAPP_TEXT = {
   en: "Hi Ryan! I saw your portfolio and I'd like to talk.",
 };
 
+/* Datas de 2026 confirmadas via data de criação dos repositórios no GitHub
+   (todolist-spring-postgres e candidatrack: 22/06; ledgerx: 30/06). GloWay é
+   anterior e não tem repositório público; MediStudy ainda não foi publicado. */
+const TIMELINE = {
+  pt: [
+    { year: '2025', label: 'Jul', title: 'GloWay', desc: 'Produto completo validado com 15 usuários reais e apresentado no SEBRAE.' },
+    { year: '2026', label: 'Jun', title: 'Multivix', desc: 'Início da graduação em Análise e Desenvolvimento de Sistemas.' },
+    { year: '2026', label: 'Jun', title: 'To-Do List API', desc: 'Primeiro projeto de backend: Java, Spring Boot, PostgreSQL e Docker.' },
+    { year: '2026', label: 'Jun', title: 'CandidaTrack', desc: 'Segundo projeto, nascido da própria busca de vaga.' },
+    { year: '2026', label: 'Jun', title: 'LedgerX', desc: 'Estudo aprofundado de PostgreSQL aplicado à própria vida financeira.' },
+    { year: '2026', label: 'Em andamento', title: 'MediStudy', desc: 'Projeto atual, em fase de arquitetura.' },
+  ],
+  en: [
+    { year: '2025', label: 'Jul', title: 'GloWay', desc: 'Full product validated with 15 real users and presented at SEBRAE.' },
+    { year: '2026', label: 'Jun', title: 'Multivix', desc: 'Started a degree in Systems Analysis and Development.' },
+    { year: '2026', label: 'Jun', title: 'To-Do List API', desc: 'First backend project: Java, Spring Boot, PostgreSQL and Docker.' },
+    { year: '2026', label: 'Jun', title: 'CandidaTrack', desc: 'Second project, born out of my own job search.' },
+    { year: '2026', label: 'Jun', title: 'LedgerX', desc: 'In-depth PostgreSQL study applied to my own finances.' },
+    { year: '2026', label: 'Ongoing', title: 'MediStudy', desc: 'Current project, in the architecture phase.' },
+  ],
+};
+
 const CERTS_TEXT = {
   pt: { tag: '// formação', title: 'Certificações & Formação', subtitle: 'Aprendizado contínuo, do fundamento à aplicação prática.' },
   en: { tag: '// education', title: 'Certifications & Education', subtitle: 'Continuous learning, from fundamentals to practical application.' },
@@ -52,6 +74,7 @@ const CONTENT = {
   pt: {
     metaTitle: 'Ryan Duarte Quintão, Desenvolvedor Full Stack',
     metaDesc: 'Portfólio de Ryan Duarte Quintão. Projetos reais em Python, Java, React e IA generativa.',
+    skipLink: 'Pular para o conteúdo',
     nav: NAV.pt,
     hero: {
       badge: 'Disponível para novos projetos',
@@ -80,6 +103,7 @@ const CONTENT = {
   en: {
     metaTitle: 'Ryan Duarte Quintão, Full Stack Developer',
     metaDesc: "Ryan Duarte Quintão's portfolio. Real projects in Python, Java, React and generative AI.",
+    skipLink: 'Skip to content',
     nav: NAV.en,
     hero: {
       badge: 'Available for new projects',
