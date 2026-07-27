@@ -11,7 +11,7 @@ const PROJECTS_CONTENT = {
   medistudy: {
     slug: 'medistudy',
     order: 1,
-    icon: '⚕️',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M12 16v6M2 12h6M16 12h6"/><circle cx="12" cy="12" r="3"/></svg>',
     accent: '#e3b53f',
     accent2: '#7a2438',
     typeBadge: { pt: 'IA + Educação', en: 'AI + Education' },
@@ -81,7 +81,7 @@ const PROJECTS_CONTENT = {
   candidatrack: {
     slug: 'candidatrack',
     order: 2,
-    icon: '🧠',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>',
     accent: '#3b82f6',
     accent2: '#3b82f6',
     typeBadge: { pt: 'IA + Backend', en: 'AI + Backend' },
@@ -145,7 +145,7 @@ const PROJECTS_CONTENT = {
   gloway: {
     slug: 'gloway',
     order: 3,
-    icon: '🗺️',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
     accent: '#14b8a6',
     accent2: '#14b8a6',
     typeBadge: { pt: 'Produto completo', en: 'Full product' },
@@ -215,7 +215,7 @@ const PROJECTS_CONTENT = {
   ledgerx: {
     slug: 'ledgerx',
     order: 4,
-    icon: '💰',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 4 8-8M20 8v5M20 8h-5"/></svg>',
     accent: '#f59e0b',
     accent2: '#22c55e',
     typeBadge: { pt: 'PostgreSQL avançado', en: 'Advanced PostgreSQL' },

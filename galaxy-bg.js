@@ -38,9 +38,13 @@ function draw() {
 
   const r = Math.max(W, H) * RADIUS_RATIO;
   const g = ctx.createRadialGradient(glow.x, glow.y, 0, glow.x, glow.y, r);
-  g.addColorStop(0, 'rgba(255,107,53,.11)');
-  g.addColorStop(.5, 'rgba(255,107,53,.045)');
-  g.addColorStop(1, 'rgba(255,107,53,0)');
+  const PEAK = 0.11;
+  const STEPS = 12;
+  for (let i = 0; i <= STEPS; i++) {
+    const t = i / STEPS;
+    const alpha = PEAK * Math.pow(1 - t, 2.6);
+    g.addColorStop(t, `rgba(255,107,53,${alpha.toFixed(4)})`);
+  }
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, W, H);
 

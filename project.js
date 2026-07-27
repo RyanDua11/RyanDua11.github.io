@@ -168,7 +168,7 @@ function render() {
   document.getElementById('meta-title').textContent = `${data.name} — Case Study — ryan.dev`;
   document.getElementById('meta-description').setAttribute('content', (intro && intro.motivation.slice(0, 155)) || '');
 
-  document.getElementById('cs-icon').textContent = project.icon;
+  document.getElementById('cs-icon').innerHTML = project.icon;
   document.getElementById('cs-type-badge').textContent = project.typeBadge[currentLang] || project.typeBadge.pt;
   document.getElementById('cs-name').textContent = data.name;
   document.getElementById('cs-status').innerHTML = `<span class="cs-status-dot"></span>${data.status}`;
