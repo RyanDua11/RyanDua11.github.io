@@ -31,7 +31,21 @@ window.addEventListener('mousemove', (e) => {
   glow.targetY = e.clientY;
 });
 
+/* Spotlight: o glow intensifica levemente ao passar sobre algo clicável,
+   confirmando "isso é interativo" sem precisar mudar o cursor. */
+const HOVER_SELECTOR = 'a, button';
+let hoverTarget = 0;
+let hoverBoost = 0;
+
+document.addEventListener('mouseover', (e) => {
+  if (e.target.closest(HOVER_SELECTOR)) hoverTarget = 1;
+});
+document.addEventListener('mouseout', (e) => {
+  if (e.target.closest(HOVER_SELECTOR)) hoverTarget = 0;
+});
+
 const EASE = 0.06;
+const HOVER_EASE = 0.1;
 const RADIUS_RATIO = 0.42;
 
 /* Blobs de mesh: órbita elíptica lenta e independente entre si, só para
@@ -63,10 +77,11 @@ function draw(t) {
 
   glow.x += (glow.targetX - glow.x) * EASE;
   glow.y += (glow.targetY - glow.y) * EASE;
+  hoverBoost += (hoverTarget - hoverBoost) * HOVER_EASE;
 
-  const r = Math.max(W, H) * RADIUS_RATIO;
+  const r = Math.max(W, H) * RADIUS_RATIO * (1 + hoverBoost * 0.18);
   const g = ctx.createRadialGradient(glow.x, glow.y, 0, glow.x, glow.y, r);
-  const PEAK = 0.11;
+  const PEAK = 0.11 * (1 + hoverBoost * 0.9);
   const STEPS = 12;
   for (let i = 0; i <= STEPS; i++) {
     const s = i / STEPS;
@@ -79,3 +94,39 @@ function draw(t) {
   if (!bgPrefersReducedMotion) requestAnimationFrame(draw);
 }
 draw(0);
+
+/* Cursor magnético: botões (.btn) e links de ação (.cs-ext-link) se deslocam
+   levemente na direção do cursor quando ele se aproxima, reforçando o alvo
+   sem exagerar. Só em dispositivos com mouse de precisão (pointer: fine),
+   pra não deixar "grudento" no touch, e desligado com reduced-motion. */
+if (!bgPrefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
+  const MAGNET_SELECTOR = '.btn, .cs-ext-link:not(.cs-ext-link-disabled)';
+  const MAGNET_STRENGTH = 0.3;
+  const MAGNET_MAX = 8;
+  const MAGNET_LIFT = -2; // mesmo translateY(-2px) que o CSS já usa no hover
+  let magnetEl = null;
+
+  function resetMagnet(el) { el.style.transform = ''; }
+
+  document.addEventListener('mousemove', (e) => {
+    const target = e.target.closest(MAGNET_SELECTOR);
+    if (target !== magnetEl) {
+      if (magnetEl) resetMagnet(magnetEl);
+      magnetEl = target;
+    }
+    if (!magnetEl) return;
+    const rect = magnetEl.getBoundingClientRect();
+    const relX = e.clientX - (rect.left + rect.width / 2);
+    const relY = e.clientY - (rect.top + rect.height / 2);
+    const dx = Math.max(-MAGNET_MAX, Math.min(MAGNET_MAX, relX * MAGNET_STRENGTH));
+    const dy = Math.max(-MAGNET_MAX, Math.min(MAGNET_MAX, relY * MAGNET_STRENGTH)) + MAGNET_LIFT;
+    magnetEl.style.transform = `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px)`;
+  });
+
+  document.addEventListener('mouseout', (e) => {
+    if (magnetEl && e.target.closest(MAGNET_SELECTOR) === magnetEl && !magnetEl.contains(e.relatedTarget)) {
+      resetMagnet(magnetEl);
+      magnetEl = null;
+    }
+  });
+}

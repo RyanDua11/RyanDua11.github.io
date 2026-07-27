@@ -67,6 +67,7 @@
 .cs-reveal.visible { opacity: 1; transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) {
   .cs-reveal { transition: none; }
+  .cs-diagram-node, .cs-diagram-arrow { transition: none; opacity: 1; transform: none; }
 }
 
 .cs-p { font-size: 1rem; line-height: 1.85; color: var(--text); opacity: .92; }
@@ -184,8 +185,11 @@ html.lightbox-open { overflow: hidden; }
   display: flex; flex-direction: column; gap: .35rem;
   padding: 1rem 1.1rem; border-radius: 10px;
   background: var(--surface); border: 1px solid var(--border);
-  transition: border-color .25s;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .5s ease, transform .5s cubic-bezier(.22,1,.36,1), border-color .25s;
+  transition-delay: calc(var(--stagger-i, 0) * 90ms), calc(var(--stagger-i, 0) * 90ms), 0s;
 }
+.cs-reveal.visible .cs-diagram-node { opacity: 1; transform: translateY(0); }
 .cs-diagram-node:hover {
   border-color: color-mix(in srgb, var(--case-accent) 50%, transparent);
 }
@@ -198,7 +202,11 @@ html.lightbox-open { overflow: hidden; }
   flex: 0 0 auto; align-self: center;
   width: 22px; height: 10px;
   position: relative;
+  opacity: 0;
+  transition: opacity .4s ease;
+  transition-delay: calc(var(--stagger-i, 0) * 90ms);
 }
+.cs-reveal.visible .cs-diagram-arrow { opacity: 1; }
 .cs-diagram-arrow::before {
   content: '→';
   position: absolute; inset: 0;

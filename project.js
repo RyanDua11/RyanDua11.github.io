@@ -73,8 +73,8 @@ function renderBlockInner(block) {
         </a>`).join('')}</div></div>`;
     case 'diagram':
       return `<div class="cs-diagram"><span class="cs-diagram-label">${block.label}</span><div class="cs-diagram-flow">${block.nodes.map((node, i) => `
-        ${i > 0 ? '<span class="cs-diagram-arrow" aria-hidden="true"></span>' : ''}
-        <div class="cs-diagram-node">
+        ${i > 0 ? `<span class="cs-diagram-arrow" aria-hidden="true" style="--stagger-i:${i * 2 - 1}"></span>` : ''}
+        <div class="cs-diagram-node" style="--stagger-i:${i * 2}">
           <span class="cs-diagram-node-title">${node.title}</span>
           <span class="cs-diagram-node-desc">${node.desc}</span>
         </div>`).join('')}</div></div>`;
@@ -187,9 +187,11 @@ function render() {
   document.getElementById('cs-status').innerHTML = `<span class="cs-status-dot"></span>${data.status}`;
 
   document.getElementById('cs-intro').innerHTML = renderIntro(intro, t);
-  document.getElementById('cs-body').innerHTML = data.blocks.map(b => renderBlock(b)).join('');
 
-  const readmeBody = document.getElementById('cs-body');
+  // O id vira "readme" (âncora do CTA) já na primeira renderização, então
+  // trocas de idioma seguintes precisam achar o elemento por esse id.
+  const readmeBody = document.getElementById('cs-body') || document.getElementById('readme');
+  readmeBody.innerHTML = data.blocks.map(b => renderBlock(b)).join('');
   readmeBody.id = 'readme';
   readmeBody.classList.add('cs-body');
 
