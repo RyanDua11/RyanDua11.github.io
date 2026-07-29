@@ -110,7 +110,8 @@ const PROJECTS_CONTENT = {
     typeBadge: { pt: 'IA + Backend', en: 'AI + Backend' },
     hook: { pt: 'Currículo, portfólio e vaga comparados em segundos, não em planilha.', en: 'Résumé, portfolio and job posting compared in seconds, not in a spreadsheet.' },
     cardMetric: { pt: 'Cerca de 60 vagas já rodadas pelo score de compatibilidade.', en: 'About 60 job postings already run through the compatibility score.' },
-    link: { type: 'github', url: 'https://github.com/RyanDua11/candidatrack', label: { pt: 'Código', en: 'Code' } },
+    // rodape oculto: o botao dedicado de README (final do conteudo) ja leva pro mesmo repo
+    link: { type: 'hidden' },
     readme: 'https://github.com/RyanDua11/candidatrack',
     intro: {
       pt: {
@@ -302,7 +303,8 @@ const PROJECTS_CONTENT = {
     typeBadge: { pt: 'PostgreSQL avançado', en: 'Advanced PostgreSQL' },
     hook: { pt: 'PostgreSQL avançado organizando minha vida financeira de verdade.', en: 'Advanced PostgreSQL organizing my real financial life.' },
     cardMetric: { pt: 'Usado com dado financeiro real por 3 pessoas.', en: 'Used with real financial data by 3 people.' },
-    link: { type: 'github', url: 'https://github.com/RyanDua11/ledgerx', label: { pt: 'Código', en: 'Code' } },
+    // rodape oculto: o botao dedicado de README (final do conteudo) ja leva pro mesmo repo
+    link: { type: 'hidden' },
     readme: 'https://github.com/RyanDua11/ledgerx',
     intro: {
       pt: {

@@ -211,14 +211,21 @@ function render() {
 
   document.querySelectorAll('[data-i18n="readmeCta"]').forEach(el => { el.textContent = t.readmeCta; });
 
-  // link externo (github/site/em desenvolvimento)
+  // link externo (github/site/em desenvolvimento). type "hidden" oculta o
+  // bloco inteiro: usado quando o botao dedicado de README (topo do rodape
+  // do conteudo) ja leva pro mesmo destino, e o link do rodape ficaria duplicado.
   const linkWrap = document.getElementById('cs-footer-links');
   const link = project.link;
-  const linkLabel = link.label[currentLang] || link.label.pt;
-  if (link.type === 'none') {
-    linkWrap.innerHTML = `<span class="cs-ext-link cs-ext-link-disabled">${linkIconSvg('none')}${linkLabel}</span>`;
+  if (link.type === 'hidden') {
+    linkWrap.style.display = 'none';
   } else {
-    linkWrap.innerHTML = `<a href="${link.url}" target="_blank" rel="noopener" class="cs-ext-link">${linkIconSvg(link.type)}${linkLabel}</a>`;
+    linkWrap.style.display = '';
+    const linkLabel = link.label[currentLang] || link.label.pt;
+    if (link.type === 'none') {
+      linkWrap.innerHTML = `<span class="cs-ext-link cs-ext-link-disabled">${linkIconSvg('none')}${linkLabel}</span>`;
+    } else {
+      linkWrap.innerHTML = `<a href="${link.url}" target="_blank" rel="noopener" class="cs-ext-link">${linkIconSvg(link.type)}${linkLabel}</a>`;
+    }
   }
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
