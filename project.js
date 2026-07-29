@@ -9,8 +9,8 @@ const LANG_HTML_TAG = { pt: 'pt-BR', en: 'en' };
 const AVAILABLE_LANGS = ['pt', 'en'];
 
 const UI_TEXT = {
-  pt: { back: 'Voltar ao portfólio', visionBadge: 'Visão futura, ainda não implementado', prev: 'Anterior', next: 'Próximo', notFoundTitle: 'Projeto não encontrado', notFoundDesc: 'Esse case study não existe.', readmeCta: 'Ver histórico técnico completo', motivation: 'Motivação', built: 'O que foi construído', numbers: 'Números de impacto', skipLink: 'Pular para o conteúdo', lightboxClose: 'Fechar' },
-  en: { back: 'Back to portfolio', visionBadge: 'Future vision, not built yet', prev: 'Previous', next: 'Next', notFoundTitle: 'Project not found', notFoundDesc: "This case study doesn't exist.", readmeCta: 'See the full technical history', motivation: 'Motivation', built: 'What was built', numbers: 'Impact numbers', skipLink: 'Skip to content', lightboxClose: 'Close' },
+  pt: { back: 'Voltar ao portfólio', visionBadge: 'Visão futura, ainda não implementado', prev: 'Anterior', next: 'Próximo', notFoundTitle: 'Projeto não encontrado', notFoundDesc: 'Esse case study não existe.', readmeCta: 'Ver histórico técnico completo', readmeGithub: 'Ver README completo no GitHub', motivation: 'Motivação', built: 'O que foi construído', numbers: 'Números de impacto', skipLink: 'Pular para o conteúdo', lightboxClose: 'Fechar' },
+  en: { back: 'Back to portfolio', visionBadge: 'Future vision, not built yet', prev: 'Previous', next: 'Next', notFoundTitle: 'Project not found', notFoundDesc: "This case study doesn't exist.", readmeCta: 'See the full technical history', readmeGithub: 'View full README on GitHub', motivation: 'Motivation', built: 'What was built', numbers: 'Impact numbers', skipLink: 'Skip to content', lightboxClose: 'Close' },
 };
 
 function getLangFromUrl() {
@@ -159,6 +159,8 @@ function renderNotFound() {
   if (intro) intro.innerHTML = '';
   const cta = document.getElementById('readme-cta');
   if (cta) cta.style.display = 'none';
+  const readmeGithubEl = document.getElementById('cs-readme-github');
+  if (readmeGithubEl) readmeGithubEl.style.display = 'none';
   document.getElementById('cs-body').innerHTML = `<p class="cs-p">${t.notFoundDesc}</p>`;
   document.getElementById('cs-footer-links').innerHTML = '';
   const adjacent = document.getElementById('cs-adjacent');
@@ -185,6 +187,18 @@ function render() {
   document.getElementById('cs-type-badge').textContent = project.typeBadge[currentLang] || project.typeBadge.pt;
   document.getElementById('cs-name').textContent = data.name;
   document.getElementById('cs-status').innerHTML = `<span class="cs-status-dot"></span>${data.status}`;
+
+  // botao dedicado pro README completo no GitHub, um destino por projeto
+  const readmeGithubEl = document.getElementById('cs-readme-github');
+  if (readmeGithubEl) {
+    if (project.readme) {
+      readmeGithubEl.href = project.readme;
+      readmeGithubEl.innerHTML = `${linkIconSvg('github')}<span>${t.readmeGithub}</span>`;
+      readmeGithubEl.style.display = '';
+    } else {
+      readmeGithubEl.style.display = 'none';
+    }
+  }
 
   document.getElementById('cs-intro').innerHTML = renderIntro(intro, t);
 

@@ -18,6 +18,7 @@ const PROJECTS_CONTENT = {
     hook: { pt: '15 ferramentas viraram uma, moldada do jeito que ela estuda.', en: '15 tools became one, shaped to how she studies.' },
     cardMetric: { pt: '15 ferramentas viraram uma, moldada do jeito que ela estuda.', en: '15 tools became one, shaped to how she studies.' },
     link: { type: 'none', label: { pt: 'Em desenvolvimento', en: 'In development' } },
+    readme: 'https://github.com/RyanDua11/medistudy',
     intro: {
       pt: {
         motivation: 'Acompanhando minha namorada na jornada de estudar Medicina, via ela usando mais de 10 ferramentas diferentes pra estudar: uma IA pra conversar, outra pra debater ideias, Anki pra flashcard, mais uma pra gerar imagem. Como ela tem TDAH, esse tanto de ferramenta espalhada dificultava ainda mais o foco. Construí o MediStudy pra juntar tudo isso num lugar só, e ir além: um sistema que aprende com as respostas dela e se adapta ao jeito dela estudar.',
@@ -110,6 +111,7 @@ const PROJECTS_CONTENT = {
     hook: { pt: 'Currículo, portfólio e vaga comparados em segundos, não em planilha.', en: 'Résumé, portfolio and job posting compared in seconds, not in a spreadsheet.' },
     cardMetric: { pt: 'Cerca de 60 vagas já rodadas pelo score de compatibilidade.', en: 'About 60 job postings already run through the compatibility score.' },
     link: { type: 'github', url: 'https://github.com/RyanDua11/candidatrack', label: { pt: 'Código', en: 'Code' } },
+    readme: 'https://github.com/RyanDua11/candidatrack',
     intro: {
       pt: {
         motivation: 'Enquanto buscava minha própria vaga, via post atrás de post de gente na mesma situação: currículo genérico, vaga que não bate com o perfil, tempo perdido lendo descrição que não ia dar em nada. Construí o CandidaTrack pra resolver isso com dado, não com achismo.',
@@ -201,6 +203,7 @@ const PROJECTS_CONTENT = {
     typeBadge: { pt: 'Produto completo', en: 'Full product' },
     hook: { pt: '15 usuários reais, validado no SEBRAE.', en: 'Validated by 15 real users, presented at SEBRAE.' },
     cardMetric: { pt: '15 usuários reais, validado no SEBRAE.', en: 'Validated by 15 real users, presented at SEBRAE.' },
+    readme: 'https://github.com/RyanDua11/gloway-tour',
     link: { type: 'external', url: 'https://glowaytour.online', label: { pt: 'Site no ar', en: 'Live site' } },
     intro: {
       pt: {
@@ -300,6 +303,7 @@ const PROJECTS_CONTENT = {
     hook: { pt: 'PostgreSQL avançado organizando minha vida financeira de verdade.', en: 'Advanced PostgreSQL organizing my real financial life.' },
     cardMetric: { pt: 'Usado com dado financeiro real por 3 pessoas.', en: 'Used with real financial data by 3 people.' },
     link: { type: 'github', url: 'https://github.com/RyanDua11/ledgerx', label: { pt: 'Código', en: 'Code' } },
+    readme: 'https://github.com/RyanDua11/ledgerx',
     intro: {
       pt: {
         motivation: 'Eu e alguns amigos tínhamos o mesmo problema: gastar sem perceber, sem nenhum alerta até a conta já estar no vermelho. Aproveitei esse problema real pra estudar PostgreSQL avançado e Docker a fundo, construindo o LedgerX pra resolver isso com dado, não com força de vontade.',

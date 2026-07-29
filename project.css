@@ -59,6 +59,8 @@
 /* ── BODY / README COMPLETO ── */
 .cs-body { display: flex; flex-direction: column; gap: 1.5rem; scroll-margin-top: 5rem; }
 
+.cs-readme-github-wrap { text-align: center; margin: 3rem 0; }
+
 /* ── SCROLLYTELLING: revelação por scroll ── */
 .cs-reveal {
   opacity: 0; transform: translateY(28px);
