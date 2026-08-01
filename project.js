@@ -136,7 +136,11 @@ function observeReveals() {
   }, { threshold: .2, rootMargin: '0px 0px -8% 0px' });
 
   document.querySelectorAll('.cs-reveal').forEach(el => {
-    if (prefersReduced) { el.classList.add('visible'); return; }
+    if (prefersReduced) {
+      el.classList.add('visible');
+      el.querySelectorAll('[data-count-to]').forEach(c => { c.textContent = c.getAttribute('data-count-to'); });
+      return;
+    }
     revealObserver.observe(el);
   });
 }
