@@ -73,7 +73,7 @@ const CERTS_TEXT = {
 const CONTENT = {
   pt: {
     metaTitle: 'Ryan Duarte Quintão, Desenvolvedor Full Stack',
-    metaDesc: 'Portfólio de Ryan Duarte Quintão. Projetos reais em Python, Java, React e IA generativa.',
+    metaDesc: 'Portfólio de Ryan Duarte Quintão. Projetos reais em Python, Java, React e IA generativa, com certificação Anthropic Academy em Claude Code e Claude API.',
     skipLink: 'Pular para o conteúdo',
     nav: NAV.pt,
     hero: {
@@ -90,7 +90,7 @@ const CONTENT = {
     about: {
       tag: '// sobre',
       title: 'Sobre mim',
-      bodyHtml: '<p>Sou Ryan, tenho 22 anos, e há uns meses decidi aprofundar meus estudos em desenvolvimento de verdade.</p><p>O que mudou foi perceber um padrão: toda vez que eu precisava de alguma ferramenta, nunca achava uma completa. Sempre faltava um pedaço, sempre eram duas ou três coisas diferentes pra resolver um problema só. Foi assim com o MediStudy, o LedgerX, o CandidaTrack e o GloWay: cada um começou porque eu vivia esse problema de perto, na minha vida ou na de alguém próximo, e resolvi construir o que faltava em vez de continuar procurando.</p><p>Estudo Análise e Desenvolvimento de Sistemas na Multivix, e gosto de aprender testando na prática. Os projetos abaixo mostram isso em ação.</p>',
+      bodyHtml: '<p>Sou Ryan, tenho 22 anos, e há uns meses decidi aprofundar meus estudos em desenvolvimento de verdade.</p><p>O que mudou foi perceber um padrão: toda vez que eu precisava de alguma ferramenta, nunca achava uma completa. Sempre faltava um pedaço, sempre eram duas ou três coisas diferentes pra resolver um problema só. Foi assim com o MediStudy, o LedgerX, o CandidaTrack e o GloWay: cada um começou porque eu vivia esse problema de perto, na minha vida ou na de alguém próximo, e resolvi construir o que faltava em vez de continuar procurando.</p><p>Estudo Análise e Desenvolvimento de Sistemas na Multivix, e complemento isso com formação direto na fonte: Anthropic Academy, pra dominar Claude Code e a construção de agentes de IA na prática, e AWS Educate, pra entender infraestrutura de nuvem por trás do que eu construo. No GloWay isso já apareceu de forma concreta: cheguei a rodar o produto com custo de infraestrutura abaixo de R$0,005 por roteiro gerado por IA, e engenharia de custo de IA virou algo que eu penso desde o design da arquitetura, não só depois que o produto já está no ar.</p><p>Gosto de aprender testando na prática. Os projetos abaixo mostram isso em ação.</p>',
     },
     certs: CERTS_TEXT.pt,
     contact: {
@@ -102,7 +102,7 @@ const CONTENT = {
   },
   en: {
     metaTitle: 'Ryan Duarte Quintão, Full Stack Developer',
-    metaDesc: "Ryan Duarte Quintão's portfolio. Real projects in Python, Java, React and generative AI.",
+    metaDesc: "Ryan Duarte Quintão's portfolio. Real projects in Python, Java, React and generative AI, with an Anthropic Academy certification in Claude Code and the Claude API.",
     skipLink: 'Skip to content',
     nav: NAV.en,
     hero: {
@@ -119,7 +119,7 @@ const CONTENT = {
     about: {
       tag: '// about',
       title: 'About me',
-      bodyHtml: "<p>I'm Ryan, 22 years old, and a few months ago I decided to dive deeper into real software development.</p><p>What changed was noticing a pattern: every time I needed some tool, I could never find one that was complete. There was always a missing piece, always two or three different things needed to solve one problem. That's how MediStudy, LedgerX, CandidaTrack and GloWay started: each one began because I was living that problem up close, in my own life or someone close to me, and I decided to build what was missing instead of continuing to search for it.</p><p>I study Systems Analysis and Development at Multivix, and I like learning by testing things in practice. The projects below show that in action.</p>",
+      bodyHtml: "<p>I'm Ryan, 22 years old, and a few months ago I decided to dive deeper into real software development.</p><p>What changed was noticing a pattern: every time I needed some tool, I could never find one that was complete. There was always a missing piece, always two or three different things needed to solve one problem. That's how MediStudy, LedgerX, CandidaTrack and GloWay started: each one began because I was living that problem up close, in my own life or someone close to me, and I decided to build what was missing instead of continuing to search for it.</p><p>I study Systems Analysis and Development at Multivix, and I complement that with training straight from the source: Anthropic Academy, to master Claude Code and building AI agents in practice, and AWS Educate, to understand the cloud infrastructure behind what I build. That already showed up concretely in GloWay: I got the product running at an infrastructure cost below R$0.005 per AI-generated itinerary, and AI cost engineering became something I think about from the architecture design, not just after the product is already live.</p><p>I like learning by testing things in practice. The projects below show that in action.</p>",
     },
     certs: CERTS_TEXT.en,
     contact: {
