@@ -22,15 +22,19 @@ const ESTAGIO_META = {
   },
 };
 
+/* num de "Certificações técnicas" é calculado em tempo real por
+   countCertifications() (app.js), a partir das tags .cert-chip da seção
+   Formação — isCertCount marca qual entrada usa o valor dinâmico, o num
+   aqui nunca é lido pra essa linha. */
 const STATS = {
   pt: [
     { num: '4',  label: 'Projetos completos entregues' },
-    { num: '11', label: 'Certificações técnicas' },
+    { num: null, label: 'Certificações técnicas', isCertCount: true },
     { num: '9',  label: 'Tecnologias na stack' },
   ],
   en: [
     { num: '4',  label: 'Complete projects shipped' },
-    { num: '11', label: 'Technical certifications' },
+    { num: null, label: 'Technical certifications', isCertCount: true },
     { num: '9',  label: 'Technologies in the stack' },
   ],
 };

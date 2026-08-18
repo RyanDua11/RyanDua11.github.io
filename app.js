@@ -45,10 +45,15 @@ function setMeta(data) {
   document.getElementById('meta-og-description').setAttribute('content', data.metaDesc);
 }
 
+function countCertifications() {
+  return document.querySelectorAll('.certs-grid .cert-chip:not(.cert-academic-detail)').length;
+}
+
 function renderStats(container, stats) {
+  const certCount = countCertifications();
   container.innerHTML = stats.map((s) => `
     <div class="hero-stat">
-      <div class="hero-stat-num">${s.num}</div>
+      <div class="hero-stat-num">${s.isCertCount ? certCount : s.num}</div>
       <div class="hero-stat-label">${s.label}</div>
     </div>`).join('');
 }
